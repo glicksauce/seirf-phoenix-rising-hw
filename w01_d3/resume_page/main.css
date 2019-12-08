@@ -1,13 +1,15 @@
+/*
 * {
     border-width: 2px;
     border: solid yellow;
 
 }
+*/
 
 body{
     background: rgb(75, 14, 14);
     margin: 10px auto;
-    padding: 5% 20%;
+    padding: 0 15%;
 }
 
 img {
@@ -19,6 +21,10 @@ h1 {
     display: block;
     text-align: center;
 }
+h2{
+    text-align: center;
+    font-size: 30px;
+}
 h3 {
     color: #8fadab;
     text-align: center;
@@ -26,24 +32,31 @@ h3 {
     font-size: 25px;
 }
 
-.menu {
-    background: white;
+.nav {
+    background: rgb(173, 130, 130);
     float: left;
     width: 100%;
 }
 
 .positions {
     clear: both;
+    float: left;
+    width: 20%;
+    height: 100%;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    color: rgb(204, 195, 195);
 }
 
 ul {
 }   
 
-.menu  li {
+.nav  li {
 
     margin: 0; 20%;
-    padding: 0 20px;
+    padding: 0 .5%;
     display: inline-block;
+    width: 13%;
 }
 
 p {
@@ -51,10 +64,31 @@ p {
 }
 
 .content {
-    width: 50%;
-    margin: 0 auto;
-    border: 50%;
+    width: 70%;
     font-size: 2em;
     text-align: justify;
-    clear: both;
+    float: left;
+}
+
+.projects li{
+    float: left;
+    height: 500px;
+    max-width: 25%;
+    margin: 0 1%;;
+    padding: 20px;
+    text-align: justify;
+    border: solid rgb(39, 7, 7);
+}
+
+ol{
+    list-style-type: none;
+margin: auto;
+}
+
+
+li img {
+    float: left;
+    max-width: 50%;
+    margin-right: 5%;
+
 }
