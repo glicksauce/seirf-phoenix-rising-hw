@@ -10,23 +10,40 @@ body{
     padding: 5% 20%;
 }
 
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+h1 {
+    display: block;
+    text-align: center;
+}
 h3 {
     color: #8fadab;
+    text-align: center;
+    font-family: 'Baskervville', serif;
+    font-size: 25px;
 }
 
 .menu {
     background: white;
+    float: left;
+    width: 100%;
+}
 
+.positions {
+    clear: both;
 }
 
 ul {
 }   
 
-li {
-    display: inline-block;
+.menu  li {
+
     margin: 0; 20%;
-    padding: 0 15px;
-    float: left;
+    padding: 0 20px;
+    display: inline-block;
 }
 
 p {
