@@ -16,7 +16,7 @@ html, body{
 
 
 body{
-    background: rgb(75, 14, 14);
+    background: rgb(109, 25, 25);
     margin: 0 auto;
  
     border: solid black;
@@ -58,15 +58,6 @@ h3 {
     margin: 0 auto;
 }
 
-.positions {
-    float: left;
-    width: 20%;
-    height: 500px;
-    padding: 55px 0 0 20px;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 20px;
-    color: rgb(204, 195, 195);
-}
 
 ul {
     list-style-type: none;
@@ -78,6 +69,18 @@ ul {
     width: 13%;
     height: 100%;
     text-align: center;
+    line-height: 60%;
+}
+
+
+.positions {
+    float: left;
+    width: 20%;
+    height: 500px;
+    padding: 55px 0 0 20px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    color: rgb(204, 195, 195);
 }
 
 span {
@@ -112,7 +115,7 @@ iframe{
     float: left;
     height: 500px;
     max-width: 25%;
-    margin: 0 1%;;
+    margin: 20px 1%;
     padding: 20px;
     text-align: justify;
     border: solid rgb(39, 7, 7);
