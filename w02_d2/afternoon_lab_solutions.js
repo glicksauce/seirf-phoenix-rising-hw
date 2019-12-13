@@ -261,45 +261,61 @@ It should work on any NxM array, so don’t assume the input is a square array. 
 //then down except for last digit
 //then left except for last digit
 function spiral (arr){
-    let height = arr.length;
-    let length = arr[0].length; //works assuming all rows same number of elements
-    finalArr = []
+    //let height = arr.length; //for testing
+    //let length = arr[0].length; //for testing //works assuming all rows same number of elements
+    let arrLength = arr.flat().length; //flatten the original arry and find the length of elements
+    const finalArr = []; //create new array which will store our results
   
-  for (let marginShrink = 0; marginShrink < height; marginShrink++){
+  //cycles through our functions and shrinks margins after complete cycle. 'finalArr.length<arrLengh' approximates the total cycles so there is a catch all in the rowNav/colNav functions that will skip adding stuff if the finalArr is complete
+  for (let marginShrink = 0; finalArr.length<arrLength; marginShrink++){
     rowNav(arr, 1, marginShrink, marginShrink); //top row heading right
     colNav(arr, 1, marginShrink+1, marginShrink); //right hand going down
   
     rowNav(arr,-1, marginShrink+1, marginShrink); //bottom heading left
     colNav(arr,-1, marginShrink+1, marginShrink+1); //left heading up
-  
-    //rowNav(arr, 1, 1, 1); //middle heading right
+
   }
 
+    //funtion returns rows from original array. Uses startTrim and endTrim to skip beginning and end of rows
     function rowNav(arr,direction, startTrim, endTrim) {
-       if (direction == 1)  { //rightward direction.
+           if (finalArr.length==arrLength){ //if array is complete exit function
+              return;
+          } else if (direction == 1)  { //rightward direction. starts at row beginning (minus start trim) ends at row end(minus end trim)
+          //finalArr.push("---->");
           for (i = startTrim;i < arr[startTrim].length-endTrim; i++) {
+
             finalArr.push(arr[startTrim][i]);
           }
-       } else if (direction == -1){
+         //finalArr.push("|");
+       } else if (direction == -1){ //leftward direction starts at row end (minus startTrim) ends at row beginning (minus endTrim);
+         //finalArr.push("<----");
            for (i=arr[arr.length-1-endTrim].length-1-startTrim; i>=endTrim;i--){
                finalArr.push(arr[arr.length-1-endTrim][i]);
            }
+         //finalArr.push("|");
        }
 
     }
+  //funtion returns columns from original array. Uses startTrim and endTrim to skip beginning and end of columns
     function colNav(args, direction, startTrim, endTrim){
-      if (direction == 1){
-          for (i = startTrim; i < args.length-endTrim; i++){
-              finalArr.push(args[i][args[i].length-1]);
+          if (finalArr.length==arrLength){ //if final array is complete exit function
+              return;
+           } else if (direction == 1){
+       // finalArr.push("v");
+          for (i = startTrim; i < args.length-endTrim; i++){ //start at column top (minus startTrim) and work down (minus endTrmi);
+              finalArr.push(args[i][args[i].length-1-endTrim]);
           } 
-      } else if (direction == -1) {
+       // finalArr.push("|");
+      } else if (direction == -1) { //start at column bottom (minus startTrim) and work up (minus endTrim)
+       // finalArr.push("^");
                for (i = args.length-1-startTrim; i>=endTrim ;i--){   
                      finalArr.push(args[i][startTrim-1]);
                }
+       // finalArr.push("|");
       }
     }    
     
-    return finalArr;
+    return (finalArr);
 }
 
-console.log(spiral(array2));
+console.log(spiral(array3));
