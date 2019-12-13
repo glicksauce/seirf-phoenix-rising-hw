@@ -234,9 +234,16 @@ array = [[1,2,3],
          [7,6,5]];
 
 array2 = [[1,2,3,4],
-         [5,4,5,4],
-         [8,9,4,5],
-         [7,6,5,6]];
+         [12,13,14,5],
+         [11,16,15,6],
+         [10,9,8,7]];
+
+array3 = [[1,2,3,4],
+         [14,15,16,5],
+         [13,20,17,6],
+         [12,19,18,7],
+         [11,10,9,8]];
+
 /*
 then
 
@@ -257,29 +264,42 @@ function spiral (arr){
     let height = arr.length;
     let length = arr[0].length; //works assuming all rows same number of elements
     finalArr = []
-    rowNav(arr[0], 1, 0);
-    colNav(arr,1, 1);
-    rowNav(arr[arr.length-1],-1,1)
+  
+  for (let marginShrink = 0; marginShrink < height; marginShrink++){
+    rowNav(arr, 1, marginShrink, marginShrink); //top row heading right
+    colNav(arr, 1, marginShrink+1, marginShrink); //right hand going down
+  
+    rowNav(arr,-1, marginShrink+1, marginShrink); //bottom heading left
+    colNav(arr,-1, marginShrink+1, marginShrink+1); //left heading up
+  
+    //rowNav(arr, 1, 1, 1); //middle heading right
+  }
 
-
-    function rowNav(row,direction, iteration) {
-       if (direction == 1){ //rightward direction
-        for (let elements of row)
-        finalArr.push(elements);
+    function rowNav(arr,direction, startTrim, endTrim) {
+       if (direction == 1)  { //rightward direction.
+          for (i = startTrim;i < arr[startTrim].length-endTrim; i++) {
+            finalArr.push(arr[startTrim][i]);
+          }
        } else if (direction == -1){
-           for (i=row.length-(1+iteration); i>=0;i--){
-               finalArr.push(row[i]);
+           for (i=arr[arr.length-1-endTrim].length-1-startTrim; i>=endTrim;i--){
+               finalArr.push(arr[arr.length-1-endTrim][i]);
            }
        }
 
     }
-    function colNav(args, direction, iteration){
-        for (i = iteration; i < args.length; i++){
-            finalArr.push(args[i][args[i].length-1]);
-        }
+    function colNav(args, direction, startTrim, endTrim){
+      if (direction == 1){
+          for (i = startTrim; i < args.length-endTrim; i++){
+              finalArr.push(args[i][args[i].length-1]);
+          } 
+      } else if (direction == -1) {
+               for (i = args.length-1-startTrim; i>=endTrim ;i--){   
+                     finalArr.push(args[i][startTrim-1]);
+               }
+      }
     }    
     
     return finalArr;
 }
 
-console.log(spiral(array));
+console.log(spiral(array2));
