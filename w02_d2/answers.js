@@ -8,7 +8,20 @@ for (i=0;i<=20;i++){
 ////////////////////////////////
 // Get Even
 ////////////////////////////////
-
+for (i=1;i<=100;i++){
+    word = [i];
+    output = '';
+    if (i%3 == 0){
+      word.push("fizz");
+    }
+    if (i%5 == 0){
+      word.push("buzz")
+    }
+    output = word.toString();
+    console.log(output);
+    word = '';
+    output = '';
+  }
 
 ////////////////////////////////
 // Fizz Buzz
