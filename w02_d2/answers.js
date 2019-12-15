@@ -60,12 +60,22 @@ console.log(wolfy);
 ////////////////////////////////
 // Yell at the Ninja Turtles
 ////////////////////////////////
-
+const arr = ['Donatello','Leonardo','Raphael','Michaelangelo'];
+for (word of arr){
+    console.log(word.toUpperCase());
+}
 
 ////////////////////////////////
 // Methods, Revisited
 ////////////////////////////////
+const favMovies = ['Jaws', 'The Fellowship of the Ring', 'Howl\'s Moving Castle', 'Django Unchained', 'Cloud Atlas', 'The Usual Suspects', 'Toy Story', 'Conan the Barbarian', 'Titanic', 'Harry Potter', 'Fried Green Tomatoes', 'Volver', 'Oculus', 'Seven', 'Black Panther', 'Harry Potter', 'Imitation of Life', 'Snatch', 'Fast and Furious'];
 
+console.log(favMovies.indexOf('Titanic'));
+
+console.log(favMovies.sort());
+console.log(favMovies.pop());
+favMovies.push("Guardians of the Galaxy");
+console.log(favMovies.reverse());
 
 ////////////////////////////////
 // Where is Waldo
