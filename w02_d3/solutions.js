@@ -63,3 +63,106 @@ const printPrimes = num => {
 }
 
 console.log(printPrimes(100));
+
+//---------------------
+//Rock Paper Scissors
+const randomMove = () => {
+ let result = Math.floor(Math.random()*3)
+switch (result){
+    case 0:
+        return "rock";
+    case 1:
+        return "paper";
+    case 2:
+        return "scissors";
+}
+ return result
+}
+
+const rockPaperScissors = (computersMove, usersMove) => {
+    let results = rpsCompare(computersMove,usersMove)
+    winningThrow = results[0];
+    losingThrow = results[1];
+    let outcome = '';
+    //console.log(results[2]);
+    if (results[2] == 'tie'){
+        outcome = ("its a draw!");
+    } else
+    if (results[2] == 'left'){
+        let winningThrower = 'computer';
+        outcome = (`${winningThrow} beats ${losingThrow}, ${winningThrower} wins!`)
+    } else if (results[2] == 'right'){
+        let winningThrower = 'user';
+        outcome = (`${winningThrow} beats ${losingThrow}, ${winningThrower} wins!`)
+    } else {
+        outcome = "throw not recognized, try again";
+    }
+    winningThrower = results[2];
+    console.log("computer chose " + computersMove);
+    console.log("user chose " + usersMove);
+    console.log(outcome);
+
+
+}
+
+const rpsCompare = (play1, play2) => {
+    let winningPlay;
+    let losingPlay;
+    let scenerio;
+    if (play1 == play2){
+        return (['tie', 'tie', 'tie']);
+    } else if (play1 == 'rock'){
+        if (play2 == 'scissors'){
+            winningPlay = play1;
+            losingPlay = play2;
+            scenerio = 'left';
+        }
+        if (play2 == 'paper'){
+            winningPlay = play2;
+            losingPlay = play1;  
+            scenerio = 'right';
+        }
+    } else
+    if (play1 == 'paper'){
+        if (play2 == 'rock'){
+            winningPlay = play1;
+            losingPlay = play2;
+            scenerio = 'left';
+        }
+        if (play2 == 'scissors'){
+            winningPlay = play2;
+            losingPlay = play1;  
+            scenerio = 'right';
+        }
+    } else
+    if (play1 == 'scissors'){
+        if (play2 == 'paper'){
+            winningPlay = play1;
+            losingPlay = play2;
+            scenerio = 'left';
+        }
+        if (play2 == 'rock'){
+            winningPlay = play2;
+            losingPlay = play1; 
+            scenerio = 'right'; 
+        }
+    } else {
+        return ([-1,-1,-1]); //input not recognized
+    }
+    return ([winningPlay, losingPlay, scenerio]);
+}
+//for (i=0;i<10;i++){
+//    console.log(randomMove());
+//}
+let userInput = 'scissors'; //setting scissors as default
+
+//user can launch this as: node solutions.js rock
+//(or scissors or paper);
+//only populates if value is defined otherwise default value from above
+if (process.argv[2]){
+    userInput = process.argv[2];
+}
+
+
+//computers random move against players move
+rockPaperScissors(randomMove(), userInput);
