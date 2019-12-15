@@ -140,7 +140,22 @@ console.log(whereIsWaldo);
 ////////////////////////////////
 //  Excited Kitten
 ////////////////////////////////
+const catArr = []
+let mesg1 = "...human...why you taking pictures of me?..";
+let mesg2 = "..the catnip made me do it..";
+let mesg3 = "...why does the red dot always get away...";
+let log = "Love me, pet me! HSSSSSSSS!";
+let random3;
 
+for (i=0;i<20;i++){
+  if (i%2 == 0){
+    random3 = Math.ceil(Math.random()*3);
+    log += eval('mesg' + random3);
+  }
+  console.log(i, log);
+  log = "Love me, pet me! HSSSSSSSS!";
+
+}
 
 ////////////////////////////////
 //  Find the Median
