@@ -37,4 +37,29 @@ const sumArray = (arr) => {
 console.log(sumArray([1,2,3,4,5,6]));
 
 //--------------------------------
-//
+//Prime Numbers
+const checkPrime = (num) => {
+    let checkDistance = Math.floor(Math.sqrt(num));
+    if (num <= 1){
+        return false;
+    }
+    //console.log(checkDistance);
+    for (i=2;i<=checkDistance;i++){
+        if (num%i == 0){
+            return false;
+        }
+    }
+    return true;
+}
+
+const printPrimes = num => {
+    const result = [];
+    for (j=0;j<=num;j++){
+        if (checkPrime(j)){
+            result.push(j);
+        }
+    }
+    return result;
+}
+
+console.log(printPrimes(100));
