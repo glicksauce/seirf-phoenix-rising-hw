@@ -160,3 +160,17 @@ for (i=0;i<20;i++){
 ////////////////////////////////
 //  Find the Median
 ////////////////////////////////
+const nums = [14,11,16,15,13,16,15,17,19,11,12,14,19,11,15,17,11,18,12,17,12,71,18,15,12];
+
+const arrayEx1 = [5, 12, 8, 130, 44, 160];
+
+const medianArr = nums.sort((a,b) => a-b);
+
+if (medianArr.length %2 == 0){ //length is even average two middle numbers
+  r1 = medianArr[(medianArr.length/2)-1];
+  r2 = medianArr[(medianArr.length/2)];
+  console.log((r1+r2)/2);
+} else { //length is odd get middle number
+  console.log(medianArr[Math.floor(medianArr.length/2)]);
+}
+console.log(medianArr);
