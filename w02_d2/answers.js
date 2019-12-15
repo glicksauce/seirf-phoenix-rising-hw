@@ -70,13 +70,54 @@ for (word of arr){
 ////////////////////////////////
 const favMovies = ['Jaws', 'The Fellowship of the Ring', 'Howl\'s Moving Castle', 'Django Unchained', 'Cloud Atlas', 'The Usual Suspects', 'Toy Story', 'Conan the Barbarian', 'Titanic', 'Harry Potter', 'Fried Green Tomatoes', 'Volver', 'Oculus', 'Seven', 'Black Panther', 'Harry Potter', 'Imitation of Life', 'Snatch', 'Fast and Furious'];
 
-console.log(favMovies.indexOf('Titanic'));
+//Console log: the index of Titanic
+console.log("Titanic found at index " + favMovies.indexOf('Titanic'));
 
-console.log(favMovies.sort());
-console.log(favMovies.pop());
+//use the .sort method 
+console.log(favMovies.sort()); 
+
+//Use the method pop
+favMovies.pop();
+
+//push "Guardians of the Galaxy"
 favMovies.push("Guardians of the Galaxy");
-console.log(favMovies.reverse());
 
+//Reverse the array
+favMovies.reverse()
+
+//Use the shift method
+favMovies.shift()
+
+//unshift - what does it return?
+favMovies.unshift('Forest Gump');
+
+
+//splice "Django Unchained" and add "Avatar" (try finding the index of "Django Unchained", instead of counting it yourself) Thought question: did this permanently alter our array?
+let findDjango = favMovies.indexOf('Django Unchained');
+favMovies.splice(findDjango,1,'Avatar');
+
+
+//slice the last half of the array (challenge yourself and try to programatically determine the middle of the array rather than counting it and hard coding it) - Thought question: did this permanently alter our array?
+let splicePoint = Math.floor((favMovies.length-1)/2);
+favMovies.slice(splicePoint, favMovies.length);
+
+
+//store the value of your slice in a variable, console.log it - Thought question: what is going on here?
+let slicedList = favMovies.slice(splicePoint, favMovies.length);
+console.log(slicedList);
+
+//console.log your final results
+console.log(favMovies);
+
+
+//After running the above tasks, console.log the index of "Fast and Furious" -We removed it from the array, what value do we get when we look for the index of something that is not in the array?
+
+//"Volver" got popped not "Fast and Furious" so I"m going to use that instead
+
+console.log(favMovies.indexOf("Volver"));
+
+//Thought question: that we declared the variable favMovies with const, and yet, we were allowed to change the array. Weird? Should we have used let?
+//Const with an array allows you to make changes within an array it just doesn't let you change the array (from the outside);
 ////////////////////////////////
 // Where is Waldo
 ////////////////////////////////
