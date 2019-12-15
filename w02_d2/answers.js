@@ -121,7 +121,21 @@ console.log(favMovies.indexOf("Volver"));
 ////////////////////////////////
 // Where is Waldo
 ////////////////////////////////
+const whereIsWaldo = [["Timmy", "Frank"], "Eggbert",
+                    ["Lucinda", "Jacc", "Neff", "Snoop"],
+                    ["Petunia", ["Baked Goods", "Waldo"]]];
 
+//Remove Eggbert
+let findEggbert = whereIsWaldo.indexOf("Eggbert");
+whereIsWaldo.splice(findEggbert,1);
+
+//change Neff to No One
+whereIsWaldo[1][2] = "No One";
+
+//access and console.log "Waldo"
+console.log(whereIsWaldo[2][1][1]);
+
+console.log(whereIsWaldo);
 
 ////////////////////////////////
 //  Excited Kitten
