@@ -79,8 +79,26 @@ switch (result){
  return result
 }
 
+const randomMoveRPSLS = () => {
+    let result = Math.floor(Math.random()*5)
+    console.log(result);
+   switch (result){
+       case 0:
+           return "rock";
+       case 1:
+           return "paper";
+       case 2:
+           return "scissors";
+        case 3:
+            return "lizard";
+        case 4:
+            return "spock";
+   }
+    return result;
+   }
+
 const rockPaperScissors = (computersMove, usersMove) => {
-    let results = rpsCompare(computersMove,usersMove)
+    let results = rpslsCompare(computersMove,usersMove)
     winningThrow = results[0];
     losingThrow = results[1];
     let outcome = '';
@@ -105,6 +123,8 @@ const rockPaperScissors = (computersMove, usersMove) => {
 
 }
 
+
+//returns array of 3 elements
 const rpsCompare = (play1, play2) => {
     let winningPlay;
     let losingPlay;
@@ -151,6 +171,130 @@ const rpsCompare = (play1, play2) => {
     }
     return ([winningPlay, losingPlay, scenerio]);
 }
+
+//returns array of 3 elements
+const rpslsCompare = (play1, play2) => {
+    let winningPlay;
+    let losingPlay;
+    let scenerio;
+    if (play1 == play2){
+        return (['tie', 'tie', 'tie']);
+    } else 
+    if (play1 == 'rock'){
+        if (play2 == 'scissors'){
+            winningPlay = play1;
+            losingPlay = play2;
+            scenerio = 'left';
+        }
+        if (play2 == 'lizard'){
+            winningPlay = play1;
+            losingPlay = play2;
+            scenerio = 'left';
+        }
+        if (play2 == 'paper'){
+            winningPlay = play2;
+            losingPlay = play1;  
+            scenerio = 'right';
+        }
+        if (play2 == 'spock'){
+            winningPlay = play2;
+            losingPlay = play1;
+            scenerio = 'right';
+        }
+    } else
+    if (play1 == 'paper'){
+        if (play2 == 'rock'){
+            winningPlay = play1;
+            losingPlay = play2;
+            scenerio = 'left';
+        }
+        if (play2 == 'spock'){
+            winningPlay = play1;
+            losingPlay = play2;
+            scenerio = 'left';
+        }
+        if (play2 == 'scissors'){
+            winningPlay = play2;
+            losingPlay = play1;  
+            scenerio = 'right';
+        }
+        if (play2 == 'lizard'){
+            winningPlay = play2;
+            losingPlay = play1;
+            scenerio = 'right';
+        }
+    } else
+    if (play1 == 'scissors'){
+        if (play2 == 'paper'){
+            winningPlay = play1;
+            losingPlay = play2;
+            scenerio = 'left';
+        }
+        if (play2 == 'lizard'){
+            winningPlay = play1;
+            losingPlay = play2;
+            scenerio = 'left';
+        }
+        if (play2 == 'rock'){
+            winningPlay = play2;
+            losingPlay = play1; 
+            scenerio = 'right'; 
+        }
+        if (play2 == 'spock'){
+            winningPlay = play2;
+            losingPlay = play1;
+            scenerio = 'right';
+        } 
+    } else
+    if (play1 == 'spock'){
+        if (play2 == 'rock'){
+                winningPlay = play1;
+                losingPlay = play2;
+                scenerio = 'left';
+        }
+        if (play2 == 'scissors'){
+                winningPlay = play1;
+                losingPlay = play2;
+                scenerio = 'left';
+        }
+        if (play2 == 'paper'){
+                winningPlay = play2;
+                losingPlay = play1; 
+                scenerio = 'right'; 
+        }
+        if (play2 == 'lizard'){
+                winningPlay = play2;
+                losingPlay = play1;
+                scenerio = 'right';
+        } 
+    } else
+    if (play1 == 'lizard'){
+        if (play2 == 'paper'){
+                winningPlay = play1;
+                losingPlay = play2;
+                scenerio = 'left';
+        }
+        if (play2 == 'spock'){
+                winningPlay = play1;
+                losingPlay = play2;
+                scenerio = 'left';
+        }
+        if (play2 == 'rock'){
+                winningPlay = play2;
+                losingPlay = play1; 
+                scenerio = 'right'; 
+        }
+        if (play2 == 'scissors'){
+                winningPlay = play2;
+                losingPlay = play1;
+                scenerio = 'right';
+        } 
+    } else {
+            return ([-1,-1,-1]); //input not recognized
+        }
+    return ([winningPlay, losingPlay, scenerio]);
+}
+    
 //for (i=0;i<10;i++){
 //    console.log(randomMove());
 //}
@@ -165,4 +309,4 @@ if (process.argv[2]){
 
 
 //computers random move against players move
-rockPaperScissors(randomMove(), userInput);
+rockPaperScissors(randomMoveRPSLS(), userInput);
