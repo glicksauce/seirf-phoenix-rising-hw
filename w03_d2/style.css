@@ -1,5 +1,16 @@
-.buyButton{
+.buyButton, #storeExitButton {
     padding: 5px;
     margin: 5px;
 }
 
+#storeExitButton{
+    width: 200px;
+}
+
+button {
+    margin: 5px;
+}
+
+.buyButtonHidden{
+    display: none;
+}
