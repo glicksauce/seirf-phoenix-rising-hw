@@ -27,7 +27,7 @@ const tool = {
 const player = {
   name: '',
   tool: [tool.teeth],
-  wallet: 0
+  wallet: 5000
 }
 
 const town = {};
@@ -43,6 +43,7 @@ function doWork(){
   let dayMessage = "You went to work today!<br>You mowed with your " + dayTool + "<br> and you earned $" + dayEarnings + " today!";
   document.getElementById("dayStart").innerHTML = dayMessage;
   document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
+  createDoWorkAwknowledgementButton();
 }
 
 function buyTools(){
@@ -50,7 +51,7 @@ function buyTools(){
   hideButtons();
   showInventory();
   goShopping();
-  exitShopping();
+  createExitStoreButton();
 }
 
 function showInventory(){
@@ -60,6 +61,26 @@ function showInventory(){
   }
   document.getElementById("inventory").innerHTML = currentInventory;
 }
+
+//sorts inventory so index 0 is always the most expensive tool
+function sortInventory(){
+  let sortArray = player.tool; 
+  console.log(sortArray); 
+
+  let compareCheck = sortArray[0].cost;
+
+  for (let i = 0;i<sortArray.length;i++){
+    if (sortArray[i]['cost'] > compareCheck){
+      let tempHolder = sortArray[i];
+      sortArray.splice(i,1);
+      sortArray.unshift(tempHolder);
+    }
+    compareCheck = sortArray[i].cost;
+
+  }
+ 
+}
+
 
 function namePlayer(player){
 
@@ -122,19 +143,32 @@ function attemptBuy(itemCost, toolName){
   document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
 }
 
+function createDoWorkAwknowledgementButton(){
+  document.getElementById("buttonZone").innerHTML = "<button id='doWorkAwknowledgeButton'>Go Back</button>";
+  document.getElementById("doWorkAwknowledgeButton").addEventListener("click", function(){
+    day++;
+    resetButtons();
+    welcome();
+  });
+  
+}
 //hides buttons, creates store exit button, adds listener to button
-function exitShopping(){
-  //hideButtons();
-
+function createExitStoreButton(){
   document.getElementById("buttonZone").innerHTML = "<button id='storeExitButton'>Exit Store</button>";
   document.getElementById("storeExitButton").addEventListener("click", function(){
     resetButtons();
+    sortInventory();
+    welcome();
   });
+
 }
 
+
+//hides buttons then recreates them
 function resetButtons(){
   hideButtons();
 
+//creating 3 buttons + listeners
   let button = ''
   button = document.createElement("button");
   button.innerHTML = "Lets cut some Grass";
@@ -160,33 +194,25 @@ function resetButtons(){
   document.getElementById("dayOff").addEventListener("click", function(){
     dayOff();
   });
-  
+
+}
+
+function welcome(){
+  if (day <= 1){
+    document.getElementById("welcome").innerHTML =
+    "Hello " + name + "! How are you today?";
+  } 
+
+  document.getElementById("dayStart").innerHTML = "Its day " + day + ". You have $" + player.wallet + " in your wallet. You have " + player.tool[0].formattedName + " in your toolbelt. What would you like to do today?";
+
 }
 
 //Start of Game logic
   //prompts for name and does welcome message
 if (name != null) {
-    document.getElementById("welcome").innerHTML =
-    "Hello " + name + "! How are you today?";
-
-    player.name =name;
-
-    document.getElementById("dayStart").innerHTML = "Its day " + day + ". You have $" + player.wallet + " in your wallet. You have " + player.tool[0].formattedName + " in your toolbelt. What would you like to do today?";
-
     resetButtons();
+    welcome();
+
+    player.name = name;
+    
 }
-
-/*
-//Listeners for 3 buttons
-  document.getElementById("workToday").addEventListener("click", function(){
-    doWork();
-  });
-
-  document.getElementById("goShopping").addEventListener("click", function(){
-    buyTools();
-  });
-
-  document.getElementById("dayOff").addEventListener("click", function(){
-    dayOff();
-  });
-*/
