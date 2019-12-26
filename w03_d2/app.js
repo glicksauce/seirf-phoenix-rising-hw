@@ -17,11 +17,11 @@ let day = 1;
 
 
 const tool = {
-  teeth: {cost: 1, daysEarnings: 1, formattedName: 'Teeth'},
-  rustyScissors: {cost: 5, daysEarnings: 5, formattedName: 'Rusty Scissors'},
-  pushMower: {cost: 25, daysEarnings: 50, formattedName: 'Old-Timey Push Mower'},
-  batteryMower: {cost: 250, daysEarnings: 250, formattedName: "Battery-Powered Lawnmower"},
-  starvingStudents: {cost: 500, daysEarnings: 250, formattedName: "Team of Starving Students"}
+  teeth: {cost: 1, daysEarnings: 1, formattedName: 'Teeth', image: 'images/teeth.jpg'},
+  rustyScissors: {cost: 5, daysEarnings: 5, formattedName: 'Rusty Scissors', image: 'images/sheers.jpg'},
+  pushMower: {cost: 25, daysEarnings: 50, formattedName: 'Old-Timey Push Mower', image: 'images/pushMower.jpg'},
+  batteryMower: {cost: 250, daysEarnings: 250, formattedName: "Battery-Powered Lawnmower", image: 'images/batteryMower.jpg'},
+  starvingStudents: {cost: 500, daysEarnings: 250, formattedName: "Team of Starving Students", image: 'images/studentTeam.jpg'}
 }
 
 const player = {
@@ -63,17 +63,22 @@ function buyTools(){
   createExitStoreButton();
 }
 
+function clearInventory(){
+  document.getElementById("inventory").innerHTML = '';
+}
 function showInventory(){
+  //clear the existing inventory before showing it
+  clearInventory();
 
   let currentInventory = [];
   let toolInventory = [];
   let currentInventoryHTML = '';
 
-  //creates array of all tools and inventory count of 0
+  //creates array of all tools and inventory count of 0 and image source of tool
   for (let key in tool){
-    toolInventory.push([tool[key].formattedName, 0]);
+    toolInventory.push([tool[key].formattedName, 0, tool[key].image]);
   }
-  console.log(toolInventory);
+  //console.log(toolInventory);
 
   //goes for every tool found in player.tool it increments toolInventory of that tool by 1
   for (let tool in player.tool){
@@ -86,17 +91,34 @@ function showInventory(){
 
   //applies formatting to toolInventory
   for (let index in toolInventory){
-    currentInventoryHTML += toolInventory[index][0] + " " + toolInventory[index][1] + "<br>"
+    //creates a new div for each inventory item
+    let div = document.createElement("div");
+    div.className = "toolInventoryItem";
+    div.id = "toolItem" + index;
+    div.innerHTML = " " + toolInventory[index][0] + " " + toolInventory[index][1] + "<br>";
+    document.getElementById("inventory").appendChild(div);
+    createToolIcon(toolInventory[index][2],div.id)
   }
   
+}
 
-  document.getElementById("inventory").innerHTML = "wallet: " + player.wallet + "<br>" + currentInventoryHTML;
+//creates a button icon with image. appends that to beginning of div
+function createToolIcon(toolImage,pinToDiv){
+  button = document.createElement("button");
+  button.className = "toolIcon";
+  button.style.background = "url(" + toolImage + ") left center/45px 45px no-repeat";
+
+  let outsideNode = document.getElementById("inventory");
+  let pinBeforeThisNode = document.getElementById(pinToDiv);
+  outsideNode.insertBefore(button, pinBeforeThisNode);
+  return;
+
 }
 
 //sorts inventory so index 0 is always the most expensive tool
 function sortInventory(){
   let sortArray = player.tool; 
-  console.log(sortArray); 
+  //console.log(sortArray); 
 
   let compareCheck = sortArray[0].cost;
 
