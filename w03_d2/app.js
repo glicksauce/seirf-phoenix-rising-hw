@@ -40,10 +40,18 @@ function doWork(){
   let dayTool = player.tool[0].formattedName;
   let dayEarnings = player.tool[0].daysEarnings
   walletAdjust(dayEarnings);
-  let dayMessage = "You went to work today!<br>You mowed with your " + dayTool + "<br> and you earned $" + dayEarnings + " today!";
+  let dayMessage = "You went to work today! You mowed with your " + dayTool + " and you earned $" + dayEarnings + " today!";
   document.getElementById("dayStart").innerHTML = dayMessage;
   document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
+  pushConsole(dayMessage);
   createDoWorkAwknowledgementButton();
+  day++;
+}
+
+function pushConsole(messageToAdd){
+  let message = document.getElementById('console').innerHTML;
+  message = "Day " + day + ": " + messageToAdd + "<br>" + message;
+  document.getElementById('console').innerHTML = message;
 }
 
 function buyTools(){
@@ -88,6 +96,8 @@ function namePlayer(player){
 
 function dayOff(){
   document.getElementById("dayStart").innerHTML = "You took a day off";
+  pushConsole("You took a much derved day off");
+  day++;
 }
 
 function hideButtons(){
@@ -134,6 +144,7 @@ function walletAdjust(dollars) {
 function attemptBuy(itemCost, toolName){
   if (itemCost <= player.wallet){
     alert("congrats you bought " + tool[toolName].formattedName + "!");
+    pushConsole("You bought a " + tool[toolName].formattedName);
     player.wallet -= itemCost;
     player.tool.push(tool[toolName]);
     showInventory();
@@ -146,7 +157,6 @@ function attemptBuy(itemCost, toolName){
 function createDoWorkAwknowledgementButton(){
   document.getElementById("buttonZone").innerHTML = "<button id='doWorkAwknowledgeButton'>Go Back</button>";
   document.getElementById("doWorkAwknowledgeButton").addEventListener("click", function(){
-    day++;
     resetButtons();
     welcome();
   });
