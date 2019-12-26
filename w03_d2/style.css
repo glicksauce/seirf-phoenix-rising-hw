@@ -14,3 +14,18 @@ button {
 .buyButtonHidden{
     display: none;
 }
+
+#gameBoard{
+	width: 90%
+	margin: 0 auto;
+}
+
+#inventory{
+	float: left;
+	height: 200px;
+	width: 20%;
+}
+
+#storeGrid{
+	clear: both;
+}

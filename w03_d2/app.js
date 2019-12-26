@@ -45,6 +45,7 @@ function doWork(){
   document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
   pushConsole(dayMessage);
   createDoWorkAwknowledgementButton();
+  checkIfWin();
   day++;
 }
 
@@ -63,11 +64,33 @@ function buyTools(){
 }
 
 function showInventory(){
+
   let currentInventory = [];
-  for (let tool in player.tool){
-    currentInventory.push(player.tool[tool].formattedName);
+  let toolInventory = [];
+  let currentInventoryHTML = '';
+
+  //creates array of all tools and inventory count of 0
+  for (let key in tool){
+    toolInventory.push([tool[key].formattedName, 0]);
   }
-  document.getElementById("inventory").innerHTML = currentInventory;
+  console.log(toolInventory);
+
+  //goes for every tool found in player.tool it increments toolInventory of that tool by 1
+  for (let tool in player.tool){
+    for (let index in toolInventory){
+      if (player.tool[tool].formattedName == toolInventory[index][0]){
+        toolInventory[index][1]++;
+      }
+    }
+  }
+
+  //applies formatting to toolInventory
+  for (let index in toolInventory){
+    currentInventoryHTML += toolInventory[index][0] + " " + toolInventory[index][1] + "<br>"
+  }
+  
+
+  document.getElementById("inventory").innerHTML = "wallet: " + player.wallet + "<br>" + currentInventoryHTML;
 }
 
 //sorts inventory so index 0 is always the most expensive tool
@@ -96,7 +119,7 @@ function namePlayer(player){
 
 function dayOff(){
   document.getElementById("dayStart").innerHTML = "You took a day off";
-  pushConsole("You took a much derved day off");
+  pushConsole("You took a much deserved day off");
   day++;
 }
 
@@ -215,6 +238,12 @@ function welcome(){
 
   document.getElementById("dayStart").innerHTML = "Its day " + day + ". You have $" + player.wallet + " in your wallet. You have " + player.tool[0].formattedName + " in your toolbelt. What would you like to do today?";
 
+}
+
+function checkIfWin(){
+  if (player.wallet >= 30){
+    pushConsole("Congrats You Won The Game!");
+  }
 }
 
 //Start of Game logic
