@@ -15,7 +15,6 @@ console.log("up and running");
 //Variable and Object delcarations
 let day = 1;
 
-
 const tool = {
   teeth: {cost: 1, daysEarnings: 1, formattedName: 'Teeth', image: 'images/teeth.jpg'},
   rustyScissors: {cost: 5, daysEarnings: 5, formattedName: 'Rusty Scissors', image: 'images/sheers.jpg'},
@@ -32,10 +31,24 @@ const player = {
 
 const town = {};
 
-let name = prompt("Please enter your name", "enter name");
+let name = '';
 
 //Function Delcarations
-  //When user clicks 'Lets Cut Some Grass' Button
+function getName(){
+  name = prompt("Please enter your name", "enter name");
+}
+
+function initializeGame(){
+  day = 1;
+  player.tool = [tool.teeth];
+  player.wallet = 0;
+  player.name = name;
+  showInventory();
+  document.getElementById('console').innerHTML = '';
+  getName();
+}
+
+//When user clicks 'Lets Cut Some Grass' Button
 function doWork(){
   let dayTool = player.tool[0].formattedName;
   let dayEarnings = player.tool[0].daysEarnings
@@ -218,12 +231,11 @@ function createExitStoreButton(){
 
 }
 
-
 //hides buttons then recreates them
 function resetButtons(){
   hideButtons();
 
-//creating 3 buttons + listeners
+//creating 4 buttons + listeners
   let button = ''
   button = document.createElement("button");
   button.innerHTML = "Lets cut some Grass";
@@ -250,6 +262,13 @@ function resetButtons(){
     dayOff();
   });
 
+  button = document.createElement("button");
+  button.innerHTML = "Reset the Game";
+  button.id = "resetGame";
+  document.getElementById("buttonZone").appendChild(button);
+  document.getElementById("resetGame").addEventListener("click", function(){
+    resetGame();
+  });
 }
 
 function welcome(){
@@ -268,8 +287,14 @@ function checkIfWin(){
   }
 }
 
+function resetGame(){
+  initializeGame();
+  resetButtons();
+  welcome();
+}
 //Start of Game logic
   //prompts for name and does welcome message
+getName();
 if (name != null) {
     resetButtons();
     welcome();
