@@ -119,6 +119,7 @@ function buyTools(){
 function clearInventory(){
   document.getElementById("inventory").innerHTML = '';
 }
+
 function showInventory(){
   //clear the existing inventory before showing it
   clearInventory();
@@ -168,6 +169,27 @@ function createToolIcon(toolImage,pinToDiv){
 
 }
 
+//returns array with tool formatted name, quantity
+function InventorySnapShot(){
+  let toolInventory = [];
+
+  //creates array of all tools and inventory count of 0
+  for (let key in tool){
+    toolInventory.push([tool[key].formattedName, 0]);
+  }
+
+  //goes for every tool found in player.tool it increments toolInventory of that tool by 1
+  for (let tool in player.tool){
+    for (let index in toolInventory){
+      if (player.tool[tool].formattedName == toolInventory[index][0]){
+        toolInventory[index][1]++;
+      }
+    }
+  }
+
+  return(toolInventory);
+}
+
 //sorts inventory so index 0 is always the most expensive tool
 function sortInventory(){
   let sortArray = player.tool; 
@@ -211,7 +233,6 @@ function hideButtons(){
    }
   document.getElementById("buttonZone").innerHTML = '';
   document.getElementById("nextMove").innerHTML = '';
-  document.getElementById("buttonZone").innerHTML = '';
   document.getElementById("dayStart").innerHTML = '';
   if (document.getElementById("toolName")){
     document.getElementById("toolName").innerHTML = '';
@@ -226,11 +247,15 @@ function goShopping(){
 
   for (let toolName in tool){
     let buttonName = toolName + "button";
-    document.getElementById(toolName).innerHTML = "<button class='buyButton' id=" + buttonName + ">buy</button>" + tool[toolName].formattedName + " $" + tool[toolName].cost + "<br>";
+    document.getElementById(toolName).innerHTML = "<button class='buyButton' id=" + buttonName + ">buy $" + tool[toolName].cost + "</button>" + "<button class='sellButton' id=sell" + buttonName + ">sell $" + tool[toolName].cost/2 + "</button>" + tool[toolName].formattedName + "<br>";
     document.getElementById(toolName).className = "buyButton";
     document.getElementById(buttonName).addEventListener ("click", function() {
       attemptBuy(tool[toolName].cost, toolName);
     });
+    document.getElementById("sell"+buttonName).addEventListener ("click", function() {
+      attemptSell(tool[toolName].cost/2, tool[toolName].formattedName);
+    });
+
   }
   
 }
@@ -250,6 +275,36 @@ function attemptBuy(itemCost, toolName){
     alert("sorry you can't afford that");
   }
   document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
+}
+
+function attemptSell(itemSellPrice, toolFormattedName){
+    let toolInventory = InventorySnapShot();
+
+    for (let index in toolInventory){
+      if (toolInventory[index][0] == toolFormattedName){
+        if (toolInventory[index][1] > 0){
+            pushConsole("You sold a " + toolFormattedName + " for $" + itemSellPrice);
+            player.wallet += itemSellPrice; 
+            toolInventory[index][1]--;
+            adjustInventory(toolFormattedName);  
+        } else {
+          alert("sorry you don't have any to sell");
+        }
+      }
+    }
+
+    showInventory();
+    document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
+}
+
+//given toolformattedname removes 1 instance from player.tool
+function adjustInventory(toolFormattedName){
+    for (let tool in player.tool){
+      if (player.tool[tool].formattedName == toolFormattedName){
+        delete player.tool[tool];
+      }
+    console.log(player.tool);
+  }
 }
 
 function createDoWorkAwknowledgementButton(){
@@ -287,7 +342,7 @@ function resetButtons(){
   });
 
   button = document.createElement("button");
-  button.innerHTML = "Lets buy some tools";
+  button.innerHTML = "Lets buy and sell tools";
   button.id = "goShopping";
   document.getElementById("buttonZone").appendChild(button);
   document.getElementById("goShopping").addEventListener("click", function(){
@@ -337,6 +392,7 @@ function resetGame(){
   //prompts for name and does welcome message
 getName();
 if (name != null) {
+    showInventory();
     resetButtons();
     welcome();
 

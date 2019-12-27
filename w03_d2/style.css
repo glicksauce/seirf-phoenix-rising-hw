@@ -15,6 +15,13 @@ button {
     display: none;
 }
 
+.buyButton, .sellButton {
+	display: inline;
+	width: 75px;
+	height: 30px;
+	border-radius: 20%;
+}
+
 #gameBoard{
 	width: 90%
 	background: green;
