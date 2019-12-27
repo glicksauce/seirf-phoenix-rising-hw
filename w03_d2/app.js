@@ -62,6 +62,46 @@ function doWork(){
   day++;
 }
 
+//like doWork but lets you use all your tools in a day
+function doWorkMultipleTools(){
+  let currentInventory = [];
+  let toolInventory = [];
+  let currentInventoryHTML = '';
+  let toolEarnings = 0;
+  let totalToolEarnings = 0;
+  let dayEarnings = '';
+
+  //creates array of all tools, and inventory count of 0, and days earnings
+  for (let key in tool){
+    toolInventory.push([tool[key].formattedName, 0, tool[key].daysEarnings]);
+  }
+
+  //goes for every tool found in player.tool it increments toolInventory of that tool by 1
+  for (let tool in player.tool){
+    for (let index in toolInventory){
+      if (player.tool[tool].formattedName == toolInventory[index][0]){
+        toolInventory[index][1]++;
+      }
+    }
+  }
+
+  //cycles through toolInventory and calculates total earned for each tool. Omits tools with qty: 0
+  for (let index in toolInventory){
+    if (toolInventory[index][1] > 0){
+      toolEarnings = toolInventory[index][1] * toolInventory[index][2];
+      dayEarnings += "You cut " + toolInventory[index][1] + " yards with " + toolInventory[index][0] + " making $" + toolEarnings + " ";
+      totalToolEarnings += toolEarnings;
+    }
+    
+  }
+  dayEarnings += "You made a total of $" + totalToolEarnings + " today.";
+  pushConsole(dayEarnings);
+  walletAdjust(totalToolEarnings);
+  createDoWorkAwknowledgementButton();
+  checkIfWin();
+  day++;
+}
+
 function pushConsole(messageToAdd){
   let message = document.getElementById('console').innerHTML;
   message = "Day " + day + ": " + messageToAdd + "<br>" + message;
@@ -242,7 +282,8 @@ function resetButtons(){
   button.id = "workToday";
   document.getElementById("buttonZone").appendChild(button);
   document.getElementById("workToday").addEventListener("click", function(){
-    doWork();
+    //doWork();
+    doWorkMultipleTools();
   });
 
   button = document.createElement("button");
