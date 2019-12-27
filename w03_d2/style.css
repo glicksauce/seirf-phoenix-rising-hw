@@ -30,15 +30,21 @@ button {
 
 #inventory{
 	float: left;
-	height: 400px;
+	height: 350px;
 	width: 30%;
 	min-width: 300px;
 	background: gray;
 }
 
+.titleImage{
+	height: 50px;
+	width: 100%;
+	background: url('images/grass.jpg');
+}
+
 #storeGrid{
 	background: blue;
-	height: 400px;
+	height: 350px;
 }
 
 .toolIcon{
@@ -55,4 +61,15 @@ button {
 
 #buttonZone{
 	clear:both;
+}
+
+.console{
+	margin-top: 15px;
+	display: block;
+	color: #A4BBA9;
+	background: #4D5F51;
+	font-family: 'Play', sans-serif;
+	height: 200px;
+	min-height: 50px;
+	overflow: auto;
 }
