@@ -144,8 +144,24 @@ function showInventory(){
   }
 
   //applies formatting to toolInventory
+  //Inventory Title
+  let div = document.createElement("div");
+  div.className = "toolInventoryTitle";
+  div.id = "toolInventoryTitle";
+  div.innerHTML = "Inventory";
+  document.getElementById("inventory").appendChild(div);
+
+  //adding wallet to inventory
+  div = document.createElement("div");
+  div.className = "walletIconClass";
+  div.id = "walletIcon";
+  div.innerHTML = "$" + player.wallet;
+  document.getElementById("inventory").appendChild(div);
+  createToolIcon('images/wallet.png',div.id)
+
+  //creates a new div for each inventory item
   for (let index in toolInventory){
-    //creates a new div for each inventory item
+    
     let div = document.createElement("div");
     div.className = "toolInventoryItem";
     div.id = "toolItem" + index;
@@ -262,6 +278,7 @@ function goShopping(){
 
 function walletAdjust(dollars) {
   player.wallet += dollars;
+  showInventory();
 }
 
 function attemptBuy(itemCost, toolName){
@@ -287,6 +304,7 @@ function attemptSell(itemSellPrice, toolFormattedName){
             player.wallet += itemSellPrice; 
             toolInventory[index][1]--;
             adjustInventory(toolFormattedName);  
+            showInventory();
         } else {
           alert("sorry you don't have any to sell");
         }

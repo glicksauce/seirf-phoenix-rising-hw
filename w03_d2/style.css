@@ -30,10 +30,10 @@ button {
 
 #inventory{
 	float: left;
-	height: 350px;
+	height: 400px;
 	width: 30%;
 	min-width: 300px;
-	background: gray;
+	background: #379249;
 }
 
 .titleImage{
@@ -44,10 +44,18 @@ button {
 
 #storeGrid{
 	background: blue;
-	height: 350px;
+	height: 400px;
 }
 
-.toolIcon{
+.toolInventoryTitle{
+	font-family: 'ABeeZee', sans-serif;
+	font-size: 30px;
+	color: #B8E8C1;
+	margin: 0 30%;
+	display: inline-block;
+}
+
+.toolIcon, .walletIcon{
 	clear: both;
 	float: left;
 	width: 50px;
@@ -55,7 +63,7 @@ button {
 	background-size: 10px;
 }
 
-.toolInventoryItem{
+.toolInventoryItem, .walletIconClass{
 	height: 60px;
 }
 
