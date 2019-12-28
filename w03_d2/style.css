@@ -17,7 +17,8 @@ button {
 
 .buyButton, .sellButton {
 	display: inline;
-	width: 75px;
+	font-family: 'ABeeZee', sans-serif;
+	width: 81px;
 	height: 30px;
 	border-radius: 20%;
 }
@@ -27,6 +28,11 @@ button {
 	font-family: 'ABeeZee', sans-serif;
 	color: #375B50;
 }
+
+.sellButton{
+	color: #524B13;
+}
+
 
 #gameBoard{
 	width: 90%
@@ -67,7 +73,7 @@ button {
 	font-family: 'ABeeZee', sans-serif;
 	font-size: 30px;
 	color: #1A4328;
-	margin: 0 20%;
+	margin: 0 20% 20px 20%;
 	display: block;
 }
 
@@ -96,4 +102,28 @@ button {
 	height: 200px;
 	min-height: 50px;
 	overflow: auto;
+}
+
+.youWin{
+	font-family: 'Notable', sans-serif;
+	font-size: 68px;
+	vertical-align: middle;
+	margin: 20% 0;
+	text-align: center;
+-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-image: url('images/grass.jpg');
+	animation:blinkingText 0.5s 3;
+}
+
+@keyframes blinkingText{
+    0%{     	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-image: url('images/grass.jpg');    }
+    49%{    background: transparent; }
+    50%{    background: transparent; }
+    99%{    background: transparent; }
+    100%{   	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-image: url('images/grass.jpg');   }
 }

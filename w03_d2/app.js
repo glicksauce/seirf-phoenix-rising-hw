@@ -29,9 +29,13 @@ const player = {
   wallet: 5000
 }
 
-const town = {};
-
 let name = '';
+
+let amountToWin = 50;
+
+let welcomeMessageStart = "Your rent is due in 30 days. Can you make $" + amountToWin + " before then? Better get to work.";
+
+
 
 //Function Delcarations
 function getName(){
@@ -55,7 +59,7 @@ function doWork(){
   walletAdjust(dayEarnings);
   let dayMessage = "You went to work today! You mowed with your " + dayTool + " and you earned $" + dayEarnings + " today!";
   document.getElementById("dayStart").innerHTML = dayMessage;
-  document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
+  //document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
   pushConsole(dayMessage);
   createDoWorkAwknowledgementButton();
   checkIfWin();
@@ -89,7 +93,7 @@ function doWorkMultipleTools(){
   for (let index in toolInventory){
     if (toolInventory[index][1] > 0){
       toolEarnings = toolInventory[index][1] * toolInventory[index][2];
-      dayEarnings += "You cut " + toolInventory[index][1] + " yards with " + toolInventory[index][0] + " making $" + toolEarnings + " ";
+      dayEarnings += "You cut " + toolInventory[index][1] + " yards with " + toolInventory[index][0] + " making $" + toolEarnings + ". ";
       totalToolEarnings += toolEarnings;
     }
     
@@ -231,7 +235,7 @@ function namePlayer(player){
 }
 
 function dayOff(){
-  document.getElementById("dayStart").innerHTML = "You took a day off";
+  //document.getElementById("dayStart").innerHTML = "You took a day off";
   pushConsole("You took a much deserved day off");
   day++;
 }
@@ -239,17 +243,22 @@ function dayOff(){
 function hideButtons(){
 
   if (document.getElementsByClassName("buyButton")){
-
-    let changeClass = document.getElementsByClassName("buyButton");
-    for (let i=0;i<changeClass.length;i++){
-      changeClass.item(i).className = 'buyButtonHidden';
-     //changeClass.className = "buyButtonHidden";
-    }
- 
+      let changeClass = document.getElementsByClassName("buyButton");
+      for (let i=0;i<changeClass.length;i++){
+        changeClass.item(i).className = 'buyButtonHidden';
+       //changeClass.className = "buyButtonHidden";
+      }
    }
+  if (document.getElementsByClassName("storeTitleClass")){
+        let removeStoreTitle = document.getElementsByClassName("storeTitleClass");
+        for (let i=0;i<removeStoreTitle.length;i++){
+          removeStoreTitle.item(i).innerHTML = '';
+      }
+  }
   document.getElementById("buttonZone").innerHTML = '';
   document.getElementById("nextMove").innerHTML = '';
   document.getElementById("dayStart").innerHTML = '';
+
   if (document.getElementById("toolName")){
     document.getElementById("toolName").innerHTML = '';
   }
@@ -261,7 +270,7 @@ function hideButtons(){
 function goShopping(){
 
   //updateing nextMove section. plan on phasing this out (replacing with console seciton);
-  document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet. What would you like to buy?"
+  //document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet. What would you like to buy?"
 
   //adding Store Title
   let storeTitle = document.createElement("div");
@@ -301,7 +310,7 @@ function attemptBuy(itemCost, toolName){
   } else {
     alert("sorry you can't afford that");
   }
-  document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
+  //document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
 }
 
 function attemptSell(itemSellPrice, toolFormattedName){
@@ -398,16 +407,17 @@ function resetButtons(){
 function welcome(){
   if (day <= 1){
     document.getElementById("welcome").innerHTML =
-    "Hello " + name + "! How are you today?";
+    "Hello " + name + " " + welcomeMessageStart;
   } 
 
-  document.getElementById("dayStart").innerHTML = "Its day " + day + ". You have $" + player.wallet + " in your wallet. You have " + player.tool[0].formattedName + " in your toolbelt. What would you like to do today?";
+  //document.getElementById("dayStart").innerHTML = "Its day " + day + ". You have $" + player.wallet + " in your wallet. You have " + player.tool[0].formattedName + " in your toolbelt. What would you like to do today?";
 
 }
 
 function checkIfWin(){
-  if (player.wallet >= 30){
+  if (player.wallet >= amountToWin){
     pushConsole("Congrats You Won The Game!");
+    document.getElementById("storeGrid").innerHTML = "<div class='youWin'> You Win!</div>"
   }
 }
 
