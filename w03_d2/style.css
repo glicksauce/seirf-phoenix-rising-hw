@@ -22,6 +22,12 @@ button {
 	border-radius: 20%;
 }
 
+.buyButton{
+	margin: 15px 5px;
+	font-family: 'ABeeZee', sans-serif;
+	color: #375B50;
+}
+
 #gameBoard{
 	width: 90%
 	background: green;
@@ -43,16 +49,26 @@ button {
 }
 
 #storeGrid{
-	background: blue;
+	background: #88BDCA;
 	height: 400px;
+	float: left;
+	width: 70%;
 }
 
-.toolInventoryTitle{
+.toolInventoryTitle {
 	font-family: 'ABeeZee', sans-serif;
 	font-size: 30px;
 	color: #B8E8C1;
 	margin: 0 30%;
 	display: inline-block;
+}
+
+.storeTitleClass {
+	font-family: 'ABeeZee', sans-serif;
+	font-size: 30px;
+	color: #1A4328;
+	margin: 0 20%;
+	display: block;
 }
 
 .toolIcon, .walletIcon{

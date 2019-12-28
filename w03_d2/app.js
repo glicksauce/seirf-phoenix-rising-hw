@@ -256,10 +256,20 @@ function hideButtons(){
   
 
 }
-function goShopping(){
- // let toolList = '';
 
+
+function goShopping(){
+
+  //updateing nextMove section. plan on phasing this out (replacing with console seciton);
   document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet. What would you like to buy?"
+
+  //adding Store Title
+  let storeTitle = document.createElement("div");
+  storeTitle.className = "storeTitleClass";
+  storeTitle.id = "storeTitle"
+  storeTitle.innerHTML = "Rusty's Discount Lawn Store"
+  //document.getElementById("storeGrid").appendChild(storeTitle);
+  document.getElementById("storeGrid").insertBefore(storeTitle, document.getElementById("teeth"));
 
   for (let toolName in tool){
     let buttonName = toolName + "button";
