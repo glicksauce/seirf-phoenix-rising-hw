@@ -16,11 +16,11 @@ console.log("up and running");
 let day = 1;
 
 const tool = {
-  teeth: {cost: 1, daysEarnings: 1, formattedName: 'Teeth', image: 'images/teeth.jpg', description: "Nature's lawn mower. Teeth aren't very fast but they are alwasy there for you. Require dentist maintenance very 6 months"},
-  rustyScissors: {cost: 5, daysEarnings: 5, formattedName: 'Rusty Scissors', image: 'images/sheers.jpg'},
-  pushMower: {cost: 25, daysEarnings: 50, formattedName: 'Old-Timey Push Mower', image: 'images/pushMower.jpg'},
-  batteryMower: {cost: 250, daysEarnings: 250, formattedName: "Battery-Powered Lawnmower", image: 'images/batteryMower.jpg'},
-  starvingStudents: {cost: 500, daysEarnings: 250, formattedName: "Team of Starving Students", image: 'images/studentTeam.jpg'}
+  teeth: {cost: 1, daysEarnings: 1, formattedName: 'Teeth', image: 'images/teeth.jpg', description: "Nature's lawn mower. Teeth aren't very fast but they are always there for you. Require dentist maintenance very 6 months"},
+  rustyScissors: {cost: 5, daysEarnings: 5, formattedName: 'Rusty Scissors', image: 'images/sheers.jpg', description: "These were top of the line in 1963. But even now they aren't that bad. No maintenance required; it's not like they will get any rustier"},
+  pushMower: {cost: 25, daysEarnings: 50, formattedName: 'Old-Timey Push Mower', image: 'images/pushMower.jpg', description: "When you want to mow but also want to be eco-friendly. Requires blade sharpenening every 20 mows."},
+  batteryMower: {cost: 250, daysEarnings: 250, formattedName: "Battery-Powered Lawnmower", image: 'images/batteryMower.jpg', description: "Did you seriously have a landscaping business before owning one of these?! Requires new battery every 5 years."},
+  starvingStudents: {cost: 500, daysEarnings: 250, formattedName: "Team of Starving Students", image: 'images/studentTeam.jpg', description: "There's some starving coders on your step, what do you do? Pay them for the pizza then hire them for their cheap labor."}
 }
 
 const player = {
@@ -161,7 +161,7 @@ function showInventory(){
   div.id = "walletIcon";
   div.innerHTML = "<span id='walletText'>$" + player.wallet + "</span>";
   document.getElementById("inventory").appendChild(div);
-  createToolIcon('images/wallet.png',div.id)
+  createToolIcon('images/wallet.png',div.id, "wallet")
 
   //creates a new div for each inventory item
   for (let index in toolInventory){
@@ -200,10 +200,29 @@ function createToolIcon(toolImage,pinToDiv,toolKey){
 
 }
 
-
+//shows description of inventory item when you click the icon
 function showItemStats(invItem){
   document.getElementById("inventoryStatsBox").className = "inventoryStatsBox";
-  document.getElementById("inventoryStatsBox").innerHTML = tool[invItem].description;
+
+  //if wallet icon show this:
+  if (invItem == "wallet") {
+      document.getElementById("inventoryStatsBox").innerHTML = "<h3>Wallet</h3>Your trusty 'bill-fold' has been with you through thick and thin. Contents: some grass-stained bills, a maxed-out credit card, and some IOU's you plan on giving to the team of students."
+  //if inventory icon show this:
+  } else {
+      document.getElementById("inventoryStatsBox").innerHTML = "<h3>" + tool[invItem].formattedName + "</h3>" + tool[invItem].description;
+    }
+
+  let button = ''
+  button = document.createElement("button");
+  button.innerHTML = "Go Back";
+  button.id = "exitItemStats";
+  button.className ="actionButton"
+  document.getElementById("buttonZone").appendChild(button);
+  document.getElementById("exitItemStats").addEventListener("click", function(){
+    document.getElementById("inventoryStatsBox").className = "inventoryStatsBoxHidden"
+    resetButtons();
+    welcome();
+  });
 }
 
 //returns array with tool formatted name, quantity

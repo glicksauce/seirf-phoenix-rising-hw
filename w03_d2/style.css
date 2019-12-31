@@ -201,5 +201,8 @@ button {
 }
 
 .inventoryStatsBox{
+	color: #293B42;
+	font-family: 'ABeeZee', sans-serif;
 	display: block;
+	margin: 0 15px;
 }
