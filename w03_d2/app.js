@@ -59,7 +59,7 @@ function doWork(){
   let dayEarnings = player.tool[0].daysEarnings
   walletAdjust(dayEarnings);
   let dayMessage = "You went to work today! You mowed with your " + dayTool + " and you earned $" + dayEarnings + " today!";
-  document.getElementById("dayStart").innerHTML = dayMessage;
+  //document.getElementById("dayStart").innerHTML = dayMessage;
   //document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
   pushConsole(dayMessage);
   createDoWorkAwknowledgementButton();
@@ -114,7 +114,7 @@ function pushConsole(messageToAdd){
 }
 
 function buyTools(){
-  document.getElementById("dayStart").innerHTML = "You are at the store";
+  //document.getElementById("dayStart").innerHTML = "You are at the store";
   hideButtons();
   showInventory();
   goShopping();
@@ -254,8 +254,8 @@ function hideButtons(){
       }
   }
   document.getElementById("buttonZone").innerHTML = '';
-  document.getElementById("nextMove").innerHTML = '';
-  document.getElementById("dayStart").innerHTML = '';
+  //document.getElementById("nextMove").innerHTML = '';
+  //document.getElementById("dayStart").innerHTML = '';
   if (document.getElementById("toolName")){
     document.getElementById("toolName").innerHTML = '';
   }
@@ -337,7 +337,7 @@ function adjustInventory(toolFormattedName){
 }
 
 function createDoWorkAwknowledgementButton(){
-  document.getElementById("buttonZone").innerHTML = "<button id='doWorkAwknowledgeButton'>Go Back</button>";
+  document.getElementById("buttonZone").innerHTML = "<button id='doWorkAwknowledgeButton' button class='actionButton'>Go Back</button>";
   document.getElementById("doWorkAwknowledgeButton").addEventListener("click", function(){
     resetButtons();
     welcome();
@@ -434,7 +434,6 @@ function resetGame(){
   document.getElementById("winBox").className = "youWinHidden";
 }
 //end of functions
-
 
 //Start of Game logic
   //prompts for name and does welcome message
