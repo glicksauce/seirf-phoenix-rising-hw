@@ -43,6 +43,7 @@ function getName(){
 }
 
 function initializeGame(){
+
   day = 1;
   player.tool = [tool.teeth];
   player.wallet = 0;
@@ -136,7 +137,6 @@ function showInventory(){
   for (let key in tool){
     toolInventory.push([tool[key].formattedName, 0, tool[key].image]);
   }
-  //console.log(toolInventory);
 
   //goes for every tool found in player.tool it increments toolInventory of that tool by 1
   for (let tool in player.tool){
@@ -210,11 +210,9 @@ function InventorySnapShot(){
   return(toolInventory);
 }
 
-//sorts inventory so index 0 is always the most expensive tool
+//sorts inventory so index 0 is always the most expensive tool. Not sure I need this function at the moment.
 function sortInventory(){
   let sortArray = player.tool; 
-  //console.log(sortArray); 
-
   let compareCheck = sortArray[0].cost;
 
   for (let i = 0;i<sortArray.length;i++){
@@ -258,7 +256,6 @@ function hideButtons(){
   document.getElementById("buttonZone").innerHTML = '';
   document.getElementById("nextMove").innerHTML = '';
   document.getElementById("dayStart").innerHTML = '';
-
   if (document.getElementById("toolName")){
     document.getElementById("toolName").innerHTML = '';
   }
@@ -268,9 +265,6 @@ function hideButtons(){
 
 
 function goShopping(){
-
-  //updateing nextMove section. plan on phasing this out (replacing with console seciton);
-  //document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet. What would you like to buy?"
 
   //adding Store Title
   let storeTitle = document.createElement("div");
@@ -310,7 +304,6 @@ function attemptBuy(itemCost, toolName){
   } else {
     alert("sorry you can't afford that");
   }
-  //document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
 }
 
 function attemptSell(itemSellPrice, toolFormattedName){
@@ -324,6 +317,7 @@ function attemptSell(itemSellPrice, toolFormattedName){
             toolInventory[index][1]--;
             adjustInventory(toolFormattedName);  
             showInventory();
+            checkIfWin();
         } else {
           alert("sorry you don't have any to sell");
         }
@@ -331,7 +325,6 @@ function attemptSell(itemSellPrice, toolFormattedName){
     }
 
     showInventory();
-    document.getElementById("nextMove").innerHTML = "You have $" + player.wallet + " in your wallet";
 }
 
 //given toolformattedname removes 1 instance from player.tool
@@ -340,7 +333,6 @@ function adjustInventory(toolFormattedName){
       if (player.tool[tool].formattedName == toolFormattedName){
         delete player.tool[tool];
       }
-    console.log(player.tool);
   }
 }
 
@@ -357,7 +349,7 @@ function createExitStoreButton(){
   document.getElementById("buttonZone").innerHTML = "<button id='storeExitButton'>Exit Store</button>";
   document.getElementById("storeExitButton").addEventListener("click", function(){
     resetButtons();
-    sortInventory();
+    //sortInventory();
     welcome();
   });
 
@@ -372,6 +364,7 @@ function resetButtons(){
   button = document.createElement("button");
   button.innerHTML = "Lets cut some Grass";
   button.id = "workToday";
+  button.className ="actionButton"
   document.getElementById("buttonZone").appendChild(button);
   document.getElementById("workToday").addEventListener("click", function(){
     //doWork();
@@ -381,6 +374,7 @@ function resetButtons(){
   button = document.createElement("button");
   button.innerHTML = "Lets buy and sell tools";
   button.id = "goShopping";
+  button.className ="actionButton"
   document.getElementById("buttonZone").appendChild(button);
   document.getElementById("goShopping").addEventListener("click", function(){
     buyTools();
@@ -390,6 +384,7 @@ function resetButtons(){
   button = document.createElement("button");
   button.innerHTML = "Lets take a day off";
   button.id = "dayOff";
+  button.className ="actionButton"
   document.getElementById("buttonZone").appendChild(button);
   document.getElementById("dayOff").addEventListener("click", function(){
     dayOff();
@@ -398,6 +393,7 @@ function resetButtons(){
   button = document.createElement("button");
   button.innerHTML = "Reset the Game";
   button.id = "resetGame";
+  button.className ="actionButton"
   document.getElementById("buttonZone").appendChild(button);
   document.getElementById("resetGame").addEventListener("click", function(){
     resetGame();
@@ -414,10 +410,20 @@ function welcome(){
 
 }
 
+//if removes other buttons and renames reset button text to "Play Again"
 function checkIfWin(){
   if (player.wallet >= amountToWin){
-    pushConsole("Congrats You Won The Game!");
-    document.getElementById("storeGrid").innerHTML = "<div class='youWin'> You Win!</div>"
+    pushConsole("Congrats You Won The Game! It took " + day +  " days.");
+    document.getElementById("winBox").className = "youWin";
+    resetButtons();
+    let buttonZoneToRemove = document.getElementById("buttonZone");
+    let buttonToRemove = document.getElementById("dayOff");
+    let button1ToRemove = document.getElementById("goShopping");
+    let button2ToRemove = document.getElementById("workToday");
+    buttonZoneToRemove.removeChild(buttonToRemove);
+    buttonZoneToRemove.removeChild(button1ToRemove);
+    buttonZoneToRemove.removeChild(button2ToRemove);
+    document.getElementById("resetGame").textContent = "Play Again?";
   }
 }
 
@@ -425,7 +431,11 @@ function resetGame(){
   initializeGame();
   resetButtons();
   welcome();
+  document.getElementById("winBox").className = "youWinHidden";
 }
+//end of functions
+
+
 //Start of Game logic
   //prompts for name and does welcome message
 getName();

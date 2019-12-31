@@ -1,3 +1,7 @@
+body{
+	background: #99ffd6;
+}
+
 .buyButton, #storeExitButton {
     padding: 5px;
     margin: 5px;
@@ -35,7 +39,7 @@ button {
 
 
 #gameBoard{
-	width: 90%
+	width: 90%;
 	background: green;
 	margin: 0 auto;
 }
@@ -43,22 +47,17 @@ button {
 #inventory{
 	float: left;
 	height: 400px;
-	width: 30%;
+	width: 150px;
 	min-width: 300px;
 	background: #379249;
 }
 
-.titleImage{
-	height: 50px;
-	width: 100%;
-	background: url('images/grass.jpg');
-}
 
 #storeGrid{
 	background: #88BDCA;
 	height: 400px;
 	float: left;
-	width: 70%;
+	width: 575px;
 }
 
 .toolInventoryTitle {
@@ -73,7 +72,7 @@ button {
 	font-family: 'ABeeZee', sans-serif;
 	font-size: 30px;
 	color: #1A4328;
-	margin: 0 20% 20px 20%;
+	margin: 0 10% 20px 10%;
 	display: block;
 }
 
@@ -90,7 +89,27 @@ button {
 }
 
 #buttonZone{
-	clear:both;
+	float:left;
+	background: #195248;
+	width: 210px;
+	height: 400px;
+}
+
+.actionButton{
+	font-family: 'Gelasio', serif;
+	font-weight: bold;
+	color: #481952;
+	background: #99ccff;
+	clear: both;
+	width: 105px;
+	margin: 35px 0 0 42px;
+}
+
+.titleImage{
+	clear: both;
+	height: 50px;
+	width: 100%;
+	background: url('images/grass.jpg');
 }
 
 .console{
@@ -102,6 +121,10 @@ button {
 	height: 200px;
 	min-height: 50px;
 	overflow: auto;
+}
+
+.youWinHidden{
+	display: none;
 }
 
 .youWin{
