@@ -69,9 +69,14 @@ button {
 #inventory{
 	float: left;
 	height: 400px;
-	width: 150px;
-	min-width: 300px;
+	width: 100px;
+	min-width: 250px;
 	background: #379249;
+}
+
+#walletText{
+	color: #36EA49;
+	font-weight:bold;
 }
 
 
@@ -79,7 +84,7 @@ button {
 	background: #88BDCA;
 	height: 400px;
 	float: left;
-	width: 575px;
+	width: 625px;
 }
 
 .toolInventoryTitle {
@@ -104,6 +109,22 @@ button {
 	width: 50px;
 	height: 50px;
 	background-size: 10px;
+}
+
+
+.circleIcon{
+	border-radius: 50%;
+	clear: both;
+	text-align: center;
+	width: 25px;
+	height: 25px;
+	font-size: 12px;
+	background: rgba(250, 250, 0, 1);
+	color: #92329E;
+	font-style: bolder;
+	position: relative;
+	left: 45px;
+	top: -60px;
 }
 
 .toolInventoryItem, .walletIconClass{
@@ -173,4 +194,12 @@ button {
     100%{   	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-image: url('images/grass.jpg');   }
+}
+
+.inventoryStatsBoxHidden{
+	display: none;
+}
+
+.inventoryStatsBox{
+	display: block;
 }

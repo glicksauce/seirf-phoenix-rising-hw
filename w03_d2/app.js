@@ -16,7 +16,7 @@ console.log("up and running");
 let day = 1;
 
 const tool = {
-  teeth: {cost: 1, daysEarnings: 1, formattedName: 'Teeth', image: 'images/teeth.jpg'},
+  teeth: {cost: 1, daysEarnings: 1, formattedName: 'Teeth', image: 'images/teeth.jpg', description: "Nature's lawn mower. Teeth aren't very fast but they are alwasy there for you. Require dentist maintenance very 6 months"},
   rustyScissors: {cost: 5, daysEarnings: 5, formattedName: 'Rusty Scissors', image: 'images/sheers.jpg'},
   pushMower: {cost: 25, daysEarnings: 50, formattedName: 'Old-Timey Push Mower', image: 'images/pushMower.jpg'},
   batteryMower: {cost: 250, daysEarnings: 250, formattedName: "Battery-Powered Lawnmower", image: 'images/batteryMower.jpg'},
@@ -135,7 +135,7 @@ function showInventory(){
 
   //creates array of all tools and inventory count of 0 and image source of tool
   for (let key in tool){
-    toolInventory.push([tool[key].formattedName, 0, tool[key].image]);
+    toolInventory.push([tool[key].formattedName, 0, tool[key].image, key]);
   }
 
   //goes for every tool found in player.tool it increments toolInventory of that tool by 1
@@ -159,34 +159,51 @@ function showInventory(){
   div = document.createElement("div");
   div.className = "walletIconClass";
   div.id = "walletIcon";
-  div.innerHTML = "$" + player.wallet;
+  div.innerHTML = "<span id='walletText'>$" + player.wallet + "</span>";
   document.getElementById("inventory").appendChild(div);
   createToolIcon('images/wallet.png',div.id)
 
   //creates a new div for each inventory item
   for (let index in toolInventory){
-    
-    let div = document.createElement("div");
-    div.className = "toolInventoryItem";
-    div.id = "toolItem" + index;
-    div.innerHTML = " " + toolInventory[index][0] + " " + toolInventory[index][1] + "<br>";
-    document.getElementById("inventory").appendChild(div);
-    createToolIcon(toolInventory[index][2],div.id)
+
+    //only adds inventory item if player has it in inventory
+    if (toolInventory[index][1] > 0){
+        let div = document.createElement("div");
+        div.className = "toolInventoryItem";
+        div.id = "toolItem" + index;
+        div.innerHTML = "<div class='circleIcon'>" + toolInventory[index][1] + "</div>";
+        document.getElementById("inventory").appendChild(div);
+        createToolIcon(toolInventory[index][2],div.id,toolInventory[index][3])
+      }
   }
   
 }
 
 //creates a button icon with image. appends that to beginning of div
-function createToolIcon(toolImage,pinToDiv){
+function createToolIcon(toolImage,pinToDiv,toolKey){
   button = document.createElement("button");
   button.className = "toolIcon";
+  button.id = pinToDiv + "button";
   button.style.background = "url(" + toolImage + ") left center/45px 45px no-repeat";
 
   let outsideNode = document.getElementById("inventory");
   let pinBeforeThisNode = document.getElementById(pinToDiv);
   outsideNode.insertBefore(button, pinBeforeThisNode);
+
+  document.getElementById(button.id).addEventListener("click", function(){
+    //resetButtons();
+    //welcome();
+    hideButtons();
+    showItemStats(toolKey);
+  });
   return;
 
+}
+
+
+function showItemStats(invItem){
+  document.getElementById("inventoryStatsBox").className = "inventoryStatsBox";
+  document.getElementById("inventoryStatsBox").innerHTML = tool[invItem].description;
 }
 
 //returns array with tool formatted name, quantity
@@ -244,7 +261,6 @@ function hideButtons(){
       let changeClass = document.getElementsByClassName("buyButton");
       for (let i=0;i<changeClass.length;i++){
         changeClass.item(i).className = 'buyButtonHidden';
-       //changeClass.className = "buyButtonHidden";
       }
    }
   if (document.getElementsByClassName("storeTitleClass")){
@@ -254,8 +270,6 @@ function hideButtons(){
       }
   }
   document.getElementById("buttonZone").innerHTML = '';
-  //document.getElementById("nextMove").innerHTML = '';
-  //document.getElementById("dayStart").innerHTML = '';
   if (document.getElementById("toolName")){
     document.getElementById("toolName").innerHTML = '';
   }
@@ -271,7 +285,7 @@ function goShopping(){
   storeTitle.className = "storeTitleClass";
   storeTitle.id = "storeTitle"
   storeTitle.innerHTML = "Rusty's Discount Lawn Store"
-  //document.getElementById("storeGrid").appendChild(storeTitle);
+
   document.getElementById("storeGrid").insertBefore(storeTitle, document.getElementById("teeth"));
 
   for (let toolName in tool){
@@ -406,11 +420,10 @@ function welcome(){
     "Hello " + name + " " + welcomeMessageStart;
   } 
 
-  //document.getElementById("dayStart").innerHTML = "Its day " + day + ". You have $" + player.wallet + " in your wallet. You have " + player.tool[0].formattedName + " in your toolbelt. What would you like to do today?";
 
 }
 
-//if removes other buttons and renames reset button text to "Play Again"
+//if win removes other buttons and renames reset button text to "Play Again"
 function checkIfWin(){
   if (player.wallet >= amountToWin){
     pushConsole("Congrats You Won The Game! It took " + day +  " days.");
