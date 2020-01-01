@@ -26,7 +26,7 @@ const tool = {
 const player = {
   name: '',
   tool: [tool.teeth],
-  wallet: 5000
+  wallet: 0
 }
 
 let name = '';
@@ -184,15 +184,13 @@ function createToolIcon(toolImage,pinToDiv,toolKey){
   button = document.createElement("button");
   button.className = "toolIcon";
   button.id = pinToDiv + "button";
-  button.style.background = "url(" + toolImage + ") left center/45px 45px no-repeat";
+  button.style.background = "url(" + toolImage + ") left center/60px 60px no-repeat";
 
   let outsideNode = document.getElementById("inventory");
   let pinBeforeThisNode = document.getElementById(pinToDiv);
   outsideNode.insertBefore(button, pinBeforeThisNode);
 
   document.getElementById(button.id).addEventListener("click", function(){
-    //resetButtons();
-    //welcome();
     hideButtons();
     showItemStats(toolKey);
   });
