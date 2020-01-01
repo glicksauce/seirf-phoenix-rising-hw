@@ -1,3 +1,4 @@
+//DataTypes Refresher
 //Answer the Following
 //For each of the following, write which datatypes you would use to represent the data, and then give a small example of the data structure:
 
@@ -49,3 +50,25 @@
         favShows: ['Parks and Rec','Modern Family','The Goldbergs']
     }];
     console.log(studentDetails[1].favShows);
+
+//---------------------------------------
+//Take it Easy
+//Make an array that holds all of the colors of the rainbow.
+const rainbowColors = ['red','orange','yellow','green','blue','indigo','violet'];
+
+
+//Write code that will access "blue" from the rainbow array.
+let getBlue = rainbowColors[4];
+console.log(getBlue);
+
+//Make an object that is called your name and holds the information about your favorite food, a hobby, the name of the town that you live in currently, and your favorite datatype.
+const Jay = {
+    favFood: 'buffalo chicken',
+    hobby: 'triathlon',
+    currentTown: 'Medford',
+    favDataType: 'Object'
+}
+
+
+//Write code that will access your hobby from the object that you just created.
+console.log(Jay.hobby);
