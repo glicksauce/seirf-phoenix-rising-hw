@@ -206,3 +206,46 @@ for (let index in bondFilms){
 
 console.log(bondGross);
 console.log(bondGrossTotal);
+
+//Console log the single movie object that contains the actor who starred in the least number of films.
+let actorArray = [];
+for (let objIndex in bondFilms){
+let addedThisLoop = false;;
+
+    for (let index in actorArray){
+        //if actor matches increase by 1
+        if (actorArray[index][0] == bondFilms[objIndex].actor){
+            actorArray[index][1] += 1;
+            //actor has been increased this loop
+            addedThisLoop = true;;
+        } 
+    }
+    //if no actor increased than add actor to array (starting at 1)
+    if (addedThisLoop == false){
+            actorArray.push([bondFilms[objIndex].actor, 1]);
+    }
+}
+console.log(actorArray);
+
+//sort Actor Array. Not a complete sort but will put least appearances in 0th slot of array
+//sets compareCheck to number of films of first actor in array
+let compareCheck = actorArray[0][1];
+
+for (let i = 0;i<actorArray.length;i++){
+  
+    //if next actor in array is less movies than compare check
+  if (actorArray[i][1] < compareCheck){
+      //resets compare check to current actors appearances
+    compareCheck = actorArray[i][1];
+
+    //creates temp string and puts that in front of array. Also removes it from existing spot in array
+    let tempHolder = actorArray[i];
+    actorArray.splice(i,1);
+    actorArray.unshift(tempHolder);
+    
+  }
+  
+
+}
+
+console.log(actorArray[0][0] + " has starred in the least amount of Bond films appearing " + actorArray[0][1] + " times");
