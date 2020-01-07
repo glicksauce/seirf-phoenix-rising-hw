@@ -26,3 +26,21 @@ const receipt = [
 ];
 
 console.log(receipt[1].weight);
+
+//Create an array called apartmentBuilding that has an array as one of its elements, the inner array should be the names of the tenants. Log one of the elements of the inner array.
+
+const apartmentBuilding = [
+	{
+		tenants: ['gus', 'stacy', 'frank'],
+		floorName: "1st",
+		elevators: ['lobby', 'gym']
+	},
+	{	
+		tenants: ['hank', 'susan', 'herbert'],
+		floorName: "2nd",
+		elevators: ['lobby', 'gym']
+	}
+	
+]
+
+console.log(apartmentBuilding[0].tenants[1]);
