@@ -89,6 +89,33 @@ const checkforA = (arrayValue) => {
 
 console.log(panagrams.some(checkforA));
 
-
+/* didn't quite finish this one
 //------------------------------------
 //isPanagram
+
+//Using the following array - test whether each letter a-z (case insensitive) is used at least once
+
+const panagram = ['The', 'quick','brown','fox', 'jumps', 'over', 'the', 'lazz', 'dog']
+
+const alphabetCheck = (arrValue, arg) => {
+    console.log(arrValue, arg);
+    return arrValue == arg;
+ 
+}
+
+let alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+const checkPanagram = (array) => {
+    let pcheck = false;
+    for (i=0;i<alphabet.length;i++){
+        //console.log(alphabet[i]);
+        if (array.find(alphabetCheck, alphabet[i]) == false){
+            console.log(alphabet[i]);
+            pcheck = false;
+            return false;
+        } 
+    }
+    return pcheck;
+}
+console.log(checkPanagram(panagram))
+*/
