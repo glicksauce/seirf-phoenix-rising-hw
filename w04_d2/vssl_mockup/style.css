@@ -1,0 +1,153 @@
+.mainImage{
+    display: flex;
+    background: url('img/sailboat.jpg');
+    width: 90%;
+    margin: auto;
+    height: 600px;
+    color: white;
+    background-position: bottom;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    
+}
+
+h1, h4{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+}
+
+h1{
+    font-family: 'Kanit', sans-serif;
+    font-size: 85px;
+    height: 1em;
+    letter-spacing: 5px;
+    font-weight: 800;
+}
+
+.navBar{
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    background: #1D231C;
+    width: 90%;
+    margin: auto;
+    height: 100px;
+    color: white;
+}
+
+.navBar ul {
+    display: flex;
+    list-style-type: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: .6em 0 2em;
+    justify-content: center;
+    height: 50px;
+}
+
+.navBar li{
+    margin: 0 2em;
+}
+
+.navBar a{
+    color: white;
+    font-style: none;
+    text-decoration: none;
+}
+
+.navBar a:hover {
+    font-weight: bolder;
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: auto;
+    width: 90%;
+    text-align: center;
+    margin: auto;
+    height: 300px;
+    padding: 2em 0;
+    font-size: 2.2em;
+    line-height: 2em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    border-bottom: 2px solid #D6D6D9;
+}
+
+.aboutText{
+    padding: 0 150px;
+    flex-wrap: wrap;
+}
+
+.aboutBreakdown{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px auto;
+    font-family: 'Montserrat', sans-serif;
+    border-bottom: 2px solid #D6D6D9;
+}
+
+
+h2{
+    font-size: 1.3em;
+    font-weight: 200;
+    letter-spacing: -1px;
+    margin: 20px 0;
+    color: #111010;
+}
+
+.aboutBreakdown img{
+    max-width: 300px;
+}
+
+.article{
+    width: 300px;
+    color: #50515D;
+    line-height: 1.5em;
+    font-size: 14px;
+    height: 600px;
+}
+
+.article a{
+    text-decoration: none;
+    color: black;
+    font-size: .8em;
+    font-weight: 600;
+    
+}
+
+.article a:hover{
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+.photoCredit{
+    width: 100%;
+    margin: 50px 0;
+    color: #50515D;
+    font-size: .8em;
+    
+}
+
+span{
+    color: black;
+    font-weight: 600;
+}
+
+.footer{
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+}
