@@ -29,3 +29,33 @@ class Hero{
 const Dougie = new Hero('Dougie');
 
 console.log(Dougie);
+
+class Enemy{
+    constructor(name){
+        this.name = name;
+        this.health = 100;
+        this.weapons = {
+            pepperoniStars: 5,
+            cheeseGrease: 10 
+        }
+        this.catchPhrases = ['i\'m youtube famous',
+        'i\'m more dangerous than an uncovered sewer']
+    }
+
+    talkSmack(){
+        let randdomPhrase = Math.floor(Math.random() * this.catchPhrases.length)
+        console.log(this.catchPhrases[randdomPhrase])
+    }
+
+    announceHealth(){
+        console.log(this.health);
+    }
+
+    fight(){
+        console.log('i\'m gonna flatten you like a slice of pepperoni!');
+    }
+}
+
+const Ronnie = new Enemy('Ronnie')
+
+console.log(Ronnie);
