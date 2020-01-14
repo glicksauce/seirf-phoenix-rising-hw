@@ -16,56 +16,92 @@ class Ship {
         this.pods = []
         this.name = name
         this.maxHealth = hull
+        this.missileCount = 0
     }
-    
-    missleCount = 0;
+
+    declarehealth = () => {
+        console.log("Ship " + this.name + " Hull strength: " + playerShip.hull + " Enemy ship, " + " Missile Count: " + this.missles) 
+    }
+
+    //sets ship stats to radom parameters
+    genShipStats = () => {
+        this.hull = (Math.round(Math.random() * (6-3) + 3))
+        this.firepower = (Math.round(Math.random()*2)+2)
+        this.accuracy = (Math.round(Math.random()*(80-60))+60)
+    }
+
+    //generates weapons pods then pushes them to a ship
+    genMegaShipPods = () => {
+        //random number of ship weapons pds
+        let podsCount = (Math.ceil(Math.random() * 3))
+
+        //pushes pods to enemyMegaship array
+        genShipStats(1,enemyMegaship)
+
+        //random stats for weapons pods/
+        for (let i = 0; i < podsCount; i++){
+            let hull = (Math.round(Math.random() * (5-3) + 3))
+            let firepower = (Math.round(Math.random()*(5-3))+3)
+            let accuracy = (Math.round(Math.random()*(85-65))+66)
+
+            //pushes weapon pods to the megaship
+            let podElement = new Ship(hull,firepower,accuracy,null,'pod' + i)
+            this.pods.push(podElement)
+        }
+    }
+
+    //calculates and returs damage done by this ship
+    shotsFired = (fpower) => {
+        let randomDraw = Math.random();
+        console.log("randomDraw is " + randomDraw + "accuracy is " + this.accuracy)
+        if (randomDraw <= this.accuracy) {
+            console.log(this.shipName + " scored a hit!")
+            return fpower
+        } else {
+            console.log(this.shipName + " missed!");
+            return 0
+        }
+    }
+
+    damageTaken = (damage) => {
+        console.log(damageToEnemy + " damage has been dealt to ship " + this.name)
+        this.hull -= damage;
+    }
+
+    shieldRegen = () => {
+        //replenish shields
+        let randomShieldGen = Math.floor((Math.random()*5));
+        if (randomShieldGen > 1){
+            console.log('starting hull ' + this.hull);
+            randomShieldGen -= 1 //if 0 or 1 than no shields but make it so if you get shields you don't get as much
+            this.hull += randomShieldGen;
+            console.log("You tried to increase shields and succeeded you adeed " + randomShieldGen + " to your hull. Total hull strength now at " + this.hull)
+        } else {
+            console.log("You tried to generate shields but failed this time")
+        }
+    }
 }
 
 //declare your ship and stats
-let ussScwarznegger = new Ship(20, 5, .7)
+let ussScwarznegger = new Ship(20, 5, .7, 0, 'USS Schwarz')
 ussScwarznegger.missleCount = Math.floor((Math.random()*5));
 
+//declare enemy ship arrays
 let enemyHorde = [];
 let enemyMegaship = [];
+
+//declare game sate
 let gameOver = false;
 
-//generates ship stats then pushes ship to enemyHorde
-const genShipStats = (shipQty,arrayToPush) => {
-    let hull = 0;
-    let firepower = 0;
-    let accuracy = 0;
-    for (let j = 0;j<shipQty;j++){
-        for (i=0;i<3;i++){
-            hull = (Math.round(Math.random() * (6-3) + 3))
-            firepower = (Math.round(Math.random()*2)+2)
-            accuracy = (Math.round(Math.random()*(80-60))+60)
+
+
+//generates new ship(s) then pushes to array specified
+    const genShip = (shipQty,arrayToPush) => {
+        for (let j = 0;j<shipQty;j++){
+            let ship = new Ship()
+            arrayToPush.push(ship)
         }
-
-        let ship = new Ship(hull,firepower,accuracy)
-        arrayToPush.push(ship)
     }
-
-}
-
-//generates mega-ship then pushes 
-const genMegaShipPods = () =>{
-    let podsCount = (Math.ceil(Math.random() * 3))
-    genShipStats(1,enemyMegaship)
-
-    //random stats for weapons pods/
-    for (let i = 0; i < podsCount; i++){
-        let hull = (Math.round(Math.random() * (5-3) + 3))
-        let firepower = (Math.round(Math.random()*(5-3))+3)
-        let accuracy = (Math.round(Math.random()*(85-65))+66)
-
-        //pushes weapon pods to the megaship
-        let podElement = new Ship(hull,firepower,accuracy,null,'pod' + i)
-        enemyMegaship[0].pods.push(podElement)
-    }
-
-    
-
-}
 
 //generates x number of enemy ships
 //genShipStats(Math.floor(Math.round(Math.random()*(10-4)+4)),enemyHorde);
@@ -76,36 +112,36 @@ genMegaShipPods()
 //manually adjust megaship stats
 enemyMegaship[0].hull = 15;
 
+//takes 2 classes and an index
 const shipBattle = (playerShip, enemyShip, enemyShipIndex) => {
     let missleUse = 0;
+    let leftPlayerFirePower = playerShip.firepower
+    let rightPlayerFirePower = enemyShip.firepower
     //stats before start of battle
-    console.log("starting health: Your ship, " + playerShip.hull + " Enemy ship, " 
-    + enemyShip[enemyShipIndex].hull)
-    console.log("missiles remaining: " + ussScwarznegger.missleCount)
+    playerShip.declareHealth()
+    enemyShip.declareHealth()
 
     //check if you want to use missles
-    if (ussScwarznegger.missleCount > 0){
+    if (playerShip.missleCount > 0){
         missleUse = prompt("Do you want to use one of your missles this fight?")
     }
 
-
     //before playerShip shoots
-    //if using missle's
+    //if using missle's then upgrade firepower
     if (missleUse == 'Yes' || missleUse == 'yes'){
-        ussScwarznegger.missleCount -= 1;
-        playerShip.firepower = 10
+        playerShip.missleCount -= 1;
+        leftPlayerFirePower = 10
         console.log("you used one of your missiles")
     }
+
     //playerShip shoots
-    //damage calculated
-    let damageToEnemy = shotsFired(playerShip.firepower,playerShip.accuracy, "You")
-    console.log(damageToEnemy + " damage has been dealt to enemy ship")
-    enemyShip[enemyShipIndex].hull -= damageToEnemy;
-    document.getElementById("enemyHealth").innerHTML = enemyShip[enemyShipIndex].hull
-    //console.log(enemyMegaship[0].hull, enemyShip[enemyShipIndex].hull, damageToEnemy);
+    //damage calculated to enemy
+    //enemyShip.calcDamageDealt(
+    let damageToEnemy = playerShip.shotsFired(leftPlayerFirePower)
+    enemyShip.damageTaken(damageToEnemy);
 
     //is enemydead?
-    if (enemyShip[enemyShipIndex].hull <= 0){
+    if (enemyShip.hull <= 0){
         console.log("enemy ship destroyed")
         enemyShip.splice(enemyShipIndex,1)
     } else {
@@ -134,30 +170,6 @@ const shipBattle = (playerShip, enemyShip, enemyShipIndex) => {
     }   
 }
 
-const shotsFired = (fpower, accuracy, shipName) => {
-    let randomDraw = Math.random();
-    console.log("randomDraw is " + randomDraw + "accuracy is " + accuracy)
-    if (randomDraw <= accuracy) {
-        console.log(shipName + " scored a hit!")
-        return fpower
-    } else {
-        console.log(shipName + " missed!");
-        return 0
-    }
-}
-
-const shieldRegen = () => {
-    //replenish shields
-    let randomShieldGen = Math.floor((Math.random()*5));
-    if (randomShieldGen > 1){
-        console.log('starting hull ' + ussScwarznegger.hull);
-        randomShieldGen -= 1 //if 0 or 1 than no shields but make it so if you get shields you don't get as much
-        ussScwarznegger.hull += randomShieldGen
-        console.log("You tried to increase shields and succeeded you adeed " + randomShieldGen + " to your hull. Total hull strength now at " + ussScwarznegger.hull)
-    } else {
-        console.log("You tried to generate shields but failed this time")
-    }
-}
 
 const finalBattle = () => {
     console.log("...but there is still the final battle");
