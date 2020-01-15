@@ -68,8 +68,8 @@ const genMegaShipPods = () =>{
 }
 
 //generates x number of enemy ships
-//genShipStats(Math.floor(Math.round(Math.random()*(10-4)+4)),enemyHorde);
-genShipStats(1,enemyHorde);
+genShipStats(Math.floor(Math.round(Math.random()*(8-4)+4)),enemyHorde);
+//genShipStats(1,enemyHorde);
 
 //generates enemy megaship
 genMegaShipPods()
@@ -135,7 +135,7 @@ const shipBattle = (playerShip, enemyShip, enemyShipIndex) => {
 
 const shotsFired = (fpower, accuracy, shipName) => {
     let randomDraw = Math.random();
-    console.log("randomDraw is " + randomDraw + "accuracy is " + accuracy)
+    //console.log("randomDraw is " + randomDraw + "accuracy is " + accuracy)
     if (randomDraw <= accuracy) {
         console.log(shipName + " scored a hit!")
         return fpower
@@ -147,7 +147,7 @@ const shotsFired = (fpower, accuracy, shipName) => {
 
 const shieldRegen = () => {
     //replenish shields
-    let randomShieldGen = Math.floor((Math.random()*5));
+    let randomShieldGen = Math.floor((Math.random()*7));
     if (randomShieldGen > 1){
         console.log('starting hull ' + ussScwarznegger.hull);
         randomShieldGen -= 1 //if 0 or 1 than no shields but make it so if you get shields you don't get as much
