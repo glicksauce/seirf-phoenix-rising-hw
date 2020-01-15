@@ -1,3 +1,5 @@
+//refactoring in progress. somewhat works but coding in progress
+
 //Pseudo
 /*Needs: 
     Class for alien ships, -
@@ -9,18 +11,18 @@
 */
 
 class Ship {
-    constructor(hull, firepower, accuracy, pods, name){
+    constructor(hull, firepower, accuracy, pods, name, maxHealth, missileCount){
         this.hull = hull || 3
         this.firepower = firepower || 2
         this.accuracy = accuracy || .6
         this.pods = []
-        this.name = name
+        this.name = name || 'unnamed'
         this.maxHealth = hull
-        this.missileCount = 0
+        this.missileCount =  0
     }
 
-    declarehealth = () => {
-        console.log("Ship " + this.name + " Hull strength: " + playerShip.hull + " Enemy ship, " + " Missile Count: " + this.missles) 
+    declareHealth = () => {
+        console.log("Ship " + this.name + ", hull strength: " + this.hull + " missile count: " + this.missileCount) 
     }
 
     //sets ship stats to radom parameters
@@ -55,17 +57,18 @@ class Ship {
         let randomDraw = Math.random();
         console.log("randomDraw is " + randomDraw + "accuracy is " + this.accuracy)
         if (randomDraw <= this.accuracy) {
-            console.log(this.shipName + " scored a hit!")
+            console.log(this.name+ " scored a hit!")
             return fpower
         } else {
-            console.log(this.shipName + " missed!");
+            console.log(this.name + " missed!");
             return 0
         }
     }
 
     damageTaken = (damage) => {
-        console.log(damageToEnemy + " damage has been dealt to ship " + this.name)
+        console.log(damage + " damage has been dealt to ship: " + this.name)
         this.hull -= damage;
+        return this.hull
     }
 
     shieldRegen = () => {
@@ -105,69 +108,69 @@ let gameOver = false;
 
 //generates x number of enemy ships
 //genShipStats(Math.floor(Math.round(Math.random()*(10-4)+4)),enemyHorde);
-genShipStats(1,enemyHorde);
+genShip(2,enemyHorde);
 
 //generates enemy megaship
-genMegaShipPods()
+genShip(1,enemyMegaship)
 //manually adjust megaship stats
 enemyMegaship[0].hull = 15;
 
-//takes 2 classes and an index
-const shipBattle = (playerShip, enemyShip, enemyShipIndex) => {
+//takes 2 classes. left class fires on right class. this should return a value
+const shipBattle = (leftShip, rightShip) => {
     let missleUse = 0;
-    let leftPlayerFirePower = playerShip.firepower
-    let rightPlayerFirePower = enemyShip.firepower
+    let leftPlayerFirePower = leftShip.firepower
+    let rightPlayerFirePower = rightShip.firepower
     //stats before start of battle
-    playerShip.declareHealth()
-    enemyShip.declareHealth()
+    leftShip.declareHealth()
+    rightShip.declareHealth()
 
     //check if you want to use missles
-    if (playerShip.missleCount > 0){
+    if (leftShip.missleCount > 0){
         missleUse = prompt("Do you want to use one of your missles this fight?")
     }
 
-    //before playerShip shoots
+    //before leftShip shoots
     //if using missle's then upgrade firepower
     if (missleUse == 'Yes' || missleUse == 'yes'){
-        playerShip.missleCount -= 1;
+        leftShip.missleCount -= 1;
         leftPlayerFirePower = 10
         console.log("you used one of your missiles")
     }
 
-    //playerShip shoots
+    //leftShip shoots
     //damage calculated to enemy
-    //enemyShip.calcDamageDealt(
-    let damageToEnemy = playerShip.shotsFired(leftPlayerFirePower)
-    enemyShip.damageTaken(damageToEnemy);
+    //rightShip.calcDamageDealt(
+    let damageToEnemy = leftShip.shotsFired(leftPlayerFirePower)
 
+    //removes HP from ship and returns hull to this variable 
+    let rightShipHull = rightShip.damageTaken(damageToEnemy);
+
+    //should be separate functions:
+    /*
     //is enemydead?
-    if (enemyShip.hull <= 0){
+    if (rightShipHull <= 0){
         console.log("enemy ship destroyed")
-        enemyShip.splice(enemyShipIndex,1)
+        eval(parentArrayName).splice(rightShipIndex,1)
     } else {
-        console.log("enemy hull is at " + (enemyShip[enemyShipIndex].hull))
+        console.log("Enemy hull report: " + rightShip.declareHealth())
     }
 
     //enemy shoots
-    //updated so all enemies can attack at once
     //damage calculcated
-    if (enemyShip.length > 0){
-        for (let ShipIndex = 0; ShipIndex < enemyShip.length; ShipIndex++){
-            damageByEnemy = shotsFired(enemyShip[ShipIndex].firepower,enemyShip[ShipIndex].accuracy, ("The enemy ship " + ShipIndex))
-            console.log(damageByEnemy + " damage has been dealt to your ship")
-            ussScwarznegger.hull -= damageByEnemy;
+    damageByEnemy = shotsFired(rightShip.firepower)
+    console.log(damageByEnemy + " damage has been dealt to your ship")
+    leftShip.damageTaken(damageByEnemy)
+    leftShip.declareHealth()
 
-            //is player dead
-            if (playerShip.hull - damageByEnemy <= 0){
-                console.log("your ship was destroyed")
-                console.log("You got blown up, GAME OVER")
-                gameOver = true;
-                return;
-            } else {
-                console.log("your hull is at " + (ussScwarznegger.hull))
-            }
-        }
-    }   
+    //is player dead
+    if (leftShip.hull <= 0){
+        console.log("your ship was destroyed")
+        console.log("You got blown up, GAME OVER")
+        gameOver = true;
+        return;
+    }
+     */   
+     
 }
 
 
@@ -211,7 +214,13 @@ while (enemyHorde.length > 0  && ussScwarznegger.hull > 0 && gameOver == false){
             }
 
         let shipToAttack = prompt("which ship do you wish to attack")
-        shipBattle(ussScwarznegger,enemyHorde, shipToAttack)
+        //you attack a ship
+        shipBattle(ussScwarznegger,enemyHorde[shipToAttack])
+
+        //ship attacks you
+        for (i=0;i<enemyHorde.length;i++){
+            shipBattle(enemyHorde[i],ussScwarznegger)
+        }
 
         if (!gameOver){
             //check if you won
@@ -220,7 +229,7 @@ while (enemyHorde.length > 0  && ussScwarznegger.hull > 0 && gameOver == false){
                 finalBattle();
             }
             if (!gameOver){
-                shieldRegen();
+                ussScwarznegger.shieldRegen();
             }
         }   
     } else if (playerAction == 'retreat'){

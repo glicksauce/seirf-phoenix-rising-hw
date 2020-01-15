@@ -1,3 +1,5 @@
+//working game but code is messy
+
 //Pseudo
 /*Needs: 
     Class for alien ships, -
@@ -22,7 +24,7 @@ class Ship {
 }
 
 //declare your ship and stats
-let ussScwarznegger = new Ship(20, 5, .7)
+let ussScwarznegger = new Ship(50, 5, .7)
 ussScwarznegger.missleCount = Math.floor((Math.random()*5));
 
 let enemyHorde = [];
@@ -68,7 +70,7 @@ const genMegaShipPods = () =>{
 }
 
 //generates x number of enemy ships
-genShipStats(Math.floor(Math.round(Math.random()*(8-4)+4)),enemyHorde);
+genShipStats(Math.floor(Math.round(Math.random()*(5-4)+4)),enemyHorde);
 //genShipStats(1,enemyHorde);
 
 //generates enemy megaship
@@ -101,7 +103,6 @@ const shipBattle = (playerShip, enemyShip, enemyShipIndex) => {
     let damageToEnemy = shotsFired(playerShip.firepower,playerShip.accuracy, "You")
     console.log(damageToEnemy + " damage has been dealt to enemy ship")
     enemyShip[enemyShipIndex].hull -= damageToEnemy;
-    document.getElementById("enemyHealth").innerHTML = enemyShip[enemyShipIndex].hull
     //console.log(enemyMegaship[0].hull, enemyShip[enemyShipIndex].hull, damageToEnemy);
 
     //is enemydead?
@@ -153,7 +154,7 @@ const shieldRegen = () => {
         console.log('starting hull ' + ussScwarznegger.hull);
         randomShieldGen -= 1 //if 0 or 1 than no shields but make it so if you get shields you don't get as much
         ussScwarznegger.hull += randomShieldGen
-        console.log("You tried to increase shields and succeeded you adeed " + randomShieldGen + " to your hull. Total hull strength now at " + ussScwarznegger.hull)
+        console.log("You tried to increase shields and succeeded you added " + randomShieldGen + " to your hull. Total hull strength now at " + ussScwarznegger.hull)
     } else {
         console.log("You tried to generate shields but failed this time")
     }
