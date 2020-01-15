@@ -19,6 +19,7 @@ class Ship {
         this.name = name || 'unnamed'
         this.maxHealth = hull
         this.missileCount =  0
+        this.blownUp = false;
     }
 
     declareHealth = () => {
@@ -34,11 +35,8 @@ class Ship {
 
     //generates weapons pods then pushes them to a ship
     genMegaShipPods = () => {
-        //random number of ship weapons pds
+        //random number of ship weapons pods
         let podsCount = (Math.ceil(Math.random() * 3))
-
-        //pushes pods to enemyMegaship array
-        genShipStats(1,enemyMegaship)
 
         //random stats for weapons pods/
         for (let i = 0; i < podsCount; i++){
@@ -71,6 +69,18 @@ class Ship {
         return this.hull
     }
 
+    checkIfBlownUp = () =>{
+        if (this.hull <=0){
+            this.blownUp = true;
+            console.log("ship " + this.name + " has been destroyed.")
+            return true;
+        }
+    }
+
+    usedMissile = () => {
+        this.missileCount -= 1;
+    }
+
     shieldRegen = () => {
         //replenish shields
         let randomShieldGen = Math.floor((Math.random()*5));
@@ -87,7 +97,7 @@ class Ship {
 
 //declare your ship and stats
 let ussScwarznegger = new Ship(20, 5, .7, 0, 'USS Schwarz')
-ussScwarznegger.missleCount = Math.floor((Math.random()*5));
+ussScwarznegger.missileCount = Math.floor((Math.random()*5));
 
 //declare enemy ship arrays
 let enemyHorde = [];
@@ -114,65 +124,44 @@ genShip(2,enemyHorde);
 genShip(1,enemyMegaship)
 //manually adjust megaship stats
 enemyMegaship[0].hull = 15;
+enemyMegaship[0].name = "Megaship"
+//add weaspons pods to the megaship
+enemyMegaship[0].genMegaShipPods();
 
 //takes 2 classes. left class fires on right class. this should return a value
 const shipBattle = (leftShip, rightShip) => {
-    let missleUse = 0;
+    let missileUse = 0;
     let leftPlayerFirePower = leftShip.firepower
     let rightPlayerFirePower = rightShip.firepower
     //stats before start of battle
+    console.log('-------------');
     leftShip.declareHealth()
+    console.log("attacks:");
     rightShip.declareHealth()
+    console.log('-------------');
+    console.log(' ');
 
-    //check if you want to use missles
-    if (leftShip.missleCount > 0){
-        missleUse = prompt("Do you want to use one of your missles this fight?")
+    //check if you want to use missiles
+    if (leftShip.missileCount > 0){
+        missileUse = prompt("Do you want to use one of your missiles this fight?")
     }
 
     //before leftShip shoots
-    //if using missle's then upgrade firepower
-    if (missleUse == 'Yes' || missleUse == 'yes'){
-        leftShip.missleCount -= 1;
+    //if using missile's then upgrade firepower
+    if (missileUse == 'Yes' || missileUse == 'yes' && leftShip.name == 'USS Schwarz'){
+        leftShip.usedMissile();
         leftPlayerFirePower = 10
         console.log("you used one of your missiles")
     }
 
     //leftShip shoots
-    //damage calculated to enemy
-    //rightShip.calcDamageDealt(
+    //damage calculated
     let damageToEnemy = leftShip.shotsFired(leftPlayerFirePower)
 
     //removes HP from ship and returns hull to this variable 
     let rightShipHull = rightShip.damageTaken(damageToEnemy);
-
-    //should be separate functions:
-    /*
-    //is enemydead?
-    if (rightShipHull <= 0){
-        console.log("enemy ship destroyed")
-        eval(parentArrayName).splice(rightShipIndex,1)
-    } else {
-        console.log("Enemy hull report: " + rightShip.declareHealth())
-    }
-
-    //enemy shoots
-    //damage calculcated
-    damageByEnemy = shotsFired(rightShip.firepower)
-    console.log(damageByEnemy + " damage has been dealt to your ship")
-    leftShip.damageTaken(damageByEnemy)
-    leftShip.declareHealth()
-
-    //is player dead
-    if (leftShip.hull <= 0){
-        console.log("your ship was destroyed")
-        console.log("You got blown up, GAME OVER")
-        gameOver = true;
-        return;
-    }
-     */   
      
 }
-
 
 const finalBattle = () => {
     console.log("...but there is still the final battle");
@@ -181,8 +170,8 @@ const finalBattle = () => {
 
     if (playerAction == 'battle') {
         console.log("You have decided to battle");
-        //console.log(!gameOver, ussScwarznegger.hull, enemyMegaship.length);
-        while (!gameOver && ussScwarznegger.hull > 0 && enemyMegaship.length > 0){
+        
+        while (!gameOver && ussScwarznegger.hull > 0 && enemyMegaship[0].pods.length > 0){
             //have to defeat the pods before fighting them megaship
             while (enemyMegaship[0].pods.length > 0) {
                 console.log("remaining Megaship weaapons pods:")
@@ -190,11 +179,41 @@ const finalBattle = () => {
                     console.log("-pod " + k + " hull " + enemyMegaship[0].pods[k].hull);
                 }
                 let podPrompt = prompt('which weapons pod should we attack?')
-                shipBattle(ussScwarznegger, enemyMegaship[0].pods, podPrompt)
+                shipBattle(ussScwarznegger, enemyMegaship[0].pods[podPrompt])
+
+                //removes ship for array if it is blown up
+                if (enemyMegaship[0].pods[podPrompt].checkIfBlownUp()){
+                   enemyMegaship[0].pods.splice(podPrompt,1)
+                }
+
+                //pods attacks you
+                for (i=0;i<enemyMegaship[0].pods.length && !gameOver;i++){
+                    shipBattle(enemyMegaship[0].pods[i],ussScwarznegger)
+                    if (ussScwarznegger.checkIfBlownUp()){
+                        gameOver = true;
+                        console.log("Game over, you were blown up.");
+                        break;
+                    }
+                }
             }
-            console.log("all weapons pods destroyed, only thing left to defeat is the Megaship itself")
-            shipBattle(ussScwarznegger,enemyMegaship,0)
         }
+
+        console.log("all weapons pods destroyed, only thing left to defeat is the Megaship itself")
+        while (!gameOver && enemyMegaship.length > 0){
+            shipBattle(ussScwarznegger,enemyMegaship[0])
+            if (enemyMegaship[0].checkIfBlownUp()){
+                console.log("Congrats you destroyed the enemy fleet and mothership. You win!");
+                gameOver = true;
+                break;
+            }
+            shipBattle(enemyMegaship[0],ussScwarznegger)
+            if (ussScwarznegger.checkIfBlownUp()){
+                console.log("Game over, you were blown up.");
+                gameOver = true;
+                break;
+            }
+        }
+
     } else if (playerAction == 'retreat'){
         console.log("You ran away from the megaship. The game is over")
         gameOver = true;
@@ -217,6 +236,11 @@ while (enemyHorde.length > 0  && ussScwarznegger.hull > 0 && gameOver == false){
         //you attack a ship
         shipBattle(ussScwarznegger,enemyHorde[shipToAttack])
 
+        //removes ship for array if it is blown up
+        if (enemyHorde[shipToAttack].checkIfBlownUp()){
+           enemyHorde.splice(shipToAttack,1)
+        }
+
         //ship attacks you
         for (i=0;i<enemyHorde.length;i++){
             shipBattle(enemyHorde[i],ussScwarznegger)
@@ -227,6 +251,7 @@ while (enemyHorde.length > 0  && ussScwarznegger.hull > 0 && gameOver == false){
             if (enemyHorde.length <= 0 ){
                 console.log("Congrats you defeated the enemy horde!...")
                 finalBattle();
+                break;
             }
             if (!gameOver){
                 ussScwarznegger.shieldRegen();
