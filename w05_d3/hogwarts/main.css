@@ -4,5 +4,14 @@ body {
 }
 
 .quokka{
-    font-family: fantasy;
+    font-family: 'Pinyon Script', cursive;
+}
+
+.secret{
+    opacity: .5;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
 }

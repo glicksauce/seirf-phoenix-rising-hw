@@ -23,5 +23,21 @@ $(() => {
     $($container).append($pet)
     $($container).append($wand)
 
+    //Year 3
+    const $list = $("<ul>").attr("storage","truck")
+    const $listItems1 = $("<li>").text("butter beer");
+    const $listItems2 = $("<li>").text("invisibility cloak").addClass("secret")
+    const $listItems3 = $("<li>").text("magic map").addClass("secret")
+    const $listItems4 = $("<li>").text("time turner").addClass("secret")
+    const $listItems5 = $("<li>").text("leash").addClass("quokka");
+    const $listItems6 = $("<li>").text("Bertie Bott's Every Flavor [Jelly] Beans.")
+
+    $($container).append($list);
+    //$($list).append($listItems1);
+    for (i=1;i<=6;i++){
+        let strToAppend = ('$listItems' + i)
+        $($list).append(eval(strToAppend));
+    }
+    
 
 });
