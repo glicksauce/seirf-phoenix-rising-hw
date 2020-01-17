@@ -73,7 +73,22 @@ $(() => {
     }
 
 
+    //Year 5
+    $wand.remove()
+    $("li")[0].remove()
+    $newWand = $("<h4>").text("Wand: Unicorn Tusk with Dragon's Tooth core")
+    $newWand.css("color","indigo")
+    $("h4").after($newWand);
+
+    //pet spy mission
+    let $petMission = $("h4")[0]
+    $("td")[5].append($petMission)
+
+    //pet return mission
+    $("h3").after($petMission)
 
 
 
+
+    
 });
