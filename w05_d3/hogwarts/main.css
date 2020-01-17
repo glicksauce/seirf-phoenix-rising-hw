@@ -1,9 +1,44 @@
 body {
     background: #F8F7FF;
     text-align: center;
+    height: 100%;
 }
 
+#container{
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+    border: solid black 10px;
+    border-top: none;
+    border-bottom: none;
+    border-left-image: linear-gradient(to right, #1b1b1a, #b9beb4) 30;
+    height: 100%;
+    background: rgb(219, 205, 207)138, 112, 117);
+}
+
+h1{
+    display: inline-block;
+    margin: 0 auto;
+    color: brown;
+    border-bottom: solid 2px red;
+    -webkit-animation: borderExpand 1s 1 linear;
+}
+
+@-webkit-keyframes borderExpand{
+    0% {width: 150px}
+    100% {width: 500px}
+}
+
+h1{
+    width: 500px;
+}
+
+h5{
+    font-family: 'Franklin Gothic Medium', sans-serif;
+    font-size: 24px;
+}
 .quokka{
+    font-size: 28px;
     font-family: 'Pinyon Script', cursive;
 }
 
@@ -17,11 +52,13 @@ ul{
 }
 
 table,th,td{
-    border: solid gray 1px
+    border: solid gray 1px;
 }
 
 table{
+    background-image: linear-gradient(to right,#e0ddc8, #8f8964);
     margin: 0 auto;
+    font-family: 'Franklin Gothic Medium', sans-serif;
 }
 
 .cabbage {

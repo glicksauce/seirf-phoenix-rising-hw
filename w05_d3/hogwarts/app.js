@@ -15,7 +15,7 @@ $(() => {
     //Year 2
     const $h2 = $("<h2>").text("Jay G")
     const $h3 = $("<h3>").text("House: Hufflepuff")
-    const $pet = $("<h4>").addClass("quokka").text("Pet: Henry")
+    const $pet = $("<h4>").addClass("quokka").text("Pet : Henry")
     const $wand = $("<h4>").text("Wand: Hornbeam Wand with Dragon Heartstring Core")
 
     $($container).append($h2)
@@ -41,7 +41,7 @@ $(() => {
     
     //Year 4
     const $table = $("<table>")
-    const $season = $("<h5>").text("Spring 2020")
+    const $season = $("<h5>").text("Spring 2017")
     const $thead = $("<thead>")
     const $th1 = $("<th>").text("day")
     const $th2 = $("<th>").text("Classes")
@@ -92,8 +92,11 @@ $(() => {
     $("ul li:nth-child(4)").addClass('cabbage')
     $("ul li:nth-child(4)").removeClass('cabbage')
 
-
-
+    //Year 7
+    $("h5").text("Fall 2018")
+    const $moreButterBeer = $("<li>").text("Butter beer");
+    $("[storage='trunk']").prepend($moreButterBeer)
+    $("[storage='trunk']").attr("storage","chest")
 
 
 });
