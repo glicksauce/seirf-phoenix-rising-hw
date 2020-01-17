@@ -24,7 +24,7 @@ $(() => {
     $($container).append($wand)
 
     //Year 3
-    const $list = $("<ul>").attr("storage","truck")
+    const $list = $("<ul>").attr("storage","trunk")
     const $listItems1 = $("<li>").text("butter beer");
     const $listItems2 = $("<li>").text("invisibility cloak").addClass("secret")
     const $listItems3 = $("<li>").text("magic map").addClass("secret")
@@ -87,8 +87,13 @@ $(() => {
     //pet return mission
     $("h3").after($petMission)
 
+    //Year 6
+    $("[class='secret']").hide('slow').delay(2000).show(3000)
+    $("ul li:nth-child(4)").addClass('cabbage')
+    $("ul li:nth-child(4)").removeClass('cabbage')
 
 
 
-    
+
+
 });
