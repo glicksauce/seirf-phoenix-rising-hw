@@ -123,26 +123,12 @@ $(() => {
     })
     
 
-    
-
     //you drank all your butter beer
     $("li").eq(0).delay(2000).fadeOut(1000)
     $("li").eq(0).remove();
 
     //you get a new Wand
     //see above
-  
-
-    /*
-    setTimeout(function(){
-        $("h4").eq(0).after($newWand)
-        $newWand.fadeIn(2000);
-    },4000)
-    setTimeout(function(){
-        $("h4").eq(0).after($newWand)
-        $newWand.fadeIn(11000);
-    },7500)
-    */
  
     //pet spy mission
     const $petMission = $("h4").first()
@@ -203,12 +189,15 @@ $(() => {
     $("ul li:nth-child(5)").delay(20000)
     $("ul li:nth-child(5)").queue(function(){
         $(this).addClass('cabbage')
-        removeCabbage();
-
-        $(this).dequeue();
+                $(this).dequeue();
     });
 
-    
+    //remove cabbage
+    $("ul li:nth-child(5)").delay(2000)
+    $("ul li:nth-child(5)").queue(function(){
+        removeCabbage();
+        $(this).dequeue();
+    });
     //Year 7
     
     //update class schedule to Fall 2018
@@ -222,6 +211,5 @@ $(() => {
     $("[storage='trunk']").attr("storage","chest")
     
  
-
 
 });
