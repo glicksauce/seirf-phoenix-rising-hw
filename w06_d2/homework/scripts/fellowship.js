@@ -98,11 +98,13 @@ const makeHobbits = () => {
 // Chapter 3
 // ============
 const keepItSecretKeepItSafe = () => {
-
+  console.log("kept it secret...and safe")
   // 1. create an empty div with an id of 'the-ring'
+  $newDiv = $('<div>').attr("id","the-ring")
 
   // 2. add the ring as a child of Frodo
     // hint: Frodo does not have an id, but there is a command to retrieve all elements with a certain class. This should give you an array for you to access . . .
+    $('.hobbit').first().append($newDiv)
 
     // when you think you have given Frodo the ring, check in your Elements tab to see that it works correctly
 
