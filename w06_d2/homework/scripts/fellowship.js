@@ -138,15 +138,20 @@ const makeBaddies = () => {
 // Chapter 5
 // ============
 const makeBuddies = () => {
+console.log("making buddies")
 
   // 1. create an aside tag and append it to middle-earth below mordor
-
+  $newAside = $('<aside>')
+  $('#middle-earth').append($newAside);
   // 2. display an unordered list of buddies in the aside
-
+  $newBuddyUl = $('<ul>')
+  $newAside.append($newBuddyUl)
+  for (let element of buddies){
   // 3. give each of the buddies a class of "buddy"
-
+    $newLi = $('<li>').addClass('buddy').text(element)
   // 4. don't forget to append them to the aside
-
+    $newBuddyUl.append($newLi)
+  }
 };
 
 // COMMIT YOUR WORK
@@ -157,8 +162,10 @@ const makeBuddies = () => {
 // ============
 
 const leaveTheShire = () => {
+  console.log("left the shire")
   // 1. grab the hobbits (the ul in which they reside) and move them to Rivendell
       // hint: the hobbits ul is a childNode of The-Shire-- there is way to get a list of childNodes
+      $('#Rivendell').append($('ul').first().children())
 
   //Stretch: add an event handler/listener so that when you click on the `h1` The Shire, this function will be called (be sure to do it in the window.onload/document.ready function)
 
@@ -301,4 +308,5 @@ $(()=>{
   $('#11').on('click', itsDangerousToGoAlone);
   $('#12').on('click', weWantsIt);
   $('#13').on('click', thereAndBackAgain);
+  $('h1').on('click', leaveTheShire);
 });
