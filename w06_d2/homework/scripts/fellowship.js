@@ -165,7 +165,7 @@ const leaveTheShire = () => {
   console.log("left the shire")
   // 1. grab the hobbits (the ul in which they reside) and move them to Rivendell
       // hint: the hobbits ul is a childNode of The-Shire-- there is way to get a list of childNodes
-      $('#Rivendell').append($('ul').first().children())
+      $('#Rivendell').append($('ul').first())
 
   //Stretch: add an event handler/listener so that when you click on the `h1` The Shire, this function will be called (be sure to do it in the window.onload/document.ready function)
 
@@ -191,15 +191,16 @@ const beautifulStranger = () => {
 // Chapter 8
 // ============
 const forgeTheFellowShip = () => {
-
+  console.log("forged the fellowship");
   // 1. create a new div with an id 'the-fellowship'
-
+  $newFellowshipDiv = $('<div>').attr("id","the-fellowship")
   // 2. add an h1 with the text 'The Fellowship' to this new div
-
+  $newFellowshipDiv.append($('<h1>').text("The Fellowship"))
   // 3. append the fellowship to middle-earth
-
+  $('#middle-earth').append($newFellowshipDiv)  
   // 4. add the unordered lists of hobbits and buddies to 'the-fellowship'
-
+  $('#the-fellowship').append($('#Rivendell ul'))
+  $('#the-fellowship').append($('aside ul'))
 };
 
 // COMMIT YOUR WORK
