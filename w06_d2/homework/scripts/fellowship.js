@@ -210,11 +210,11 @@ const forgeTheFellowShip = () => {
 // Chapter 9
 // ============
 const theBalrog = () => {
-
+console.log("the Balrog")
   // 1. change the 'Gandalf' text to 'Gandalf the White'
-
+  $('#the-fellowship ul:nth-child(3) li:nth-child(1)').text("Gandalf the White")
   // 2. add a class "the-white" to this element
-
+  $('#the-fellowship ul:nth-child(3) li:nth-child(1)').addClass("the-white")
   // 3. in the style.css file, add a css rule to make elements of the class "the-white" have a white background and a grey border
 
 };
@@ -228,11 +228,12 @@ const theBalrog = () => {
 const hornOfGondor = () => {
 
   // 1. create a pop-up alert that the horn of gondor has been blown
-
+  //alert("The horn of Gondor has been blown");
+  console.log("The horn of Gondor has been blown!")
   // 2. Boromir's been killed by the Uruk-hai! Put a linethrough on Boromir's name
-
+  $('#the-fellowship ul:nth-child(3) li:nth-child(5)').css("text-decoration","line-through")
   // 3. Tricky: Remove the Uruk-Hai from the Baddies on the page
-
+  $('#Mordor ul li:nth-child(3)').css("text-decoration","line-through")
 };
 
 // COMMIT YOUR WORK
@@ -242,11 +243,12 @@ const hornOfGondor = () => {
 // Chapter 11
 // ============
 const itsDangerousToGoAlone = () => {
-
+  console.log("Its dangerous to go alone")
   // 1. take Frodo and Sam out of the fellowship and move them to Mordor (they don't need to be inside a ul in Mordor)
-
+  $('#Mordor').append($('#the-fellowship ul:nth-child(2) li:nth-child(1)'))
+  $('#Mordor').append($('#the-fellowship ul:nth-child(2) li:nth-child(1)'))
   // 2. add a div with an id of 'mount-doom' to Mordor
-
+  $('#Mordor').append($('<div>').attr("id","mount-doom"))
 };
 
 // COMMIT YOUR WORK
