@@ -108,6 +108,7 @@ ul {
 .the-white{
   background: white;
   border: solid gray 1px;
+  display: inline;
 }
 
 /*aside {
