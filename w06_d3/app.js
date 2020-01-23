@@ -1,12 +1,15 @@
+const toDoItems = []
+
 const formSubmit = () => {
     console.log($('#input-box').val())
-    $newToDo = $('#input-box').val()
-    $('#to-do-list').append($newToDo)
+    $newToDo = $('<div>').text($('#input-box').val())
+    toDoItems.push($newToDo);
+    $('#to-do-list').append(toDoItems)
     event.preventDefault();
 }
 
 $(() => {
-
+    $('#to-do-list').append(toDoItems)
     $('#submit').on('click', formSubmit)
 
 
