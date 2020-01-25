@@ -108,7 +108,7 @@ input:focus {
   background: var(--candy-pink);
 }
 
-.completed-Button{
+.completed-Button, .remove-Button{
   display:flex;
   padding: 5px 0;
   height: 25px;
