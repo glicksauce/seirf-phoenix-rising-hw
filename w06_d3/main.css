@@ -85,10 +85,15 @@ input:focus {
   margin: 1em;
 }
 
+
+
 /* style list items, common styles */
 .to-do-item, .done-item {
+  padding: 10px 0 0 0;
   margin: .5em;
   border-radius: 1em;
+  color: white;
+  font-size: 1.25em;
   animation: zoom-in .3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
   box-shadow: 2px 2px 4px gray;
 }
@@ -103,6 +108,16 @@ input:focus {
   background: var(--candy-pink);
 }
 
+.completed-Button{
+  display:flex;
+  padding: 5px 0;
+  height: 25px;
+  width: 125px;
+  margin: 10px auto;
+  justify-content: center;
+  align-items: center;
+  
+}
 
 /* New item animation */
 @keyframes zoom-in {
