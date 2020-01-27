@@ -89,7 +89,7 @@ const checkforA = (arrayValue) => {
 
 console.log(panagrams.some(checkforA));
 
-/* didn't quite finish this one
+/* didn't quite finish this one */
 //------------------------------------
 //isPanagram
 
@@ -97,25 +97,27 @@ console.log(panagrams.some(checkforA));
 
 const panagram = ['The', 'quick','brown','fox', 'jumps', 'over', 'the', 'lazz', 'dog']
 
-const alphabetCheck = (arrValue, arg) => {
-    console.log(arrValue, arg);
-    return arrValue == arg;
- 
-}
-
 let alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-const checkPanagram = (array) => {
-    let pcheck = false;
+const alphabetCheck = (arrValue) => {
     for (i=0;i<alphabet.length;i++){
-        //console.log(alphabet[i]);
-        if (array.find(alphabetCheck, alphabet[i]) == false){
-            console.log(alphabet[i]);
-            pcheck = false;
-            return false;
-        } 
+        returnCheck = false
+        console.log(arrValue, alphabet[i]);
+        if (arrValue.includes(alphabet[i])){
+            returnCheck = true;
+        }
     }
-    return pcheck;
+    return returnCheck;
 }
+
+
+const checkPanagram = (array) => {
+    let compareCheck = true;
+    if (array.some(alphabetCheck) == false){
+        compareCheck = false;
+    } 
+    return compareCheck;
+    
+}
+
 console.log(checkPanagram(panagram))
-*/

@@ -1,0 +1,27 @@
+.game-board{
+    flex-wrap: wrap;
+    width: 600px;
+    height: 600px;
+    background: green;
+}
+
+.game-square{
+    flex-wrap: wrap;
+    flex-direction: column;
+    float: left;
+    width: 196px;
+    height: 196px;
+    background: lightblue;
+    border: 2px solid yellow;
+}
+
+*{
+    background: pink;
+}
+
+.x-piece, .o-piece{
+    flex-wrap: wrap;
+    font-size: 95px;
+    text-align: center;
+    line-height: 200px;
+}

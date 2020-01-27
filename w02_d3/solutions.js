@@ -310,3 +310,19 @@ if (process.argv[2]){
 
 //computers random move against players move
 rockPaperScissors(randomMoveRPSLS(), userInput);
+
+
+//----------
+//Digit Sum. Write a function sumDigits that accepts a number and returns the sum of its digits.
+const sumDigits = (num) => {
+    let resultString = num.toString();
+    let result = 0;
+    for (i=0;i<resultString.length;i++){
+        result += eval(resultString[i]);
+    }
+    return result;
+}
+
+console.log(sumDigits(424));
+
+//---------------------
