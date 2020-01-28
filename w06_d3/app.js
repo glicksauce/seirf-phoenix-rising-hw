@@ -8,70 +8,81 @@ const toDoItems = []
 
 //retrieves items from local storage
 const loadFromLocalStorage = () =>{
+
+    //iterate backwards through localstorage
     for (i = localStorage.length-1; i>= 0; i--){
-        //console.log(localStorage[i])
-        if (localStorage.key(i).slice(0,5) == "to-do" || localStorage.key(i).slice(0,5) =="compl") {
+        //only use local storage item if labeled to-do or completed
+        if (localStorage.key(i).slice(0,5) == "to-do") {
+
+            toDoNumber = (localStorage.key(i).slice(5,6))
+            toDoNumber = Number(toDoNumber)
+            console.log(toDoNumber)
+            //sets item to localstorage value
             let item = localStorage.getItem(localStorage.key(i))
+
+            //fills input box with localstorage value so that formsubmit can grab it
             $('#input-box').val(item)
 
+            //run formSubmit function to create to do items for all
             formSubmit()
-            if (localStorage.key(i).slice(0,5) =="compl") {
-                    
-                    let $currentID = $('#to-do'+(toDoNumber-1)+ ' button')
-                    modifyToDone($currentID);
-            }
-            $('#input-box').val('')
+
+        } else if (localStorage.key(i).slice(0,5) =="compl") {
+            //sets item to localstorage value
+            let item = localStorage.getItem(localStorage.key(i))
+
+            //fills input box with localstorage value so that formsubmit can grab it
+            $('#input-box').val(item)
+
+            //run function to add localstorage item as a 'done' item
+            addDoneItem()
         }
 
+        //reset input box value
+        $('#input-box').val('')
         
     }
 }
 
-const modifyToDone = (divID) =>{
-    let itemID = $(divID).parent().attr("id")
-    let completedID = "completed" + completedNumber
+const addDoneItem = () => {
+//console.log($('#input-box').val())
+    let itemID = "completed" + completedNumber
 
-    //remove item from localStorage
-    localStorage.removeItem(itemID)
+    //new to do item uses input value and adds appropriate class
+    $newCompleted = $('<div>').text($('#input-box').val())
+    $newCompleted.attr("id",itemID)
+    $newCompleted.addClass("to-do-item").css("background","#ED6495")
 
-    //re-add item to local storage as done
-    let textValue = $(divID).parent().text()
-    textValue = textValue.slice(0,textValue.length-9);
-    window.localStorage.setItem(completedID,textValue)
+    //adds completed button to do item
+    $removeButton = $('<button>').addClass("remove-Button").text("REMOVE").css("background","#c2c3c2").css("color","#003300")
 
-    //re-labels item id
-    $(divID).parent().attr("id",completedID)
+    //appends button to div
+    $newCompleted.append($removeButton)
 
-    //change background color of item
-    $(divID).parent().css("background","#ED6495")
+    //adds event listener to completed button
+    $removeButton.on('click',removeItem)
 
-    //append item to completed list
-    $('#completed').append($(divID).parent())
-
-    //removes completed button listener
-    removeEventListener("click",toDoUpdate)
-
-    //updates button text
-    $(divID).text("REMOVE")
+    //appends div to done list
+    $('#completed').append($newCompleted)
     
-
-    //removes class from button, replaces with new class
-    $(divID).removeClass("completed-Button")
-    $(divID).addClass('remove-Button')
-
-    //adds event listener to button
-    //console.log(divID)
-    //divID.addEventListener("click",removeItem)
-
-    //increment completed number
+    //increment toDoNumber
     completedNumber++
+
+    //prevent page refresh
+    if (event != undefined){
+        event.preventDefault();
+    }
+
 }
 
+
 const removeItem = () =>{
+    console.log($(event.currentTarget).parent().attr("id"))
+
+    localStorage.removeItem($(event.currentTarget).parent().attr("id"))
     //removes div from list
     $(event.currentTarget).parent().remove();
-    console.log($(event.currentTarget).parent().attr("id"))
-    localStorage.removeItem($(event.currentTarget).parent().attr("id"))
+
+    
 }
 
 //moves from Things to Do to Things that are done
@@ -123,7 +134,7 @@ const formSubmit = () => {
     $newToDo.attr("id",itemID)
 
     //adds item to array
-    toDoItems.push($newToDo);
+    //toDoItems.push($newToDo);
 
     //adds item to localStorage
     //console.log(toDoNumber,itemID,$newToDo.text())
@@ -137,7 +148,6 @@ const formSubmit = () => {
     //adds event listener to completed button
     $completedButton.on('click',toDoUpdate)
 
-    
 
     //appends item to to-do-list container
     //$('#to-do-list').append(toDoItems) //if using an array use this.
@@ -156,7 +166,7 @@ const formSubmit = () => {
 $(() => {
     //localStorage. clear()
 
-    $('#to-do-list').append(toDoItems)
+    //$('#to-do-list').append(toDoItems)
     $('#submit').on('click', formSubmit)
     loadFromLocalStorage()
 
