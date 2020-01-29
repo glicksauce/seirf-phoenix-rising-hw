@@ -91,7 +91,11 @@ const celebrateWin = (winner, winPosition) => {
     //formatting for verticle wins
     } else if (winPosition > 2 && winPosition < 6){
         $vertLine = $('<div>').addClass("vert-line")
+        $('#'+(winPosition-3)).append($vertLine)
+        $vertLine = $('<div>').addClass("vert-line")
         $('#'+winPosition).append($vertLine)
+        $vertLine = $('<div>').addClass("vert-line")
+        $('#'+(winPosition+3)).append($vertLine)
     }
 
     //change winner color
