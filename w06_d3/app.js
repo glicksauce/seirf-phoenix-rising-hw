@@ -1,4 +1,6 @@
 //https://git.generalassemb.ly/ira/SEIR-FLEX-123/blob/master/unit_1/w06d3/student_labs/afternoon.md
+//future updates: -pulling from localstorage doesn't always get the same div number sometimes resulting in extra to-do's getting added
+
 
 let toDoNumber = 0;
 let completedNumber = 0;
