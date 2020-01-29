@@ -45,3 +45,32 @@ body{
     bottom: 200px;
     left: 100px;
 }
+
+
+.diag-right {
+        width: 275px;
+        height: 47px;
+        border-bottom: 5px solid purple;
+        -webkit-transform:
+            translateY(0px)
+            translateX(0px)
+            rotate(-45deg);
+        position: relative;
+        top: -140px;
+        right: 55px;
+        background: transparent;
+    }
+
+.diag-left {
+        width: 275px;
+        height: 47px;
+        border-bottom: 5px solid purple;
+        -webkit-transform:
+            translateY(0px)
+            translateX(0px)
+            rotate(45deg);
+        position: relative;
+        top: -140px;
+        right: 20px;
+        background: transparent;
+}

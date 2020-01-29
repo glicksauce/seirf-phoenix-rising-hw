@@ -91,12 +91,31 @@ const celebrateWin = (winner, winPosition) => {
     //formatting for verticle wins
     } else if (winPosition > 2 && winPosition < 6){
         $vertLine = $('<div>').addClass("vert-line")
-        $('#'+(winPosition-3)).append($vertLine)
+        $('#'+(winPosition-3)).addClass("winner").append($vertLine)
         $vertLine = $('<div>').addClass("vert-line")
-        $('#'+winPosition).append($vertLine)
+        $('#'+winPosition).addClass("winner").append($vertLine)
         $vertLine = $('<div>').addClass("vert-line")
-        $('#'+(winPosition+3)).append($vertLine)
+        $('#'+(winPosition+3)).addClass("winner").append($vertLine)
+
+    //formatting for diagnol left win
+    } else if (winPosition == 6){
+        $diagLine = $('<div>').addClass("diag-left")
+        $('#'+(winPosition-6)).addClass("winner").append($diagLine)
+        $diagLine = $('<div>').addClass("diag-left")
+        $('#'+(winPosition-2)).addClass("winner").append($diagLine)
+        $diagLine = $('<div>').addClass("diag-left")
+        $('#'+(winPosition+2)).addClass("winner").append($diagLine)
+    
+    //formatting for diagnal right win
+    } else if (winPosition == 7){
+        $diagLine = $('<div>').addClass("diag-right")
+        $('#'+(winPosition-5)).addClass("winner").append($diagLine)
+        $diagLine = $('<div>').addClass("diag-right")
+        $('#'+(winPosition-3)).addClass("winner").append($diagLine)
+        $diagLine = $('<div>').addClass("diag-right")
+        $('#'+(winPosition-1)).addClass("winner").append($diagLine)
     }
+
 
     //change winner color
     //$('.'+winner).addClass("winner")
