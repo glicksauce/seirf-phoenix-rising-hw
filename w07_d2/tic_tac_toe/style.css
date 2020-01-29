@@ -12,11 +12,11 @@
     width: 196px;
     height: 196px;
     background: lightblue;
-    border: 2px solid yellow;
+    border: 2px solid rgb(175, 175, 33);
 }
 
 *{
-    background: pink;
+    background: rgb(172, 152, 155);
 }
 
 .x-piece, .o-piece{
@@ -28,4 +28,13 @@
 
 .winner{
     color: purple;
+}
+
+.vert-line{
+    width: 50px;
+    height: 100px;
+    color: red;
+    background: black;
+    text-align: center;
+
 }

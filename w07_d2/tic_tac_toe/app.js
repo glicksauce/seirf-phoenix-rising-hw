@@ -1,3 +1,5 @@
+//to do: better win formatting for verticle and diagnol wins
+
 let turnNumber = 0
 
 const placePiece = () =>{
@@ -24,6 +26,7 @@ const placePiece = () =>{
 const checkForWin = () => {
     let boxCheck = $('<div>')
     let winCheck = ['','','','','','','','']
+    let winPosition = -1
 
 
     for (i=0;i<3;i++) {
@@ -58,28 +61,41 @@ const checkForWin = () => {
         winCheck[7] += $('#'+i).text();
     }
 
-    winwin = winCheck.map((x,y) => x == 'XXX')
-    console.log(winwin)
 
     for (let element of winCheck) {
         if (element === 'XXX') {
+            winPosition = winCheck.indexOf(element)
             console.log (element, "X wins!")
-            celebrateWin('x-piece')
+            celebrateWin('x-piece',winPosition)
         } else if (element === 'OOO'){
+            winPosition = winCheck.indexOf(element)
             console.log (element,"O wins!")
-            celebrateWin('o-piece')
+            celebrateWin('o-piece',winPosition)
         }
     }   
     console.log(winCheck)
     
 }
 
-const celebrateWin = (winner) => {
+const celebrateWin = (winner, winPosition) => {
     //remvoe all event liseteners
     $('div').off()
 
+    //formatting for hozintal wins
+    if (winPosition <=2 ){
+        winPosition = winPosition *3
+        $('#'+winPosition).css("text-decoration","line-through").addClass("winner")
+        $('#'+(winPosition+1)).css("text-decoration","line-through").addClass("winner")
+        $('#'+(winPosition+2)).css("text-decoration","line-through").addClass("winner")
+        
+    //formatting for verticle wins
+    } else if (winPosition > 2 && winPosition < 6){
+        $vertLine = $('<div>').addClass("vert-line")
+        $('#'+winPosition).append($vertLine)
+    }
+
     //change winner color
-    $('.'+winner).addClass("winner")
+    //$('.'+winner).addClass("winner")
 }
 
 $(()=>{
