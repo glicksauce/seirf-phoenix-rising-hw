@@ -1,7 +1,15 @@
 var express = require('express')
 var app = express()
-var port = 3000
+var port = 3002
 
+const isPerfectSquare = number =>{
+    return (Math.sqrt(number) % 1 === 0)
+}
+
+const fibTest = number =>{
+    return isPerfectSquare(5 * (number * number) + 4) || isPerfectSquare(5 * (number * number) - 4);
+
+}
 //greeting
 app.get('/greeting/:name', (req, res) => {
     res.send('What\'s up ' + req.params.name + ' It\'s so great to see you!');
@@ -28,6 +36,16 @@ app.get('/magic/:phrase', (req, res) => {
             <html`
     )
 });
+
+//fibonacci
+app.get('/fibonacci/:number', (req, res) => {
+    let fib = parseInt(req.params.number)
+    let fibBool = fibTest(fib)
+    res.send(fib + ' Is Fib Number ' + fibBool)
+});
+
+
+
 
 app.get('/magic/phrase',(req, res) =>{
     
