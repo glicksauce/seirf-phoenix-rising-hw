@@ -14,8 +14,11 @@
     }
 
     h1{
+        display: inline-block;
         font-family: 'Press Start 2P', cursive;
         font-size: 24px;
+        font-variant: small-caps;
+        border-bottom: 2px gray solid;
     }
 
     h2{
@@ -39,6 +42,7 @@
 
 <body>
     <h1>Gotta Catch 'Em All!</h1>
+    <br>
     
 
             <h2><%= pokemon.name.charAt(0).toUpperCase() + pokemon.name.substring(1) %></h2>
