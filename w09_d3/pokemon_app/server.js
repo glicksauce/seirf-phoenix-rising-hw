@@ -7,7 +7,8 @@ const pokemon = require('./models/pokemon.js'
 )
 
 app.get('/pokemon', (req, res) =>{
-    res.render('index.ejs')
+    res.render('index.ejs',
+    {pokemon: pokemon})
 })
 
 app.get('/', (req, res) =>{
