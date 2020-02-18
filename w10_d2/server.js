@@ -7,6 +7,13 @@ app.use(express.static(__dirname + '/public'));
 const Budget = require('./models/budget.js'
 )
 
+//show route
+app.get('/budget/:item', (req, res) =>{
+    res.render('show.ejs', {
+        budgetItem: Budget[req.params.item]
+    })
+})
+
 app.get('/', (req, res) =>{
     res.render('index.ejs', {
         Budget: Budget

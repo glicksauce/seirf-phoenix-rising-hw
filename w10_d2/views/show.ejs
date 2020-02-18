@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/skeleton.css" />
+    <title>Budgtr</title>
+</head>
+<body>
+    <div class="container">
+        <h1> <%= budgetItem.name %> </h1>
+        <button><a href='/'>Go Back</a></button>
+        <%=budgetItem.date %>
+        <%=budgetItem.name %>
+        <%=budgetItem.from %>
+        <%=budgetItem.amount %>
+        <%=budgetItem.tags %>  
+    </div>
+</body>
+</html>
