@@ -6,6 +6,19 @@ app.use(express.static(__dirname + '/public'));
 //db file
 const Budget = require('./models/budget.js'
 )
+// ===================
+//         Routes
+// ===================
+app.use((req, res, next) => {
+    console.log('I run for all routes')
+    next()
+  })
+
+//new route
+app.get('/budget/new', (req, res) =>{
+    res.render('new.ejs')
+
+})
 
 //show route
 app.get('/budget/:item', (req, res) =>{
