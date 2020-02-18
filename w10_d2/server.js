@@ -14,6 +14,16 @@ app.use((req, res, next) => {
     next()
   })
 
+app.use(express.urlencoded({extended:false}));
+
+//post route
+app.post('/budget',(req,res) =>{
+    //console.log(req.body)
+    Budget.push(req.body)
+    console.log('new item added')
+    res.redirect('/')
+  })
+
 //new route
 app.get('/budget/new', (req, res) =>{
     res.render('new.ejs')

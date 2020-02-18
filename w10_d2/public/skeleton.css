@@ -28,6 +28,13 @@
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.field-title{
+  width: 100px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
 .container {
   position: relative;
   width: 100%;
