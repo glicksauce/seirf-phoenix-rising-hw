@@ -35,6 +35,17 @@
   margin: 8px 0;
 }
 
+.negative{
+  color: red;
+}
+
+.normal{
+  color: gray;
+}
+
+.rich {
+  color: rgb(14, 180, 125);
+}
 .container {
   position: relative;
   width: 100%;

@@ -8,8 +8,21 @@
     <title>Budgtr</title>
 </head>
 <body>
+
+ <% 
+    bankBalance = 0;
+ for (let i=0;i<Budget.length;i++) {
+     bankBalance += parseInt(Budget[i].amount)
+ }
+ if (bankBalance < 0){
+    bankBalanceClass = 'negative';
+ } else if (bankBalance > 1000) {
+     bankBalanceClass = 'rich';
+ }
+%>
     <div class="container">
         <h1>Budgtr All</h1>
+        <h3 id="bank-account">Account Balance: <span class="<%=bankBalanceClass%>">$<%=bankBalance %></span></h3>
         <table>
             <% for (let i=0;i<Budget.length;i++) { %>
                 <tr>
@@ -19,7 +32,9 @@
                 </tr>   
             <% } %>            
         </table>
-        <button><a href="/budget/new">Add New Transaction</a></button>
+        <form action="/budget/new" method="GET">
+            <input type="submit" name="" value="Create Item">
+        </form>
     </div>
 </body>
 </html>

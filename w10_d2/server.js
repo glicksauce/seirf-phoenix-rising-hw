@@ -1,6 +1,6 @@
 const express = require('express');
 const app     = express();
-const port    = 3000;
+const port    = 3005;
 app.use(express.static(__dirname + '/public'));
 
 //db file
@@ -39,7 +39,9 @@ app.get('/budget/:item', (req, res) =>{
 
 app.get('/', (req, res) =>{
     res.render('index.ejs', {
-        Budget: Budget
+        Budget: Budget,
+        bankBalance: 0,
+        bankBalanceClass: 'normal'
     })
 })
 
