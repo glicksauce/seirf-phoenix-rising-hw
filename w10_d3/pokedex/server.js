@@ -8,15 +8,19 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended: false}))
 app.use(methodOverride("_method"))
 
-//index
-app.get('/', (req, res) =>{
-    res.render('index.ejs', {Pokemon: Pokemon})
-})
+
 
 //show
-app.get('/:id'), (req, res) => {
-    res.render('show.ejs', {data: Pokemon[req.params.id]})
-}
+app.get('/pokemon/:id', (req, res) => {
+    res.render('show.ejs', {
+        Pokemon: Pokemon[req.params.id]
+    })
+})
+
+//index
+app.get('/pokemon', (req, res) =>{
+    res.render('index.ejs', {Pokemon: Pokemon})
+})
 
 // web server
 app.listen(port, () => {

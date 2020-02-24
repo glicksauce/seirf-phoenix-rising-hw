@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/script/pokescript.ejs"></script>
     <title>Pokedex</title>
 </head>
 <body>
@@ -12,17 +17,9 @@
     <% for (let i=0; i<100; i++) { %>
     
         <div class="item-box">
-            <div class="name">Name: <%= Pokemon[i].name %></div>
-            <div class="image"><img src="<%= Pokemon[i].img %>"></div>
-            <div class="types">Types:
-                <ul>
-                <% for (let j in Pokemon[i].type) { %>
-                    <li>
-                    <%= Pokemon[i].type[j] %>
-                    </li>
-                <% } %>
-                </ul>
-            </div>
+            <div class="name"> <%= Pokemon[i].name %></div>
+            <div class="image"><a href="/pokemon/<%=i%>"><img src="<%= Pokemon[i].img %>"></a></div>
+            
         </div>
     <% } %>
     </div>
