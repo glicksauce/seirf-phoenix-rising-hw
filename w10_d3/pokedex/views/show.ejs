@@ -12,6 +12,7 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="id">id: <%=Pokemon.id%></div>
     <div class="name"><h2> <%= Pokemon.name %></h2></div>
     <div class="image"><img src="<%= Pokemon.img %>"></div>
     <div class="types"><h3>Types:</h3>
@@ -37,7 +38,9 @@
             </li>
         </ul>
     </div>
-
+<div class="edit">
+        <button ><a href='/pokemon/<%=index%>/edit'>Edit</a></button>
+    </div>
 <div class="return">
     <button ><a href='/pokemon'>Go Back</a></button>
 </div>
