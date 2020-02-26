@@ -72,7 +72,11 @@ app.get('/pokemon/:id', (req, res) => {
     })
 })
 
-
+//destroy
+app.delete('/pokemon/:id', (req, res) => {
+    Pokemon.splice(req.params.id, 1)
+    res.redirect('/pokemon')
+})
 
 // web server
 app.listen(port, () => {
