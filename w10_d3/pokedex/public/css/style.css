@@ -25,8 +25,8 @@
 
 h3{
     padding: 0;
-    margin: 0;
-    text-decoration: underline;
+    margin: 20px 0 5px 0;
+    
 }
 
 ul{
@@ -35,7 +35,7 @@ ul{
 }
 
 li{
-    margin: 0 15px;
+    margin: 5px 15px;
 }
 
 img{
@@ -85,8 +85,26 @@ input{
     width: 550px;
 }
 
+.small-button{
+    width: 150px;
+    color: rgb(110, 76, 110);
+    margin: 10px 0;
+    height: 40px;
+}
+
 #submit{
     background: gray;
-    width: 100px;
-    height: 30px;
+    width: 300px;
+    height: 40px;
+    margin: 8px 0;
+}
+
+#submit:hover{
+    background: rgb(165, 113, 113);
+    color: rgb(218, 194, 194);
+
+}
+
+.id{
+    color: rgba(0,0,0,.5);
 }

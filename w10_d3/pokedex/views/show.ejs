@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -13,7 +14,7 @@
 </head>
 <body>
     <div class="id">id: <%=Pokemon.id%></div>
-    <div class="name"><h2> <%= Pokemon.name %></h2></div>
+    <h1> <%= Pokemon.name %></h1>
     <div class="image"><img src="<%= Pokemon.img %>"></div>
     <div class="types"><h3>Types:</h3>
         <ul>
@@ -38,14 +39,13 @@
             </li>
         </ul>
     </div>
-<div class="edit">
-        <button ><a href='/pokemon/<%=index%>/edit'>Edit</a></button>
-    </div>
-<div class="return">
-    <button ><a href='/pokemon'>Go Back</a></button>
-</div>
+
+    <input type="button" class="small-button" onclick="location.href='/pokemon/<%=index%>/edit';" value='Edit'>
+    <br>
+    <input type="button" class="small-button" onclick="location.href='/pokemon';" value="Go Back">
+
 <form action="/pokemon/<%=index%>?_method=DELETE" method="POST">
-    <input type="submit" value="Delete this Pokemon">
+    <input type="submit" id="submit" value="Delete this Pokemon">
 </form>
 </div>
 </body>
