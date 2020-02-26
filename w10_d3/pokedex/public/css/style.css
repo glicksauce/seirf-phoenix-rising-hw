@@ -1,3 +1,7 @@
+*{
+    font-family: 'Press Start 2P';
+}
+
 .container{
     display: flex;
     flex-direction: row;
@@ -9,13 +13,14 @@
 }
 
 .item-box{
-
+    font-size: 14px;
    border: solid 2px black;
    height: 150px;
 }
 
 .item-box:hover{
-    background: lightcoral;
+   
+    background: rgba(240, 128, 128, .5);
 }
 
 h3{
@@ -35,4 +40,53 @@ li{
 
 img{
     height: 125px;
+}
+
+img:hover{
+    opacity: .5;
+}
+
+.create-new{
+    background: lightblue;
+    height: 50px;
+    width: 325px;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.create-new:hover{
+    background: blue;
+    font-size: 18px;
+}
+
+.name {
+    margin: 3px 1px;
+}
+
+.form-container {
+    width: 60%;
+    min-width: 575px;
+
+}
+
+input{
+    width: 250px;
+    height: 20px;
+    overflow: both;
+    margin: 8px 0;
+    background: rgba(34, 192, 184, .2)
+}
+
+.readonly{
+    background: lightgray;
+}
+
+#imgsrc{
+    width: 550px;
+}
+
+#submit{
+    background: gray;
+    width: 100px;
+    height: 30px;
 }

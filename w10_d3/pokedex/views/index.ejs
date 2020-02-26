@@ -9,12 +9,13 @@
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
     <script type="text/javascript" src="/script/pokescript.ejs"></script>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Pokedex</title>
 </head>
 
 <body>
     <h1>The official Pokedex:</h1>
-    <h2><a href="pokemon/new">Create New Pokemon</a></h2>
+    <input type="button" class="create-new" onclick="location.href='pokemon/new';" value="Create New Pokemon">
     <div class="container">
     <% for (let i=0; i<Pokemon.length; i++) { %>
     

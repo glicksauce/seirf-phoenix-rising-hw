@@ -3,24 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/script/pokescript.ejs"></script>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <title>Create a New Pokemon</title>
 </head>
 <body>
-    <div class="container">
+    <div class="form-container">
         <h1>Add New Pokemon</h1>
         <form action="/pokemon" method="POST">
-            <div class="Name">Name: </div><input type="text"  name="name"><br>
-            <div class="image-source">Image Source: <input type="url" name="img"><br>
-            <div class="id">Id: <input type="text" readonly name="id" value="<%=Pokemon.length + 1%>">
-            </div>
-            <br>
-            <h2>Types</h2>
-            <div class="types">types<input type="text" name="type"></div>
+            <div class="name-title">Name: <div>
+            <input type="text"  name="name">  
+            <div class="name-title">Image Source: </div>
+            <input type="url" id='imgsrc' name="img">
+            <div class="name-title">Id: </div>
+            <input type="text" class="readonly" readonly name="id" value="<%=Pokemon.length + 1%>">
+
+            <h2>Types:</h2>
+            <div class="name-title">types</div>
+            <input type="text" name="type">
+
             <h2>Stats:</h2>
-            <div class="hp">hp: <input type="number" name="hp"><br>
-            <div class="attack">attack: <input type="number" name="attack"><br>
-            <div class="defense">defense: <input type="number" name="defense"><br>
-            <input type="submit" name="" value="Create Item">
+            <div class="name-title">hp: </div>
+            <input type="number" name="hp">
+            <div class="name-title">attack: </div>
+            <input type="number" name="attack">
+            <div class="name-title">defense: </div>
+            <input type="number" name="defense"><br>
+            <input type="submit" id="submit" name="" value="Create Item">
         </form>
     </div>
 </body>
