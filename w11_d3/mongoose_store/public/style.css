@@ -15,6 +15,10 @@ body {
     border-radius: 25px;
 }
 
+.wide{
+    width: 500px;
+}
+
 li{
         margin: 10px 0;
         font-family: 'Spartan' ;
@@ -84,4 +88,9 @@ input:hover{
     margin: 0 5px 0 0;
     display: block;
     float: left;
+}
+
+p{
+    font-family: 'Spartan' ;
+    font-size: 18px;
 }
