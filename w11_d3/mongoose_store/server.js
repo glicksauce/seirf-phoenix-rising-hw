@@ -14,13 +14,14 @@ Restful Routes
 
 const express = require('express')
 const app = express()
-const port = 3000;
+const port = 3001;
 const mongoose = require("mongoose")
 const methodOverride = require("method-override")
 
 app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride("_method"))
+app.use(express.json())
 
 // Connect mongoose to mongo db:
 mongoose.connect("mongodb://localhost:27017/mongoose_store", {
@@ -37,26 +38,28 @@ const Product = require('./models/products')
 // ROUTES
 
 //JSON Route
-app.get("products/json", (req,res) => {
+app.get("/products/json", (req,res) => {
     Product.find({}, (error, products) => {
-      res.render(req.body)
-    })
+        //this also works: res.send(products)
+        //this also works: return products
+        return res.json(products)
   })
+})
 
 // NEW
-app.get("products/new", (req, res) =>{
+app.get("/products/new", (req, res) =>{
     res.render("new.ejs")
 })
 
 // DELETE
-app.delete("products/:id", (req, res) =>{
+app.delete("/products/:id", (req, res) =>{
   Product.findByIdAndDelete(req.params.id, (err, data) =>{
     res.redirect('/products')
   })
 })
 
 // EDIT
-app.get('products/:id/edit', (req,res) =>{
+app.get('/products/:id/edit', (req,res) =>{
   Product.findById(req.params.id, (err, foundProduct) => {
     res.render(
       'edit.ejs',
@@ -67,20 +70,22 @@ app.get('products/:id/edit', (req,res) =>{
   })
 })
 
+// PUT for Buy
+app.put('/products/:id/buy', (req, res)=>{
+    Product.findByIdAndUpdate(req.params.id, {$inc: {qty: -1}}, {new:true}, (err,updateModel) =>{
+      res.redirect('/products')
+    })
+  })
+
 // PUT
-app.put('products/:id', (req, res)=>{
- // if(req.body.shipIsBroken == 'on'){
-  //  req.body.shipIsBroken = true
-  //} else {
-   // req.body.shipIsBroken = false
-  //}
+app.put('/products/:id', (req, res)=>{
   Product.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err,updateModel) =>{
     res.redirect('/products')
   })
 })
 
 // Create
-app.post("/", (req,res) =>{
+app.post("/products", (req,res) =>{
    // if (req.body.shipIsBroken === "on") {
    //     req.body.shipIsBroken = true;
    //   } else {
@@ -91,7 +96,7 @@ app.post("/", (req,res) =>{
 })
 
 // Show
-app.get("products//:id", (req, res) => {
+app.get("/products/:id", (req, res) => {
   Product.findById(req.params.id, (err, showProducts) => {
     res.render("show.ejs", {
       products: showProducts
