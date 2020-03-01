@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <title>Edit Product</title>
 </head>
 <body>
@@ -13,11 +14,11 @@
                 <div class="name-title">Name: <div>
                 <input type="text"  value="<%=products.name%>" name="name">  
                 <div class="name-title">Description: </div>
-                <input type="text" value="<%=products.description%>" name="description">
+                <textarea type="text" id="description" value="<%=products.description%>" name="description"></textarea>
                 <div class="name-title">Image Source:</div>
                 <input type="html"  value="<%=products.img%>" name="img">
                 <div class="name-title">Price:</div>
-                <input type="text" value="<%=products.price%>" name="price" >
+                <input type="text" id="price" value="<%=products.price%>" name="price" >
                 <div class="name-title">Quantity:</div>
                 <input type="number" value="<%=products.qty%>" name="qty" ><br>
                 <input type="submit" id="submit" name="" value="Submit Edits">

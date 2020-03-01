@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css?family=Spartan&display=swap');
+
+body {
+    background: rgb(84, 105, 84);
+}
+
+.container{
+    float: left;
+    width: 15%;
+    height: 500px;
+    min-width: 250px;
+    border: 2px solid black;
+    margin: 5px;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+li{
+        margin: 10px 0;
+        font-family: 'Spartan' ;
+        list-style-type: none;
+}
+
+
+input[type=text]{
+    width: 200px;
+}
+
+input[type=html]{
+    width: 600px;
+}
+
+input, textarea{
+    margin: 8px 0 0 0;
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    background: rgb(182, 214, 182);
+}
+
+input:hover{
+    background: rgb(46, 92, 46);
+    font-weight: bold;
+}
+
+#description {
+    padding: 0;
+    height: 75px;
+    width: 400px;
+}
+
+#price{
+    width: 100px;
+}
+
+
+.medium-button{
+    width: 150px;
+}
+
+.name-title{
+    font-size: 18px;
+    margin: 15px 0 0 0;
+}
+
+.container img{
+    height: 225px;
+}
+
+.red{
+    color: red;
+}
+.buy{
+    margin: 8px 0;
+    height: 30px;
+    width: 100%;
+}
+
+.buy input{
+    width: 50%;
+}
+
+.button-container form, .button-container a{
+    margin: 0 5px 0 0;
+    display: block;
+    float: left;
+}
