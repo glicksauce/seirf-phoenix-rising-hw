@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+</head>
+<body>
+    <h1><%=cart.username%>'s Cart</h1>
+    <div class="container wide">
+    <% for (let i = 0;i< cart.shopping_cart.length; i++) { %>
+        <p>
+        Product Name: <%=cart.shopping_cart[i]; %> <br>
+        Products: <%=products[0]%>
+
+        </p>
+    <% } %>
+    <nav>
+      <a href="/products">Back to products Index</a>
+    </nav>
+    </div>
+    </div>
+  </body>
+</html>

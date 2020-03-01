@@ -37,6 +37,9 @@ mongoose.connection.once("open", () => {
 const productsController = require('./controllers/products.js')
 app.use('/products', productsController)
 
+const usersController = require('./controllers/users.js')
+app.use('/users', usersController)
+
 app.get('/', (req,res) =>{
     res.redirect('/products')
 })

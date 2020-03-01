@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Product = require("../models/products.js");
+const User = require("../models/users.js");
 
 // ROUTES
 
@@ -39,9 +40,17 @@ router.get('/:id/edit', (req,res) =>{
 
 // PUT for Buy
 router.put('/:id/buy', (req, res)=>{
+   // User.update(
+   //   { _id: '5e5c1a11421c217a23131f9b'},
+   //   { $push: {hopping_cart: "tiger"}}
+   // )
+    User.findByIdAndUpdate('5e5c1a11421c217a23131f9b', {$push: {shopping_cart: req.params.id}}, {new:true}, (err,updateUser) =>{
+
+    })
     Product.findByIdAndUpdate(req.params.id, {$inc: {qty: -1}}, {new:true}, (err,updateModel) =>{
       res.redirect('/products')
     })
+
   })
 
 // PUT
