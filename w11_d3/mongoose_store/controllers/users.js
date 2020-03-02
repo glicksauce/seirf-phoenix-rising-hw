@@ -30,10 +30,7 @@ router.get('/seed', async (req, res) => {
 router.get("/checkout/:id", (req, res) => {
     User.findById(req.params.id, (err, showCart) => {
       res.render("showcart.ejs", {
-        cart: showCart,
-        products:     Product.find({}, (error, products) => {
-          return products
-    })
+        cart: showCart
       })
     })
   })

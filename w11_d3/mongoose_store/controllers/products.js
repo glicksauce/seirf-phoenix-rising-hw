@@ -44,9 +44,11 @@ router.put('/:id/buy', (req, res)=>{
    //   { _id: '5e5c1a11421c217a23131f9b'},
    //   { $push: {hopping_cart: "tiger"}}
    // )
-    User.findByIdAndUpdate('5e5c1a11421c217a23131f9b', {$push: {shopping_cart: req.params.id}}, {new:true}, (err,updateUser) =>{
+   Product.findById(req.params.id, (error, product) => {
+    User.findByIdAndUpdate('5e5d465c8424640fc0989893', {$push: {shopping_cart: product.name}}, {new:true}, (err,updateUser) =>{
 
     })
+   })
     Product.findByIdAndUpdate(req.params.id, {$inc: {qty: -1}}, {new:true}, (err,updateModel) =>{
       res.redirect('/products')
     })
@@ -73,8 +75,13 @@ router.post("/", (req,res) =>{
 
 // Index
 router.get("/", (req,res) => {
-  Product.find({}, (error, products) => {
-    res.render("index.ejs", {products})
+  User.find({}, (error, users) => {
+      Product.find({}, (error, products) => {
+        res.render("index.ejs", {
+          products, 
+          users
+        })
+      })
   })
 })
 

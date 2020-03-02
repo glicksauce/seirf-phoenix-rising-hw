@@ -8,9 +8,12 @@
 </head>
 <body>
     <h1>List of Products</h1>
-           <a href="/products/new">
+        <a href="/products/new">
             <input type="button" class='medium-button' value="create new Product">
        </a>
+       <a href="/users/checkout/<%=users[0].id%>">
+            <input type="button" class='medium-button' value="View Cart">
+        </a>
        <ul>
         <% for(let i = 0; i < products.length; i++){ %>
             <div class="container">
