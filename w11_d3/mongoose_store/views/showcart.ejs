@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/style.css">
-    <script src='/cartScript.js'></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript"src='/cartScript.js' class="2 5 4"></script>
     <title>Your Cart</title>
 </head>
 <body>
     <h1><%=cart.username%>'s Cart</h1>
+    <script>
+      $(()=>{
+        console.log(<%=cart.shopping_cart.length%>);
+        $h1 = $('<h1>').text("hello")
+        $('h1').append($h1)
+      });
+      </script>
     <div class="container wide">
     <% for (let i = 0;i< cart.shopping_cart.length; i++) { %>
       
         <p>
-        Product Name: <%=cart.shopping_cart[i]; %> <br>
+        Product Name: <div class="cart"><%=cart.shopping_cart[i]; %></div> <br>
 
         </p>
     <% } %>
