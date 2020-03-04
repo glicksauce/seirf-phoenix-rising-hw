@@ -10,25 +10,21 @@
 </head>
 <body>
     <h1><%=cart.username%>'s Cart</h1>
-    <script>
-      $(()=>{
-        console.log(<%=cart.shopping_cart.length%>);
-        $h1 = $('<h1>').text("hello")
-        $('h1').append($h1)
-      });
-      </script>
-    <div class="container wide">
-    <% for (let i = 0;i< cart.shopping_cart.length; i++) { %>
-      
-        <p>
-        Product Name: <div class="cart"><%=cart.shopping_cart[i]; %></div> <br>
 
-        </p>
-    <% } %>
+    <div class="container wide">
+      <% for (let i = 0;i< cart.shopping_cart.length; i++) { %>
+        
+          <p>
+          Product Name: <div class="cart"><%=cart.shopping_cart[i]; %></div> <br>
+
+          </p>
+      <% } %>
+    </div>
+    <br>
     <nav>
       <a href="/products">Back to products Index</a>
     </nav>
-    </div>
+    
     </div>
   </body>
 </html>

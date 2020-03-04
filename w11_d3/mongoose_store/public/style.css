@@ -94,3 +94,22 @@ p{
     font-family: 'Spartan' ;
     font-size: 18px;
 }
+
+.cart{
+    height: 25px;
+    font-family: 'Spartan' ;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    color: white;
+}
+
+.qty{
+    height: 25px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 15px;
+    float: right;
+}

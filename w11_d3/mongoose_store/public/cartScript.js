@@ -16,7 +16,7 @@ $(() => {
         searchIndex = finalCart.findIndex( ({name}) => name == cartArray[j] )
 
         //pushes new item into array
-        if (searchIndex == -1){
+        if (searchIndex == -1 ){
             finalCart.push(
                 {
                     name: cartArray[j],
@@ -29,6 +29,22 @@ $(() => {
         }
     }
 
+    //hide origional stuff
+    $('.container').empty();
     console.log(cartArray)
     console.log(finalCart)
+
+    for (let element of finalCart){
+        console.log(typeof element)
+        if (element.name.length > 0){
+            $product = $('<div>').text(element.name).addClass("cart")
+            $qty = $('<div>').text(element.qty).addClass("qty")
+            $('.container')
+                .append($product)
+                .append($qty)
+        }
+    }
+
+
+
 })
