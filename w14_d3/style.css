@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+2&display=swap');
+
+.truck{
+
+    font-size: 28px;
+}
+
+.container{
+    font-family: 'Baloo 2', cursive;
+    border: 2px solid blue;
+    background: #2980b9; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2980b9, #6dd5fa, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.receipt{
+    float: left;
+    border: 1px solid black;
+    width: 200px;
+    height: 350px;
+    margin: 10px;
+    background: #2980b9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ffafbd, #ffc3a0); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right,#ffafbd, #ffc3a0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+span{
+    color: purple;
+}
