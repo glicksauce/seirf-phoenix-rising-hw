@@ -5,24 +5,31 @@ class TacoList extends React.Component {
  
     render () {
       console.log("taco props is:", this.props)
-      return  (
-        <div>
-          <h1>tacos!</h1>
-          <h1 onClick={() => this.props.handleSubmit()}>
-            click me
-          </h1>
-          <h2>{this.props.shellName}</h2>
-          <h2>{this.props.mixinName}</h2>
-          <h2>{this.props.condimentName}</h2>
-          {/* <h1>Title: {this.props.movie.Title}</h1>
-          <h2>Year: {this.props.movie.Year}</h2>
-          <img src={this.props.movie.Poster} alt={this.props.movie.Title}/>
-          <h3>Genre: {this.props.movie.Genre}</h3>
-          <h4>Plot: {this.props.movie.Plot}</h4> */}
-        </div>
-      )
+      if (this.props.shellName) {
+          return (
+            <div>
+            <h4 onClick={() => this.props.handleSubmit()}>
+              Another Random Taco
+            </h4>
+            <h2><span>Shell: </span>{this.props.shellName}</h2>
+            <p>{this.props.shellRecipe}</p>
+            <h2><span>Mixin: </span>{this.props.mixinName}</h2>
+            <p>{this.props.mixinRecipe}</p>
+            <h2><span>Condiment: </span>{this.props.condimentName}</h2>
+            <p>{this.props.condimentRecipe}</p>
+          </div>
+          )
+      } else {
+        return  (
+            <div>
+                <h4 onClick={() => this.props.handleSubmit()}>
+                Random Taco
+                </h4>
+            </div>
+        )
     }
   }
+}
 
 class App extends React.Component {
     state = {
@@ -50,19 +57,22 @@ class App extends React.Component {
     if (this.state.taco){
         return (
             <div className="App">
-                <h1>Random Taco Is:</h1>
+                <h1>Random Taco!</h1>
                 <TacoList 
                     handleSubmit={this.makeApiCall}
                     shellName={this.state.taco.shell.name}
                     mixinName={this.state.taco.mixin.name}
                     condimentName={this.state.taco.condiment.name}
+                    shellRecipe={this.state.taco.shell.recipe}
+                    mixinRecipe={this.state.taco.mixin.recipe}
+                    condimentRecipe={this.state.taco.condiment.recipe}
                 />
             </div>
         )
     } else {
         return (
-            <div className="App">>
-                <h1>Random Taco:</h1>
+            <div className="App">
+                <h1>Random Taco!</h1>
                     <TacoList 
                         handleSubmit={this.makeApiCall}
                     />
