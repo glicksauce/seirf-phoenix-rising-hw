@@ -1,21 +1,39 @@
 //https://git.generalassemb.ly/ira/SEIR-FLEX-123/blob/master/unit_3/w14d3/student_labs/react_taco.md
 //import TacoList from "./TacoList"
 
-
-class TacoShell extends React.Component{
+class TacoCondiment extends React.Component{
     render (){
         return(
-            <div onClick={() => this.props.shellUpdate()}>
-                <h2><span>Shell: </span>{this.props.shellName}</h2>
-                <p>{this.props.shellRecipe}</p>
+            <div onClick={() => this.props.tacoPartUpdate("condiment")}>
+            <h2><span>Condiment: </span>{this.props.condimentName}</h2>
+            <p>{this.props.condimentRecipe}</p>
             </div>
         )
     }
 }
 
 
+class TacoMixin extends React.Component{
+    render (){
+        return(
+            <div onClick={() => this.props.tacoPartUpdate("mixin")}>
+            <h2><span>Mixin: </span>{this.props.mixinName}</h2>
+            <p>{this.props.mixinRecipe}</p>
+            </div>
+        )
+    }
+}
 
-
+class TacoShell extends React.Component{
+    render (){
+        return(
+            <div onClick={() => this.props.tacoPartUpdate("shell")}>
+                <h2><span>Shell: </span>{this.props.shellName}</h2>
+                <p>{this.props.shellRecipe}</p>
+            </div>
+        )
+    }
+}
 
 class TacoList extends React.Component {
 
@@ -24,14 +42,14 @@ class TacoList extends React.Component {
       if (this.props.shellName) {
           return (
             <div>
+            <h5>Mix'n match. Don't like a particular option, click it to get a new one without changing the other choices</h5>
             <h4 onClick={() => this.props.handleSubmit()}>
               Another Random Taco
             </h4>
-            <TacoShell shellUpdate={this.props.shellUpdate} shellName={this.props.shellName} shellRecipe={this.props.shellRecipe}/>
-            <h2><span>Mixin: </span>{this.props.mixinName}</h2>
-            <p>{this.props.mixinRecipe}</p>
-            <h2><span>Condiment: </span>{this.props.condimentName}</h2>
-            <p>{this.props.condimentRecipe}</p>
+            <TacoShell tacoPartUpdate={this.props.tacoPartUpdate} shellName={this.props.shellName} shellRecipe={this.props.shellRecipe}/>
+            <TacoMixin tacoPartUpdate={this.props.tacoPartUpdate} mixinName={this.props.mixinName} mixinRecipe={this.props.mixinRecipe}/>
+            <TacoCondiment tacoPartUpdate={this.props.tacoPartUpdate} condimentName={this.props.condimentName} condimentRecipe={this.props.condimentRecipe}/>
+
           </div>
           )
       } else {
@@ -67,8 +85,8 @@ class App extends React.Component {
       })
   };
 
-
-  updateShellOnly = () => {
+//pass a tacoPart ("shell", "mixin", "condiment") and have just that part randomly updated
+  updateTacoPart = (tacoPart) => {
     console.log("clicked shell update only")
     fetch("http://taco-randomizer.herokuapp.com/random/?full-tack=true")
     .then(response => {return response.json()
@@ -79,12 +97,12 @@ class App extends React.Component {
                 ...prevState,
                 taco: {
                     ...prevState.taco,
-                    shell: 
+                    [tacoPart]: 
                         {
                             ...prevState.name,
-                            name: json.shell.name,
+                            name: json[tacoPart].name,
                             ...prevState.recipe,
-                            recipe: json.shell.recipe
+                            recipe: json[tacoPart].recipe
                         }
                     }
                     }),
@@ -101,7 +119,7 @@ class App extends React.Component {
                 <h1>Random Taco!</h1>
                 <TacoList 
                     handleSubmit={this.makeApiCall}
-                    shellUpdate={this.updateShellOnly}
+                    tacoPartUpdate={this.updateTacoPart}
                     shellName={this.state.taco.shell.name}
                     mixinName={this.state.taco.mixin.name}
                     condimentName={this.state.taco.condiment.name}
