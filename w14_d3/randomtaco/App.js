@@ -1,9 +1,25 @@
 //https://git.generalassemb.ly/ira/SEIR-FLEX-123/blob/master/unit_3/w14d3/student_labs/react_taco.md
+//import TacoList from "./TacoList"
+
+
+class TacoShell extends React.Component{
+    render (){
+        return(
+            <div onClick={() => this.props.shellUpdate()}>
+                <h2><span>Shell: </span>{this.props.shellName}</h2>
+                <p>{this.props.shellRecipe}</p>
+            </div>
+        )
+    }
+}
+
+
+
+
 
 class TacoList extends React.Component {
 
- 
-    render () {
+     render () {
       console.log("taco props is:", this.props)
       if (this.props.shellName) {
           return (
@@ -11,8 +27,7 @@ class TacoList extends React.Component {
             <h4 onClick={() => this.props.handleSubmit()}>
               Another Random Taco
             </h4>
-            <h2><span>Shell: </span>{this.props.shellName}</h2>
-            <p>{this.props.shellRecipe}</p>
+            <TacoShell shellUpdate={this.props.shellUpdate} shellName={this.props.shellName} shellRecipe={this.props.shellRecipe}/>
             <h2><span>Mixin: </span>{this.props.mixinName}</h2>
             <p>{this.props.mixinRecipe}</p>
             <h2><span>Condiment: </span>{this.props.condimentName}</h2>
@@ -52,6 +67,32 @@ class App extends React.Component {
       })
   };
 
+
+  updateShellOnly = () => {
+    console.log("clicked shell update only")
+    fetch("http://taco-randomizer.herokuapp.com/random/?full-tack=true")
+    .then(response => {return response.json()
+    }).then(json => 
+    this.setState
+        (prevState => 
+            ({
+                ...prevState,
+                taco: {
+                    ...prevState.taco,
+                    shell: 
+                        {
+                            ...prevState.name,
+                            name: json.shell.name,
+                            ...prevState.recipe,
+                            recipe: json.shell.recipe
+                        }
+                    }
+                    }),
+        err => console.log(err))
+    )
+  }
+
+
   render() {
     console.log("state is", this.state);
     if (this.state.taco){
@@ -60,6 +101,7 @@ class App extends React.Component {
                 <h1>Random Taco!</h1>
                 <TacoList 
                     handleSubmit={this.makeApiCall}
+                    shellUpdate={this.updateShellOnly}
                     shellName={this.state.taco.shell.name}
                     mixinName={this.state.taco.mixin.name}
                     condimentName={this.state.taco.condiment.name}
