@@ -181,3 +181,63 @@ def findMultiples limit
 end
 
 p findMultiples 1000
+
+puts "\n"
+
+###################################
+p "###################################"
+p "Pandigital Numbers"
+arr1 = [2,3,5,1,4]
+arr2 = [1,2,2,3,5]
+
+def isPandigital? arr
+  arr.sort!
+  arr.each_with_index{|num,index|
+    if num != index+1
+    return false
+    end
+  }
+  return true
+end
+
+print "is #{arr1} pandigital? "
+puts isPandigital? arr1
+
+print "is #{arr2} pandigital? "
+puts isPandigital? arr2
+
+puts "\n"
+
+###################################
+p "###################################"
+p "Word Frequency"
+
+#Word Frequency
+#Write a method that will find the word that appears in a given sentence with the greatest frequency. If there is a tie, either of the words will do as a result.
+
+sentence1 = "What we've got here is failure to communicate. Some men, you just can't reach. So you get what we had here last week -- which is the way he wants it. Well, he gets it. And I don't like it anymore than you men."
+
+sentence2 = "My name is Maximus Decimus Meridius, Commander of the Armies of the North, General of the Felix Legions, loyal servant to the true emperor, Marcus Aurelius. Father to a murdered son, husband to a murdered wife. And I will have my vengeance, in this life or the next."
+
+def wordFrequency sentence
+    sentence.gsub!(/[.!?\\-]/, "") #remove punctuation
+    arr = sentence.downcase.split(" ") #doncase and convert to array
+    #arr.sort! # not required
+    stackedArr = {} # define new hash
+
+    #iterates through if word is already a key in hash then creates with value of 1, otherwise adds 1 to existing value
+    arr.each{
+        |word|
+        if stackedArr[word] == nil
+            stackedArr[word] = 1
+        else
+            stackedArr[word] += 1
+        end
+    }
+    
+    #finds max value by value then returns key value pair
+    stackedArr.max_by{|key,value| value}
+end
+
+p wordFrequency sentence1
+p wordFrequency sentence2
