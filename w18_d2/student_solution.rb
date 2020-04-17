@@ -241,3 +241,72 @@ end
 
 p wordFrequency sentence1
 p wordFrequency sentence2
+
+puts "\n"
+
+###################################
+p "###################################"
+p "MBTA Problem"
+#https://git.generalassemb.ly/ira/SEIR-FLEX-123/blob/master/unit_4/w18d1/student_labs/bonus.md
+
+$red_line = ["South Station", "Park Street", "Kendall", "Central", "Harvard", "Porter", "Davis", "Alewife"]
+$green_line = ["Government Center", "Park Street", "Boylston", "Arlington", "Copley", "Hynes", "Kenmore"]
+$orange_line = ["North Station", "Haymarket", "Park Street", "State", "Downtown Crossing", "Chinatown", "Back Bay", "Forest Hills"]
+
+#Create a method to calculate the total number of stops between stations on the "MBTA
+
+def stopLocator stop
+
+  result = $red_line.find_index stop
+  if result != nil
+    return ['red', result]
+  end
+
+  result = $green_line.find_index stop
+  if result != nil
+    return ['green', result]
+  end
+
+  result = $orange_line.find_index stop
+  if result != nil
+    return ['orange', result]
+  end
+  nil
+end
+
+def lineTransferLocator line
+  if line == "red"
+    return 1
+  end
+  if line == "green"
+    return 1
+  end
+  if line == "orange"
+    return 2
+  end
+end
+
+def totalStop startStop, endStop
+  startLoc = stopLocator startStop
+   if startLoc == nil
+    return "#{startStop} stop not found"
+   end
+  stopLoc = stopLocator endStop
+  if stopLoc == nil
+    return "#{endStop} stop not found"
+  end
+
+  if startLoc[0] == stopLoc[0]
+    stopCount = (startLoc[1] - stopLoc[1]).abs
+    return "There are #{stopCount} stops between #{startStop} and #{endStop}"
+  end
+
+  #find distance to transfer on current line
+  startTravel = (lineTransferLocator(startLoc[0]) - startLoc[1]).abs 
+  stopTravel = (lineTransferLocator(stopLoc[0]) - stopLoc[1]).abs 
+  stopCount = startTravel + stopTravel
+
+  return "There are #{stopCount} stops between #{startStop} and #{endStop}. \nYou must transfer at Park Street"
+end
+
+puts totalStop "Alewife", "Forest Hills"
