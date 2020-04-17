@@ -1,7 +1,7 @@
 # https://git.generalassemb.ly/ira/SEIR-FLEX-123/tree/master/unit_4/w18d2/homework
 
 ###################################
-###################################
+p "###################################"
 
 #Hello World
 #Print "Hello World" to the console
@@ -24,7 +24,7 @@ hello.upcase!
 p hello
 puts "\n"
 ###################################
-###################################
+p "###################################"
 p "Nums Array and Enumerables"
 #With the following array:
 
@@ -85,7 +85,7 @@ p nums.select{|num| num % 5 == 0}
 
 puts "\n"
 ###################################
-###################################
+p "###################################"
 p "Color Array"
 colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
 
@@ -97,3 +97,27 @@ p colors.reverse
 
 #3 - Print out all of the colors in the array with all capital letters.
 colors.each{|color| print "#{color.upcase}, "}
+
+puts "\n\n"
+
+###################################
+p "###################################"
+p "Methods:"
+
+#Write a method named find_area that finds the area of a rectangle when given values for width and height
+def find_area height, width
+ height * width
+end
+
+p find_area 5,4
+p find_area 6,8
+
+# Write a method named multiply_each_by_five that will loop over the given nums array below and print each number multiplied by 5
+moreNums = [5, 5, 6, 7, 2, 4, 3, 2, 1, 9, 7, 6, 0, 0]
+def multiply_each_by_five array
+    array.each{|num| print "#{num * 5}, "}
+end
+
+multiply_each_by_five moreNums
+
+puts "\n\n"
