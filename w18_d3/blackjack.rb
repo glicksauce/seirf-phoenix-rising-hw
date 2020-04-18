@@ -131,7 +131,25 @@ def start_game playerName
     
 end
 
+def another_round playerName
+    p "another round"
+    deck1 = []
+    makeNewDeck deck1 #makes a new deck
+    deck1.shuffle! #shuffle the deck
+    play_round deck1 #play a round
+    calculate_winner #who won and transfer money
+    deal_again playerName
+end
 
+def deal_again playerName
+    p "(d)eal again?"
+    deal_again = gets.chomp
+    if deal_again == "d"
+        another_round playerName
+    else
+        p "game over"
+    end
+end
 
 ########################
 ########################
@@ -149,6 +167,7 @@ p "type 'd' to deal"
 gameStart = gets.chomp
 if gameStart == "d"
     start_game name
+    deal_again name
 else
     p "maybe another time then"
 end
