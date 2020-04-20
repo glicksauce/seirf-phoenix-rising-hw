@@ -1,6 +1,9 @@
+#https://git.generalassemb.ly/ira/SEIR-FLEX-123/tree/master/unit_4/w18d3/homework
+
 #define classes
 class Player
-    attr_reader :name, :bankroll, :hand, :hand_total
+    attr_reader :name, :bankroll
+    attr_accessor :hand_total, :hand
 
     def initialize(name:, bankroll:, hand:)
         @name = name
@@ -12,8 +15,18 @@ class Player
         @hand = cardArray
     end
 
+    def draw_one card
+        @hand << card.pop #for some reason card is an array so we have to pop it from array before shoveling
+    end
+
     def tally_hand
-        @hand_total = hand[0].value + hand[1].value
+        total = 0
+        hand.each{|card| 
+        #puts "card value is #{card.value}"
+        #puts "hand is #{@hand}"
+        total += card.value}
+        #hand.inject{|sum, n| sum.value + n.value}
+        @hand_total = total
     end
 
     def money_in
@@ -83,6 +96,44 @@ def draw_cards number_of_draws, deck
     results
 end
 
+#deal another card after the initial two
+def deal_another a_Player, deck
+    # if human player do this:
+    if a_Player != $the_house
+        puts "(d)o you want another card?"
+        another_card = gets.chomp
+        if another_card == "d"
+            card = draw_cards 1,deck
+            a_Player.draw_one card
+            a_Player.tally_hand
+            puts "#{a_Player.name}'s hand: #{a_Player.hand}"
+            puts "#{a_Player.name}'s total: #{a_Player.hand_total}"
+            if a_Player.hand_total > 21
+                puts "#{a_Player.name} busted"
+            elsif a_Player.hand_total < 21
+                deal_another a_Player, deck
+            elsif a_Player.hand == 21
+                puts "staying at 21"
+            end
+        end
+    else 
+        # if house do this:
+        if a_Player.hand_total < 17
+            card = draw_cards 1,deck
+            a_Player.draw_one card
+            a_Player.tally_hand
+            puts "#{a_Player.name}'s hand: #{a_Player.hand}"
+            puts "#{a_Player.name}'s total: #{a_Player.hand_total}"
+            if a_Player.hand_total > 21
+                puts "#{a_Player.name} busted"
+            end
+            deal_another a_Player, deck
+        end
+    end
+
+end
+
+
 def play_round deck
     #player 1 turn
     cards = draw_cards 2,deck
@@ -100,14 +151,16 @@ def play_round deck
     p "#{$the_house.name}'s total: #{$the_house.hand_total}"
     puts "\n"
 
+    deal_another $player1, deck
+    deal_another $the_house, deck
 end
 
 def calculate_winner
-    if $player1.hand_total > $the_house.hand_total
+    if $player1.hand_total > $the_house.hand_total && $player1.hand_total < 21
         p "#{$player1.name} wins this hand"
         $player1.money_in
         $the_house.money_out
-    elsif $player1.hand_total < $the_house.hand_total
+    elsif $player1.hand_total < $the_house.hand_total || $player1.hand_total > 21
         p "#{$player1.name} loses this hand"
         $player1.money_out
         $the_house.money_in
@@ -128,26 +181,26 @@ def start_game playerName
     deck1.shuffle! #shuffle the deck
     play_round deck1 #play a round
     calculate_winner #who won and transfer money
-    
+    deal_again $player1.name, deck1
 end
 
-def another_round playerName
+def another_round playerName, deck
     p "another round"
     deck1 = []
     makeNewDeck deck1 #makes a new deck
     deck1.shuffle! #shuffle the deck
     play_round deck1 #play a round
     calculate_winner #who won and transfer money
-    deal_again playerName
+    deal_again playerName, deck1
 end
 
-def deal_again playerName
-    p "(d)eal again?"
+def deal_again playerName, deck
+    puts "(d)eal again?"
     deal_again = gets.chomp
     if deal_again == "d"
-        another_round playerName
+        another_round playerName, deck
     else
-        p "game over"
+        puts "game over"
     end
 end
 
@@ -155,28 +208,19 @@ end
 ########################
 
 #Getting Started
-p "Welcome to Blackjack please enter your name: "
+puts "Welcome to Blackjack please enter your name:"
 name = gets.chomp
 
 #welcome
-p "welcome #{name}"
+puts "welcome #{name}"
 puts "\n"
 
 #start initializer
-p "type 'd' to deal"
+puts "type 'd' to deal"
 gameStart = gets.chomp
 if gameStart == "d"
     start_game name
-    deal_again name
 else
-    p "maybe another time then"
+    puts "maybe another time then"
 end
-
-
-
-#print what we've got
-#p deck[0]
-#p deck
-#deck.shuffle!
-#deck[0]
 
