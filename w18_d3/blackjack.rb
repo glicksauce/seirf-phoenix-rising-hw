@@ -9,6 +9,7 @@ class Player
         @name = name
         @bankroll = bankroll
         @hand = hand
+        @ace_adjust = 0
     end
 
     def draw_two cardArray
@@ -21,13 +22,31 @@ class Player
 
     def tally_hand
         total = 0
-        hand.each{|card| 
-        #puts "card value is #{card.value}"
-        #puts "hand is #{@hand}"
-        total += card.value}
+        hand.each{|card|total += card.value}
         #hand.inject{|sum, n| sum.value + n.value}
         @hand_total = total
     end
+
+    def ace_check
+        aceTally = 0
+        #tally aces in hand
+        hand.each{|card| 
+            if card.number == "ace"
+                aceTally +=1
+            end
+        }
+
+        # if hand is greater than 21 and ace adjust hasn't already been performed
+        iteration = 0
+        while hand_total > 21 && iteration < aceTally
+            @hand_total -= 10
+            @ace_adjust +=1 #increment ace adjust so can't be used again
+            iteration += 1
+        end
+    end
+
+
+
 
     def money_in
         @bankroll += 10
@@ -106,6 +125,7 @@ def deal_another a_Player, deck
             card = draw_cards 1,deck
             a_Player.draw_one card
             a_Player.tally_hand
+            a_Player.ace_check
             puts "#{a_Player.name}'s hand: #{a_Player.hand}"
             puts "#{a_Player.name}'s total: #{a_Player.hand_total}"
             if a_Player.hand_total > 21
@@ -122,13 +142,17 @@ def deal_another a_Player, deck
             card = draw_cards 1,deck
             a_Player.draw_one card
             a_Player.tally_hand
+            a_Player.ace_check
             puts "#{a_Player.name}'s hand: #{a_Player.hand}"
             puts "#{a_Player.name}'s total: #{a_Player.hand_total}"
             if a_Player.hand_total > 21
                 puts "#{a_Player.name} busted"
             end
             deal_another a_Player, deck
-        end
+        else 
+            puts "#{a_Player.name}'s hand: #{a_Player.hand}"
+            puts "#{a_Player.name}'s total: #{a_Player.hand_total}"     
+        end  
     end
 
 end
