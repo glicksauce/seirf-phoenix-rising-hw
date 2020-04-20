@@ -45,7 +45,44 @@ class Player
         end
     end
 
+    def print_formatted_hand
+        pips = ['♣','♦','♥','♠']
 
+        puts "\n"
+        puts "#{name}'s hand:"
+        hand.each{|card| 
+            print "______ "
+        }
+        puts "\n"
+        hand.each{|card| 
+            print "|    | "
+        }
+        puts "\n"
+        hand.each{|card| 
+            print "| #{card.number[0].upcase}"  
+            case card.suit
+            when "spades"
+                print pips[3]
+            when "hearts"
+                print pips[2]
+            when "diamonds"
+                print pips[1]
+            when "clubs"
+                print pips[0]
+            end
+            print " | "
+        }
+        puts "\n"    
+        hand.each{|card| 
+            print "|    | "
+        }
+        puts "\n"        
+        hand.each{|card| 
+            print "------ "
+        }
+        puts "\n"
+        puts hand_total
+    end   
 
 
     def money_in
@@ -83,7 +120,7 @@ def makeNewDeck deck
 
     suits.each{|suit| 
 
-        numbers = [ ['2',2],['3',3],['4',4],['5',5],['6',6],['7',7],['8',8],['9',9],['10',10],["jack", 10],["queen", 10], ["king", 10], ["ace", 11] ]
+        numbers = [ ['2',2],['3',3],['4',4],['5',5],['6',6],['7',7],['8',8],['9',9],['ten',10],["jack", 10],["queen", 10], ["king", 10], ["ace", 11] ]
 
         numbers.each{
             |number| 
@@ -126,8 +163,9 @@ def deal_another a_Player, deck
             a_Player.draw_one card
             a_Player.tally_hand
             a_Player.ace_check
-            puts "#{a_Player.name}'s hand: #{a_Player.hand}"
-            puts "#{a_Player.name}'s total: #{a_Player.hand_total}"
+            #puts "#{a_Player.name}'s hand: #{a_Player.hand}"
+            #puts "#{a_Player.name}'s total: #{a_Player.hand_total}"
+            a_Player.print_formatted_hand  
             if a_Player.hand_total > 21
                 puts "#{a_Player.name} busted"
             elsif a_Player.hand_total < 21
@@ -143,15 +181,17 @@ def deal_another a_Player, deck
             a_Player.draw_one card
             a_Player.tally_hand
             a_Player.ace_check
-            puts "#{a_Player.name}'s hand: #{a_Player.hand}"
-            puts "#{a_Player.name}'s total: #{a_Player.hand_total}"
+            #puts "#{a_Player.name}'s hand: #{a_Player.hand}"
+            #puts "#{a_Player.name}'s total: #{a_Player.hand_total}"
+            a_Player.print_formatted_hand
             if a_Player.hand_total > 21
                 puts "#{a_Player.name} busted"
             end
             deal_another a_Player, deck
         else 
-            puts "#{a_Player.name}'s hand: #{a_Player.hand}"
-            puts "#{a_Player.name}'s total: #{a_Player.hand_total}"     
+            #puts "#{a_Player.name}'s hand: #{a_Player.hand}"
+            #puts "#{a_Player.name}'s total: #{a_Player.hand_total}" 
+            a_Player.print_formatted_hand    
         end  
     end
 
@@ -163,17 +203,17 @@ def play_round deck
     cards = draw_cards 2,deck
     $player1.draw_two cards
     $player1.tally_hand
-    p "#{$player1.name}'s hand: #{$player1.hand}"
-    p "#{$player1.name}'s total: #{$player1.hand_total}"
-    puts "\n"
+    #p "#{$player1.name}'s hand: #{$player1.hand}"
+    #p "#{$player1.name}'s total: #{$player1.hand_total}"
+    $player1.print_formatted_hand
     
     #house's turn
     cards = draw_cards 2,deck
     $the_house.draw_two cards
     $the_house.tally_hand
-    p "#{$the_house.name}'s hand: #{$the_house.hand}"
-    p "#{$the_house.name}'s total: #{$the_house.hand_total}"
-    puts "\n"
+    #p "#{$the_house.name}'s hand: #{$the_house.hand}"
+    #p "#{$the_house.name}'s total: #{$the_house.hand_total}"
+    $the_house.print_formatted_hand
 
     deal_another $player1, deck
     deal_another $the_house, deck
