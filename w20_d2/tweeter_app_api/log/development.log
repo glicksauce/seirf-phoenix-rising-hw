@@ -94,3 +94,464 @@ Processing by TweetsController#index as HTML
 Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.4ms)
 
 
+Started POST "/tweets" for ::1 at 2020-04-25 16:16:55 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay", "title"=>"jay's important tweet", "content"=>"stay well"}}
+Completed 500 Internal Server Error in 91ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (undefined local variable or method `song_params' for #<TweetsController:0x000000000403ca38>
+Did you mean?  to_param):
+  
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:17:18 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay", "title"=>"jay's important tweet", "content"=>"stay well"}}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: author):
+  
+app/controllers/tweets_controller.rb:25:in `item_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:18:53 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay", "title"=>"jay's important tweet", "content"=>"stay well"}}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: author):
+  
+app/controllers/tweets_controller.rb:25:in `item_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:22:16 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay", "title"=>"jay's important tweet", "content"=>"stay well"}}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: author):
+  
+app/controllers/tweets_controller.rb:25:in `item_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:23:06 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"author"=>"jay", "tweet"=>{"title"=>"jay's important tweet", "content"=>"stay well"}}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `permit' for "jay":String):
+  
+app/controllers/tweets_controller.rb:25:in `item_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:23:27 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"author"=>"jay", "tweet"=>{"title"=>"jay's important tweet", "content"=>"stay well"}}
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `permit' for "jay":String):
+  
+app/controllers/tweets_controller.rb:25:in `item_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets?tweet[author]=jay" for ::1 at 2020-04-25 16:25:01 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: author):
+  
+app/controllers/tweets_controller.rb:25:in `item_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets?tweet[author]=jay" for ::1 at 2020-04-25 16:26:42 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay"}}
+Completed 400 Bad Request in 5ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: title):
+  
+app/controllers/tweets_controller.rb:25:in `item_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started GET "/tweets/" for ::1 at 2020-04-25 16:27:18 -0400
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (19.6ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets"[0m
+  ↳ app/controllers/tweets_controller.rb:4
+Completed 200 OK in 80ms (Views: 6.2ms | ActiveRecord: 73.7ms)
+
+
+Started GET "/tweets/2" for ::1 at 2020-04-25 16:27:21 -0400
+Processing by TweetsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTweet Load (0.9ms)[0m  [1m[34mSELECT  "tweets".* FROM "tweets" WHERE "tweets"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:8
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/tweets/" for ::1 at 2020-04-25 16:27:24 -0400
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets"[0m
+  ↳ app/controllers/tweets_controller.rb:4
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/tweets?tweet[author]=jay" for ::1 at 2020-04-25 16:27:52 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweets"=>{"author"=>"jay", "title"=>"jay's important tweet", "content"=>"stay well"}, "tweet"=>{"author"=>"jay"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: title):
+  
+app/controllers/tweets_controller.rb:25:in `item_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets?tweet[author]=jay" for ::1 at 2020-04-25 16:28:18 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay"}, "twee"=>{"title"=>"jay's important tweet"}, "text/plain"=>[""]}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: title):
+  
+app/controllers/tweets_controller.rb:25:in `item_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets?tweet[author]=jay" for ::1 at 2020-04-25 16:29:08 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay"}, "twee"=>{"title"=>"jay's important tweet"}, "text/plain"=>[""]}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: title):
+  
+app/controllers/tweets_controller.rb:25:in `item_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets?tweet[author]=jay" for ::1 at 2020-04-25 16:29:24 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay"}, "twee"=>{"title"=>"jay important tweet"}, "text/plain"=>[""]}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: title):
+  
+app/controllers/tweets_controller.rb:25:in `item_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets?tweet[author]=jay" for ::1 at 2020-04-25 16:31:17 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay"}, "twee"=>{"title"=>"jay important tweet"}, "text/plain"=>[""]}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: content):
+  
+app/controllers/tweets_controller.rb:25:in `tweet_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started POST "/tweets" for 127.0.0.1 at 2020-04-25 16:32:06 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"title"=>"Crentist", "author"=>"Dwight", "content"=>"My dentist's name is Crentist, maybe that's why he became a dentist"}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: content):
+  
+app/controllers/tweets_controller.rb:25:in `tweet_params'
+app/controllers/tweets_controller.rb:13:in `create'
+Started PUT "/tweets/1?author=jay" for ::1 at 2020-04-25 16:34:32 -0400
+Processing by TweetsController#update as */*
+  Parameters: {"author"=>"jay", "id"=>"1"}
+  [1m[36mTweet Load (2.0ms)[0m  [1m[34mSELECT  "tweets".* FROM "tweets" WHERE "tweets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:23
+Completed 400 Bad Request in 49ms (ActiveRecord: 30.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: content):
+  
+app/controllers/tweets_controller.rb:31:in `tweet_params'
+app/controllers/tweets_controller.rb:24:in `update'
+Started PUT "/tweets/1?tweet[author]=jay" for ::1 at 2020-04-25 16:34:52 -0400
+Processing by TweetsController#update as */*
+  Parameters: {"tweet"=>{"author"=>"jay"}, "id"=>"1"}
+  [1m[36mTweet Load (0.3ms)[0m  [1m[34mSELECT  "tweets".* FROM "tweets" WHERE "tweets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:23
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: content):
+  
+app/controllers/tweets_controller.rb:31:in `tweet_params'
+app/controllers/tweets_controller.rb:24:in `update'
+Started PUT "/tweets/1?tweet[author]=jay" for ::1 at 2020-04-25 16:35:50 -0400
+Processing by TweetsController#update as */*
+  Parameters: {"tweet"=>{"author"=>"jay"}, "id"=>"1"}
+  [1m[36mTweet Load (0.2ms)[0m  [1m[34mSELECT  "tweets".* FROM "tweets" WHERE "tweets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:23
+Unpermitted parameters: :tweet, :id
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:24
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:24
+Completed 200 OK in 20ms (Views: 0.8ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/tweets/" for ::1 at 2020-04-25 16:36:05 -0400
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.2ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets"[0m
+  ↳ app/controllers/tweets_controller.rb:4
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.2ms)
+
+
+Started PUT "/tweets/1?tweets[author]=jay" for ::1 at 2020-04-25 16:36:17 -0400
+Processing by TweetsController#update as */*
+  Parameters: {"tweets"=>{"author"=>"jay"}, "id"=>"1"}
+  [1m[36mTweet Load (0.2ms)[0m  [1m[34mSELECT  "tweets".* FROM "tweets" WHERE "tweets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:23
+Unpermitted parameters: :tweets, :id
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:24
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:24
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/tweets/" for ::1 at 2020-04-25 16:36:22 -0400
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.3ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets"[0m
+  ↳ app/controllers/tweets_controller.rb:4
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/tweets/" for ::1 at 2020-04-25 16:36:23 -0400
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.3ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets"[0m
+  ↳ app/controllers/tweets_controller.rb:4
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/tweets?tweet[author]=jay" for ::1 at 2020-04-25 16:45:00 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay"}, "twee"=>{"title"=>"jay important tweet"}, "text/plain"=>[""]}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[36mTweet Create (5.2ms)[0m  [1m[32mINSERT INTO "tweets" ("author") VALUES ($1) RETURNING "id"[0m  [["author", "jay"]]
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:15
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 12.7ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 2, expected 0)):
+  
+app/controllers/tweets_controller.rb:16:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:45:33 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay", "content"=>"stay well"}, "twee"=>{"title"=>"jay important tweet"}, "text/plain"=>[""]}
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[36mTweet Create (1.2ms)[0m  [1m[32mINSERT INTO "tweets" ("content", "author") VALUES ($1, $2) RETURNING "id"[0m  [["content", "stay well"], ["author", "jay"]]
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:15
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 3.3ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 2, expected 0)):
+  
+app/controllers/tweets_controller.rb:16:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:46:04 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay", "content"=>"stay well"}, "twee"=>{"title"=>"jay important tweet"}, "text/plain"=>[""]}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[36mTweet Create (0.3ms)[0m  [1m[32mINSERT INTO "tweets" ("content", "author") VALUES ($1, $2) RETURNING "id"[0m  [["content", "stay well"], ["author", "jay"]]
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:15
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 1.0ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 2, expected 0)):
+  
+app/controllers/tweets_controller.rb:16:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:46:30 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"author"=>"jay", "tweet"=>{"title"=>"jay's important tweet", "content"=>"stay well"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[36mTweet Create (0.4ms)[0m  [1m[32mINSERT INTO "tweets" ("title", "content") VALUES ($1, $2) RETURNING "id"[0m  [["title", "jay's important tweet"], ["content", "stay well"]]
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:15
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 1.7ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 2, expected 0)):
+  
+app/controllers/tweets_controller.rb:16:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:47:30 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay", "title"=>"jay's important tweet", "content"=>"stay well"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[36mTweet Create (0.8ms)[0m  [1m[32mINSERT INTO "tweets" ("title", "content", "author") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "jay's important tweet"], ["content", "stay well"], ["author", "jay"]]
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:15
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 1.7ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 2, expected 0)):
+  
+app/controllers/tweets_controller.rb:16:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:48:06 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay", "content"=>"stay well"}, "twee"=>{"title"=>"jay important tweet"}, "text/plain"=>[""]}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[36mTweet Create (2.9ms)[0m  [1m[32mINSERT INTO "tweets" ("content", "author") VALUES ($1, $2) RETURNING "id"[0m  [["content", "stay well"], ["author", "jay"]]
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:15
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 3.8ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 2, expected 0)):
+  
+app/controllers/tweets_controller.rb:16:in `create'
+Started GET "/tweets/" for ::1 at 2020-04-25 16:50:10 -0400
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/jgman/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.7ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets"[0m
+  ↳ app/controllers/tweets_controller.rb:4
+Completed 200 OK in 25ms (Views: 13.3ms | ActiveRecord: 9.5ms)
+
+
+Started POST "/tweets" for ::1 at 2020-04-25 16:50:26 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay", "content"=>"stay well"}, "twee"=>{"title"=>"jay important tweet"}, "text/plain"=>[""]}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[36mTweet Create (1.8ms)[0m  [1m[32mINSERT INTO "tweets" ("content", "author") VALUES ($1, $2) RETURNING "id"[0m  [["content", "stay well"], ["author", "jay"]]
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:15
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 8.3ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 2, expected 0)):
+  
+app/controllers/tweets_controller.rb:16:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:50:50 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"jay", "title"=>"jay important tweet", "content"=>"stay well"}, "text/plain"=>[""]}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[36mTweet Create (6.8ms)[0m  [1m[32mINSERT INTO "tweets" ("title", "content", "author") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "jay important tweet"], ["content", "stay well"], ["author", "jay"]]
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:15
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 10.8ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 2, expected 0)):
+  
+app/controllers/tweets_controller.rb:16:in `create'
+Started POST "/tweets" for ::1 at 2020-04-25 16:52:14 -0400
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"kay", "title"=>"big title", "content"=>"tweet content"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[36mTweet Create (4.3ms)[0m  [1m[32mINSERT INTO "tweets" ("title", "content", "author") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "big title"], ["content", "tweet content"], ["author", "kay"]]
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:15
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 7.1ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 2, expected 0)):
+  
+app/controllers/tweets_controller.rb:16:in `create'
+Started PUT "/tweets/1?tweets[author]=jasef" for ::1 at 2020-04-25 16:52:32 -0400
+Processing by TweetsController#update as */*
+  Parameters: {"tweets"=>{"author"=>"jasef"}, "id"=>"1"}
+  [1m[36mTweet Load (2.2ms)[0m  [1m[34mSELECT  "tweets".* FROM "tweets" WHERE "tweets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:23
+Completed 400 Bad Request in 73ms (ActiveRecord: 3.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: tweet):
+  
+app/controllers/tweets_controller.rb:31:in `tweet_params'
+app/controllers/tweets_controller.rb:24:in `update'
+Started PUT "/tweets?tweet[author]=kevin" for ::1 at 2020-04-25 16:52:57 -0400
+  
+ActionController::RoutingError (No route matches [PUT] "/tweets"):
+  
+actionpack (5.2.4.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+actionpack (5.2.4.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.4.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.4.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.4.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.4.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.4.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.4.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (5.2.4.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.4.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.4.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.4.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.4.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.4.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.4) lib/puma/configuration.rb:227:in `call'
+puma (3.12.4) lib/puma/server.rb:675:in `handle_request'
+puma (3.12.4) lib/puma/server.rb:476:in `process_client'
+puma (3.12.4) lib/puma/server.rb:334:in `block in run'
+puma (3.12.4) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started PUT "/tweets/1?tweet[author]=kevin" for ::1 at 2020-04-25 16:53:14 -0400
+Processing by TweetsController#update as */*
+  Parameters: {"tweet"=>{"author"=>"kevin"}, "id"=>"1"}
+  [1m[36mTweet Load (0.3ms)[0m  [1m[34mSELECT  "tweets".* FROM "tweets" WHERE "tweets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:23
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:24
+  [1m[36mTweet Update (3.7ms)[0m  [1m[33mUPDATE "tweets" SET "author" = $1 WHERE "tweets"."id" = $2[0m  [["author", "kevin"], ["id", 1]]
+  ↳ app/controllers/tweets_controller.rb:24
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:24
+Completed 200 OK in 10ms (Views: 0.5ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/tweets/" for ::1 at 2020-04-25 16:53:21 -0400
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets"[0m
+  ↳ app/controllers/tweets_controller.rb:4
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.4ms)
+
+
