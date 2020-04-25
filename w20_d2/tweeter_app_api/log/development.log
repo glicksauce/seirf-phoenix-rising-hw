@@ -48,3 +48,49 @@ Migrating to CreateTweets (20200425193612)
   [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
   ↳ db/seeds.rb:14
   [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets"[0m
+Started GET "/tweets" for ::1 at 2020-04-25 15:53:53 -0400
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/jgman/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+  
+SyntaxError (/home/jgman/Desktop/GA/seirf-phoenix-rising-hw/w20_d2/tweeter_app_api/app/controllers/tweets_controller.rb:4: syntax error, unexpected tINTEGER, expecting keyword_do or '{' or '('
+...       render json: {status 200, tweets: tweets}
+...                            ^~~
+/home/jgman/Desktop/GA/seirf-phoenix-rising-hw/w20_d2/tweeter_app_api/app/controllers/tweets_controller.rb:11: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/controllers/tweets_controller.rb:4: syntax error, unexpected tINTEGER, expecting keyword_do or '{' or '('
+app/controllers/tweets_controller.rb:11: syntax error, unexpected end-of-input, expecting keyword_end
+Started GET "/tweets" for ::1 at 2020-04-25 15:56:15 -0400
+  
+SyntaxError (/home/jgman/Desktop/GA/seirf-phoenix-rising-hw/w20_d2/tweeter_app_api/app/controllers/tweets_controller.rb:4: syntax error, unexpected tINTEGER, expecting keyword_do or '{' or '('
+...       render json: {status 200, tweets: tweets}
+...                            ^~~
+/home/jgman/Desktop/GA/seirf-phoenix-rising-hw/w20_d2/tweeter_app_api/app/controllers/tweets_controller.rb:11: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/controllers/tweets_controller.rb:4: syntax error, unexpected tINTEGER, expecting keyword_do or '{' or '('
+app/controllers/tweets_controller.rb:11: syntax error, unexpected end-of-input, expecting keyword_end
+Started GET "/tweets/1" for ::1 at 2020-04-25 15:58:17 -0400
+  
+SyntaxError (/home/jgman/Desktop/GA/seirf-phoenix-rising-hw/w20_d2/tweeter_app_api/app/controllers/tweets_controller.rb:4: syntax error, unexpected tINTEGER, expecting keyword_do or '{' or '('
+...       render json: {status 200, tweets: tweets}
+...                            ^~~
+/home/jgman/Desktop/GA/seirf-phoenix-rising-hw/w20_d2/tweeter_app_api/app/controllers/tweets_controller.rb:11: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/controllers/tweets_controller.rb:4: syntax error, unexpected tINTEGER, expecting keyword_do or '{' or '('
+app/controllers/tweets_controller.rb:11: syntax error, unexpected end-of-input, expecting keyword_end
+  [1m[36mTweet Load (2.2ms)[0m  [1m[34mSELECT  "tweets".* FROM "tweets" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mTweet Load (0.3ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets"[0m
+Started GET "/tweets/1" for ::1 at 2020-04-25 15:59:57 -0400
+Processing by TweetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTweet Load (1.8ms)[0m  [1m[34mSELECT  "tweets".* FROM "tweets" WHERE "tweets"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:8
+Completed 200 OK in 43ms (Views: 0.3ms | ActiveRecord: 24.5ms)
+
+
+Started GET "/tweets/" for ::1 at 2020-04-25 16:00:01 -0400
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets"[0m
+  ↳ app/controllers/tweets_controller.rb:4
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+
+
