@@ -739,3 +739,60 @@ Processing by TweetsController#index as HTML
 Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.7ms)
 
 
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1344325399035759420)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to AddDefaultValueToColumn (20200426005857)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1344325399035759420)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1344325399035759420)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to AddDefaultValueToColumn (20200426005857)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (7.7ms)[0m  [1m[35mALTER TABLE "tweets" ALTER COLUMN "content" SET DEFAULT 'an insightful tweet'[0m
+  ↳ db/migrate/20200426005857_add_default_value_to_column.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200426005857"]]
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1344325399035759420)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started POST "/tweets" for ::1 at 2020-04-25 21:01:33 -0400
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/jgman/.rbenv/versions/2.5.5/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.2/lib/active_record/log_subscriber.rb:98
+Processing by TweetsController#create as */*
+  Parameters: {"tweet"=>{"author"=>"kay", "title"=>"another title3"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[36mTweet Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "tweets" WHERE "tweets"."title" = $1 LIMIT $2[0m  [["title", "another title3"], ["LIMIT", 1]]
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[36mTweet Create (0.4ms)[0m  [1m[32mINSERT INTO "tweets" ("title", "author") VALUES ($1, $2) RETURNING "id"[0m  [["title", "another title3"], ["author", "kay"]]
+  ↳ app/controllers/tweets_controller.rb:15
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tweets_controller.rb:15
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 4.8ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 2, expected 0)):
+  
+app/controllers/tweets_controller.rb:16:in `create'
+Started GET "/tweets/" for ::1 at 2020-04-25 21:01:43 -0400
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.3ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets"[0m
+  ↳ app/controllers/tweets_controller.rb:4
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.3ms)
+
+
