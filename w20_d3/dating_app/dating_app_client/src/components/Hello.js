@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Daters extends Component {
 
     getDaters () {
-        fetch('http://localhost:3000/daters')
+        fetch('http://localhost:3000/users')
         .then( daters => console.log(daters))
     }
     render () {
