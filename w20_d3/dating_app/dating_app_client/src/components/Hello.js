@@ -25,7 +25,6 @@ class Daters extends Component {
             $('.profile-container-right').append(
                 $('.profile:nth-of-type(even)')
             )
-            $('.profile-container-right').css("color","red")
         },500)
     }
 
