@@ -19,7 +19,8 @@ code {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  
+  margin: 0 auto;
+  width: 70%;
 }
 
 h1{
@@ -38,7 +39,7 @@ h1{
 }
 
 .profile-container-left{
-  flex: 0 0 20em;
+  flex: 0 0 25em;
   border: 2px solid red;
 }
 
@@ -48,8 +49,7 @@ h1{
   }
 
 .profile-container-right{
-  flex: 0 0 20em;
-  background: green;
+  flex: 0 0 25em;
   border: 2px solid red;
 }
 .profile{

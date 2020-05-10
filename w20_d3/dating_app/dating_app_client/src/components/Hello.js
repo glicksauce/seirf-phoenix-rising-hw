@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as $ from 'jquery'
 
 class Daters extends Component {
     state = {
@@ -14,6 +15,14 @@ class Daters extends Component {
         .then(res => res.json())
         .then( jsonedDaters => this.setState({daters: jsonedDaters}))
         .catch(error => console.log(error))
+
+        //sets brief timeout to let above function run  then appends even profiles to right side of screen
+        setTimeout(() => {
+            $('.profile-container-right').append(
+                $('.profile:nth-of-type(even)')
+            )
+            $('.profile-container-right').css("color","red")
+        },500)
     }
 
     render () {
