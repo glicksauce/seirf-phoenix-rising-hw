@@ -11,3 +11,47 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+
+.App {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  
+}
+
+h1{
+  flex-basis: 2;
+  text-align: center;
+  }
+  
+  img{
+    width: 150px;
+  }
+
+.profile-container{
+  display: flex;
+  flex: 1;
+  
+}
+
+.profile-container-left{
+  flex: 0 0 20em;
+  border: 2px solid red;
+}
+
+.profile-container-middle{
+    flex: 1;
+    border: 2px solid red;
+  }
+
+.profile-container-right{
+  flex: 0 0 20em;
+  background: green;
+  border: 2px solid red;
+}
+.profile{
+  background: orange;
+}
