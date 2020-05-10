@@ -20,7 +20,7 @@ code {
   min-height: 100vh;
   flex-direction: column;
   margin: 0 auto;
-  width: 70%;
+  width: 75%;
 }
 
 h1{
@@ -29,7 +29,10 @@ h1{
   }
   
   img{
+    object-fit: cover;
     width: 150px;
+    height: 150px;
+    margin: 0;
   }
 
 .profile-container{
@@ -38,7 +41,7 @@ h1{
   
 }
 
-.profile-container-left{
+.profile-container-left, .profile-container-right{
   flex: 0 0 25em;
   border: 2px solid red;
 }
@@ -46,12 +49,26 @@ h1{
 .profile-container-middle{
     flex: 1;
     border: 2px solid red;
+
   }
 
-.profile-container-right{
-  flex: 0 0 25em;
-  border: 2px solid red;
-}
 .profile{
   background: orange;
+  margin: 0;
+}
+
+.profile h4, .profile h5{
+  margin: 5px;
+}
+
+.footer{
+  margin: 10px 0 40px 0;
+}
+
+.footer h2{
+  margin: 10px 0;
+}
+
+form input{
+  margin: 0 10px 0 0;
 }
